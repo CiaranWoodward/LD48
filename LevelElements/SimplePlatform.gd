@@ -4,7 +4,7 @@ extends Node2D
 const NAVPOINT_MARGIN = 1
 
 export var width = 100.0 setget _setwidth
-export var height = 25.0 setget _setheight
+export var height = 37.0 setget _setheight
 
 var id = -1
 
@@ -16,14 +16,14 @@ func _ready():
 
 func _setwidth(w):
 	width = w
-	$Sprite.region_rect.size.x = w
+	$Sprite.region_rect.size.x = w/$Sprite.scale.x
 	$StaticBody2D/CollisionShape2D.shape.extents.x = w / 2
 	$Left.position.x = -w/2 - NAVPOINT_MARGIN
 	$Right.position.x = w/2 + NAVPOINT_MARGIN
 
 func _setheight(h):
 	height = h
-	$Sprite.region_rect.size.y = h
+	$Sprite.region_rect.size.y = h/$Sprite.scale.y
 	$StaticBody2D/CollisionShape2D.shape.extents.y = h / 2
 	$Left.position.y = -h/2 - NAVPOINT_MARGIN
 	$Right.position.y = -h/2 - NAVPOINT_MARGIN
