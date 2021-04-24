@@ -16,7 +16,7 @@
 [ext_resource path="res://Graphics/Demon/Idle/Idle0012.png" type="Texture" id=14]
 [ext_resource path="res://Graphics/Demon/Idle/Idle0013.png" type="Texture" id=15]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
@@ -34,7 +34,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
@@ -42,17 +42,17 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 27.0801, 56.7576 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 11.3016, 23.7628 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 22.8755, 13.8719 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8.61895, 5.58301 )
 
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 36.3592
-height = 35.3946
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 11.7043
+height = 24.4123
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "Grapple"
 length = 0.4
 loop = true
@@ -90,7 +90,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 121.648, -283.306 ) ]
+"values": [ Vector2( 34.3409, -255.527 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Demon/Hand:rotation_degrees")
@@ -129,7 +129,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "Idle"
 length = 0.4
 loop = true
@@ -191,7 +191,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 11.3393, -143.299 ) ]
+"values": [ Vector2( -9.84994, -197.861 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Demon/Hand:rotation_degrees")
@@ -218,8 +218,7 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Walk"
+[sub_resource type="Animation" id=8]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -280,7 +279,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 11.3393, -143.299 ), Vector2( -19.3897, -134.834 ), Vector2( -40.432, -128.642 ), Vector2( -19.3897, -134.834 ), Vector2( 11.3393, -143.299 ), Vector2( 21.9339, -152.862 ), Vector2( 29.3594, -164.639 ), Vector2( 21.9339, -152.862 ) ]
+"values": [ Vector2( -7.73101, -198.391 ), Vector2( -18.9202, -193.778 ), Vector2( -27.9789, -191.989 ), Vector2( -19.006, -192.393 ), Vector2( -8.26077, -197.861 ), Vector2( -2.42361, -201.732 ), Vector2( 2.95334, -207.902 ), Vector2( -1.87846, -202.466 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Demon/Hand:rotation_degrees")
@@ -310,44 +309,41 @@ tracks/6/keys = {
 [node name="Demon" type="KinematicBody2D"]
 
 [node name="Demon" type="AnimatedSprite" parent="."]
-position = Vector2( 0.348999, 101.857 )
-scale = Vector2( 0.5, 0.495146 )
-frames = SubResource( 4 )
-animation = "Walking"
-frame = 5
+position = Vector2( 7.76523, 111.127 )
+scale = Vector2( 0.5, 0.49995 )
+frames = SubResource( 1 )
+animation = "Grapple"
 offset = Vector2( -20.8795, -237.75 )
 
 [node name="Eyes" type="AnimatedSprite" parent="Demon"]
+visible = false
 position = Vector2( -26.6968, -237.602 )
-frames = SubResource( 5 )
-frame = 1
+frames = SubResource( 2 )
 
 [node name="Hand" type="Position2D" parent="Demon"]
-position = Vector2( 21.9339, -152.862 )
-rotation = -0.0752735
+position = Vector2( 34.3409, -255.527 )
 
 [node name="Trident" type="Sprite" parent="Demon/Hand"]
-position = Vector2( 2.62079, -0.664948 )
 texture = ExtResource( 12 )
-offset = Vector2( -0.606689, -125.517 )
-
-[node name="HeadCollision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -4.20447, 18.4998 )
-shape = SubResource( 1 )
-
-[node name="BodyCollision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 11.9864, 86.4014 )
-shape = SubResource( 2 )
+offset = Vector2( -11.2427, -4.47361 )
 
 [node name="FeetCollision" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( -5.04532, -74.8398 )
-rotation = 1.4951
+position = Vector2( -0.231463, 7.11057 )
 shape = SubResource( 3 )
 
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 6.15934, 36.6066 )
+shape = SubResource( 4 )
+
+[node name="HeadCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -1.07233, -29.632 )
+rotation = 1.4951
+shape = SubResource( 5 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Grapple = SubResource( 7 )
-anims/Idle = SubResource( 8 )
-anims/Walk = SubResource( 6 )
+anims/Grapple = SubResource( 6 )
+anims/Idle = SubResource( 7 )
+anims/Walk = SubResource( 8 )
