@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Graphics/Demon/Walking/DemonWalk0000.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Demon/Walking/DemonWalk0001.png" type="Texture" id=2]
@@ -15,6 +15,9 @@
 [ext_resource path="res://Graphics/Demon/Grapple/Grapple0001.png" type="Texture" id=13]
 [ext_resource path="res://Graphics/Demon/Idle/Idle0012.png" type="Texture" id=14]
 [ext_resource path="res://Graphics/Demon/Idle/Idle0013.png" type="Texture" id=15]
+[ext_resource path="res://Graphics/Demon/Attack/Attack0001.png" type="Texture" id=16]
+[ext_resource path="res://Graphics/Demon/Attack/Attack0002.png" type="Texture" id=17]
+[ext_resource path="res://Graphics/Demon/Attack/Attack0000.png" type="Texture" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -23,14 +26,19 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 11 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "Grapple",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "Walking",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
-"name": "Grapple",
+"name": "Attack",
 "speed": 5.0
 } ]
 
@@ -53,7 +61,70 @@ radius = 11.7043
 height = 24.4123
 
 [sub_resource type="Animation" id=6]
-resource_name = "Grapple"
+resource_name = "Attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Demon:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "Attack" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Demon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1.8, 1.8 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0.495 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Demon/Eyes:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Demon:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Demon/Hand:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=7]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -128,9 +199,20 @@ tracks/5/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Demon/Hand:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
-[sub_resource type="Animation" id=7]
-resource_name = "Idle"
+[sub_resource type="Animation" id=8]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -217,8 +299,20 @@ tracks/6/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("Demon/Hand:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -305,12 +399,73 @@ tracks/6/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("Demon/Hand:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Attack"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Grapple"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=22]
+states/Attack/node = SubResource( 10 )
+states/Attack/position = Vector2( 767, 245 )
+states/Grapple/node = SubResource( 11 )
+states/Grapple/position = Vector2( 549, 245 )
+states/Idle/node = SubResource( 12 )
+states/Idle/position = Vector2( 549, 126 )
+states/Walk/node = SubResource( 13 )
+states/Walk/position = Vector2( 767, 126 )
+transitions = [ "Idle", "Walk", SubResource( 14 ), "Idle", "Grapple", SubResource( 15 ), "Walk", "Idle", SubResource( 16 ), "Grapple", "Idle", SubResource( 17 ), "Grapple", "Attack", SubResource( 18 ), "Walk", "Attack", SubResource( 19 ), "Idle", "Attack", SubResource( 20 ), "Attack", "Idle", SubResource( 21 ) ]
+
+[sub_resource type="AnimationNodeBlendTree" id=23]
+nodes/StateMachine/node = SubResource( 22 )
+nodes/StateMachine/position = Vector2( 540, 100 )
+nodes/output/position = Vector2( 800, 120 )
+node_connections = [ "output", 0, "StateMachine" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
 [node name="Demon" type="KinematicBody2D"]
 
 [node name="Demon" type="AnimatedSprite" parent="."]
 position = Vector2( 7.76523, 111.127 )
-scale = Vector2( 0.5, 0.49995 )
+scale = Vector2( 0.5, 0.495036 )
 frames = SubResource( 1 )
 animation = "Grapple"
 offset = Vector2( -20.8795, -237.75 )
@@ -319,6 +474,7 @@ offset = Vector2( -20.8795, -237.75 )
 visible = false
 position = Vector2( -26.6968, -237.602 )
 frames = SubResource( 2 )
+frame = 1
 
 [node name="Hand" type="Position2D" parent="Demon"]
 position = Vector2( 34.3409, -255.527 )
@@ -344,6 +500,13 @@ rotation = 1.4951
 shape = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Grapple = SubResource( 6 )
-anims/Idle = SubResource( 7 )
-anims/Walk = SubResource( 8 )
+anims/Attack = SubResource( 6 )
+anims/Grapple = SubResource( 7 )
+anims/Idle = SubResource( 8 )
+anims/Walk = SubResource( 9 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 23 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/StateMachine/playback = SubResource( 24 )
