@@ -4,8 +4,6 @@ export var drawNavMesh = false
 
 # Maximum possible distance, just to minimize size of platform map
 const MAX_JUMPDIST = 500
-# Threshold for determining "below" - i.e. must be more below than this value
-const LOWER_THRESHOLD = 50
 
 var _platforms = []
 var _platform_idmap = {}
@@ -20,16 +18,21 @@ class LevelAStar:
 	
 	var navmap
 	var idmap
+	var random_factor
 	
 	# Initialise the astar with a navmap
-	func init(navmap, idmap):
+	func init(navmap, idmap, random_factor=1.0):
+		assert(random_factor >= 1)
 		self.navmap = navmap
 		self.idmap = idmap
-		# TODO: Are duplicates ok? Do we need to add the points first?
+		self.random_factor = random_factor
+		# add the points first
+		for plat in navmap.keys():
+			add_point(plat.id, plat.global_position)
 		# Register all the connections
 		for plat in navmap.keys():
 			for entry in navmap[plat]:
-				self.connect_points(plat.id, entry["other"].id)
+				self.connect_points(plat.id, entry["other"].id, false)
 	
 	# Get a path (as a list of platforms)
 	func get_path(start_plat, dst_plat):
@@ -46,17 +49,19 @@ class LevelAStar:
 		for con in list:
 			if con["other"] == dst && con["dist"] < mindist:
 				mindist = con["dist"]
+		return mindist * rand_range(1.0, random_factor)
 	
 	func _estimate_cost(from_id, to_id):
 		return idmap[from_id].GetMinDistanceToPlat(idmap[to_id])
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	_processPlatformMap()
 	assert(_platforms.size() > 0)
 	_treasure_platform = GetClosestPlatform($Treasure.global_position)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if !_navmap_collided:
 		_navmap_collided = true
 		_collide_navmesh()
@@ -90,6 +95,16 @@ func _drawNavMesh():
 			line.add_point(cnt["dst"])
 			self.add_child(line)
 
+func _drawPath(pathlist):
+	if !drawNavMesh || pathlist.size() < 2:
+		return
+	var line = Line2D.new()
+	line.width = 2
+	line.default_color = Color(1, 0, 0)
+	for plat in pathlist:
+		line.add_point(plat.position)
+	self.add_child(line)
+
 func _processPlatformMap():
 	# Get a list of all platforms
 	var idcount = 0
@@ -113,10 +128,10 @@ func _processPlatformMap():
 func GetNavMeshForType(type : String):
 	return _typed_navmap.get(type)
 
-func SetNavMeshForType(type : String, map):
+func SetNavMeshForType(type : String, map, random_factor=1.0):
 	_typed_navmap[type] = map
 	var astar = LevelAStar.new()
-	astar.init(map, _platform_idmap)
+	astar.init(map, _platform_idmap, random_factor)
 	_typed_astar[type] = astar
 
 func GetAstarForType(type : String):
@@ -133,20 +148,20 @@ func GetClosestPlatform(gpos):
 		var d2 = p1.distance_squared_to(gpos)
 		if d2 < closestDist2:
 			closestDist2 = d2
-			retVal = p1
+			retVal = platform
 	return retVal
 
-func GetClosestLowerPlatform(gpos, lower_threshold=LOWER_THRESHOLD):
+func GetClosestLowerPlatform(gpos, lower_threshold=0):
 	var retVal = null
 	var closestDist2 = INF
 	for platform in _platforms:
 		var p1 : Vector2 = platform.GetClosestPoint(gpos)
-		if p1.y + lower_threshold > gpos.y:
+		if (p1.y - lower_threshold) < gpos.y:
 			continue
 		var d2 = p1.distance_squared_to(gpos)
 		if d2 < closestDist2:
 			closestDist2 = d2
-			retVal = p1
+			retVal = platform
 	return retVal
 
 func GetTreasureLocation():
