@@ -9,13 +9,16 @@ onready var stateMachine : AnimationNodeStateMachinePlayback = animTree["paramet
 func _ready():
 	stateMachine.start("Idle")
 
-func _handle_falling(delta):
+func _handle_falling(_delta):
 	if is_on_floor():
 		fall_velocity = 0
 		if stateMachine.get_current_node() == "Falling":
 			stateMachine.travel("Idle")
 	else:
 		stateMachine.travel("Falling")
+
+func _handle_idle(_delta):
+	pass
 
 func _physics_process(delta):
 	_handle_falling(delta)

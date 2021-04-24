@@ -4,7 +4,7 @@
 [ext_resource path="res://LevelElements/SimplePlatform.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 100, 12.5 )
+extents = Vector2( 50, 12.5 )
 
 [node name="SimplePlatform" type="Node2D"]
 script = ExtResource( 2 )
@@ -18,3 +18,9 @@ region_rect = Rect2( 0, 0, 100, 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 1 )
+
+[node name="Left" type="Position2D" parent="."]
+position = Vector2( -50, -12 )
+
+[node name="Right" type="Position2D" parent="."]
+position = Vector2( 50, -12 )

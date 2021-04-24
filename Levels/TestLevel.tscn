@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Enemies/SimpleEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://LevelElements/SimplePlatform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/TestLevel.gd" type="Script" id=3]
 
 [node name="TestLevel" type="Node2D"]
+script = ExtResource( 3 )
 
 [node name="SimplePlatform" parent="." instance=ExtResource( 2 )]
 position = Vector2( 215.436, 413.271 )
@@ -15,3 +17,7 @@ width = 150.0
 
 [node name="SimpleEnemy" parent="SimplePlatform2" instance=ExtResource( 1 )]
 position = Vector2( -399.127, -360.543 )
+fall_velocity = 0.0
+
+[node name="Treasure" type="Position2D" parent="."]
+position = Vector2( 574, 376 )
