@@ -1,0 +1,353 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Graphics/Demon/Walking/DemonWalk0000.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/Demon/Walking/DemonWalk0001.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Demon/Walking/DemonWalk0002.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Demon/Walking/DemonWalk0003.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Demon/Walking/DemonWalk0004.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/Demon/Walking/DemonWalk0005.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/Demon/Walking/DemonWalk0006.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/Demon/Eyes/DemonEyes0000.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/Demon/Eyes/DemonEyes0001.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/Demon/Walking/DemonWalk0007.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/Demon/Grapple/Grapple0000.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/Demon/Trident0000.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/Demon/Grapple/Grapple0001.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/Demon/Idle/Idle0012.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/Demon/Idle/Idle0013.png" type="Texture" id=15]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Walking",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "Grapple",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 27.0801, 56.7576 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 22.8755, 13.8719 )
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 36.3592
+height = 35.3946
+
+[sub_resource type="Animation" id=7]
+resource_name = "Grapple"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Demon:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "Grapple" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Demon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1.8, 1.8 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0.495 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Demon/Hand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 121.648, -283.306 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Demon/Hand:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Demon:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 1 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Demon/Eyes:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Demon:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "Idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Demon:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Demon/Eyes:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Demon:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1.8, 1.8 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0.495 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Demon/Hand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 11.3393, -143.299 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Demon/Hand:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Demon/Eyes:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Walk"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Demon:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "Walking" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Demon:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Demon/Eyes:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 1, 0, 1, 0, 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Demon:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1.8, 1.8, 1.8, 1.8 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0.495 ), Vector2( 0.5, 0.5 ), Vector2( 0.5, 0.495 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Demon/Hand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 11.3393, -143.299 ), Vector2( -19.3897, -134.834 ), Vector2( -40.432, -128.642 ), Vector2( -19.3897, -134.834 ), Vector2( 11.3393, -143.299 ), Vector2( 21.9339, -152.862 ), Vector2( 29.3594, -164.639 ), Vector2( 21.9339, -152.862 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Demon/Hand:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, 22.7747, 40.1306, 22.7747, 0.0, -4.31285, -12.8021, -4.31285 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Demon/Eyes:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Demon" type="KinematicBody2D"]
+
+[node name="Demon" type="AnimatedSprite" parent="."]
+position = Vector2( 0.348999, 101.857 )
+scale = Vector2( 0.5, 0.495146 )
+frames = SubResource( 4 )
+animation = "Walking"
+frame = 5
+offset = Vector2( -20.8795, -237.75 )
+
+[node name="Eyes" type="AnimatedSprite" parent="Demon"]
+position = Vector2( -26.6968, -237.602 )
+frames = SubResource( 5 )
+frame = 1
+
+[node name="Hand" type="Position2D" parent="Demon"]
+position = Vector2( 21.9339, -152.862 )
+rotation = -0.0752735
+
+[node name="Trident" type="Sprite" parent="Demon/Hand"]
+position = Vector2( 2.62079, -0.664948 )
+texture = ExtResource( 12 )
+offset = Vector2( -0.606689, -125.517 )
+
+[node name="HeadCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -4.20447, 18.4998 )
+shape = SubResource( 1 )
+
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 11.9864, 86.4014 )
+shape = SubResource( 2 )
+
+[node name="FeetCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -5.04532, -74.8398 )
+rotation = 1.4951
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Grapple = SubResource( 7 )
+anims/Idle = SubResource( 8 )
+anims/Walk = SubResource( 6 )
