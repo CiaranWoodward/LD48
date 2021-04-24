@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Enemies/SimpleEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://LevelElements/SimplePlatform.tscn" type="PackedScene" id=2]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="SimplePlatform" parent="." instance=ExtResource( 2 )]
+position = Vector2( 219, 244 )
+width = 200.0
+
+[node name="SimplePlatform2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 545, 247 )
+width = 150.0
+
+[node name="SimpleEnemy" parent="SimplePlatform2" instance=ExtResource( 1 )]
+position = Vector2( -392, -120 )

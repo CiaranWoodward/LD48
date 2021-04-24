@@ -11,7 +11,16 @@ config_version=4
 [application]
 
 config/name="LD48"
+run/main_scene="res://Levels/TestLevel.tscn"
 config/icon="res://icon.png"
+
+[layer_names]
+
+2d_physics/layer_1="scenery"
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemies"
+2d_physics/layer_4="playerbullets"
+2d_physics/layer_5="enemybullets"
 
 [physics]
 
