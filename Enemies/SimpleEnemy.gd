@@ -15,13 +15,28 @@ export var fall_rate = 0.0
 onready var animTree = $AnimationTree
 onready var stateMachine : AnimationNodeStateMachinePlayback = animTree["parameters/StateMachine/playback"]
 
+# pathing
 var _path = []
-var _platform = null
+var _final_destination = Vector2.ZERO
+# moving
+var _cur_plat = null # Platform that the current dst point is on
+var _cur_point = null # Current destination point we are moving towards
+var _cur_after_point = null # When we get to that point, where are we trying to go?
+var _cur_speed = 0
+
+# current status
 var _on_floor = false
+var _platform = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	stateMachine.start("Idle")
+
+func _handle_movement(delta):
+	var kc = move_and_collide(Vector2(_cur_speed * max_speed, fall_rate * max_fallspeed) * delta)
+	if is_instance_valid(kc):
+		if kc.normal.y < -0.5:
+			_on_floor = true
 
 func _handle_falling(delta):
 	if _on_floor:
@@ -31,20 +46,57 @@ func _handle_falling(delta):
 			_platform = get_parent().GetClosestLowerPlatform(global_position)
 	else:
 		stateMachine.travel("Falling")
-		var kc = move_and_collide(Vector2(0, fall_rate * max_fallspeed) * delta)
-		if is_instance_valid(kc):
-			_on_floor = true #TODO: Might have to enhance this
+
+func _configure_next_point():
+	if is_instance_valid(_platform) && (_platform in _path) && (_platform != _cur_plat):
+		var pindex = _path.find(_platform)
+		if pindex == _path.size() - 1:
+			# This point is final destination
+			# TODO: This code can't be reached
+			_cur_plat = _platform
+			_cur_point = _final_destination
+			_cur_after_point = _final_destination
+			return
+		var next_plat = _path[pindex + 1]
+		var list = get_parent().GetNavMeshForType(MY_TYPE)[_platform]
+		# Get all potential paths to next platform
+		var potentials = []
+		for elem in list:
+			if elem["other"] == next_plat:
+				potentials.append(elem)
+		if potentials.size() == 0:
+			_path = []
+		# Randomly choose any path to the next platform
+		var target_path = potentials[randi() % potentials.size()]
+		_cur_plat = _platform
+		_cur_point = target_path["src"]
+		_cur_after_point = target_path["dst"]
 
 func _handle_idle(_delta):
 	if _on_floor:
 		var cn = stateMachine.get_current_node()
 		if cn == "Idle":
 			if _path.size() == 0 || !(_platform in _path):
+				# Go to treasure
 				_repath_to(get_parent().GetTreasurePlatform())
+				_final_destination = get_parent().GetTreasureLocation()
+			_configure_next_point()
+
+func _handle_travel(_delta):
+	_cur_speed = 0
+	if _on_floor:
+		if is_instance_valid(_platform):
+			if _platform == _cur_plat:
+				if self.global_position.direction_to(_cur_point).x > 0:
+					_cur_speed = 1
+				else:
+					_cur_speed = -1
 
 func _physics_process(delta):
+	_handle_movement(delta)
 	_handle_falling(delta)
 	_handle_idle(delta)
+	_handle_travel(delta)
 
 func _is_jump_possible(from : Vector2, to : Vector2) -> bool:
 	var heightincrease = from.y - to.y # This is backwards because y is inverted!
