@@ -21,6 +21,7 @@ class LevelAStar:
 	var navmap
 	var idmap
 	
+	# Initialise the astar with a navmap
 	func init(navmap, idmap):
 		self.navmap = navmap
 		self.idmap = idmap
@@ -29,6 +30,14 @@ class LevelAStar:
 		for plat in navmap.keys():
 			for entry in navmap[plat]:
 				self.connect_points(plat.id, entry["other"].id)
+	
+	# Get a path (as a list of platforms)
+	func get_path(start_plat, dst_plat):
+		var retlist = []
+		var idpath = self.get_id_path(start_plat.id, dst_plat.id)
+		for id in idpath:
+			retlist.append(idmap[id])
+		return retlist
 	
 	func _compute_cost(from_id, to_id):
 		var list = navmap[idmap[from_id]]
@@ -51,6 +60,8 @@ func _physics_process(delta):
 	if !_navmap_collided:
 		_navmap_collided = true
 		_collide_navmesh()
+		#TODO: Hack to draw navmap
+		$SimpleEnemy._create_typed_navmap()
 		_drawNavMesh()
 
 func _collide_navmesh():
@@ -70,7 +81,8 @@ func _drawNavMesh():
 	if !drawNavMesh:
 		return
 	for plat in _platforms:
-		var lst = _platform_navmap[plat]
+		#var lst = _platform_navmap[plat]
+		var lst = _typed_navmap["simpleton"][plat]
 		for cnt in lst:
 			var line = Line2D.new()
 			line.width = 1
