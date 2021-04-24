@@ -30,11 +30,47 @@ func IsPlatform():
 func _getNavPoint(other, other_gpos):
 	var mpos = self.GetClosestPoint(other_gpos)
 	var dist = mpos.distance_to(other_gpos)
-	return {}
+	return {
+		"other" : other,
+		"src" : mpos,
+		"dst" : other_gpos,
+		"dist" : dist
+		}
 
-func GetNavMap(other):
+func _invertNavPoint(point, newOther):
+	return {
+		"other" : newOther,
+		"src" : point["dst"],
+		"dst" : point["src"],
+		"dist" : point["dist"]
+	}
+
+func _optimizeNavMap(list, maxDist):
+	var rmlist = []
+	# Remove duplicates & too far aways
+	for i in range(list.size()):
+		for j in range(i, list.size()):
+			if list[i]["dist"] > maxDist:
+				rmlist.push_front(i)
+			elif i != j && list[i]["src"] == list[j]["src"] && list[i]["dst"] == list[j]["dst"]:
+				rmlist.push_front(i)
+	for i in rmlist:
+		list.remove(i)
+	return list
+
+func InvertNavMap(navMap, newOther):
+	var newList = []
+	for elem in navMap:
+		newList.append(_invertNavPoint(elem, newOther))
+	return newList
+
+func GetNavMap(other, maxDist):
 	var list = []
-	self.GetClosestPoint(other.GetLeft)
+	list.append(_getNavPoint(other, other.GetLeft()))
+	list.append(_getNavPoint(other, other.GetRight()))
+	list.append(_invertNavPoint(other._getNavPoint(self, self.GetLeft()), other))
+	list.append(_invertNavPoint(other._getNavPoint(self, self.GetRight()), other))
+	return _optimizeNavMap(list, maxDist)
 
 func GetLeft():
 	return $Left.global_position
