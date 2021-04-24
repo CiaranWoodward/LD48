@@ -9,7 +9,7 @@ script = ExtResource( 3 )
 drawNavMesh = true
 
 [node name="SimplePlatform" parent="." instance=ExtResource( 2 )]
-position = Vector2( 270.437, 240.412 )
+position = Vector2( 249.018, 246.712 )
 width = 500.0
 
 [node name="SimplePlatform2" parent="." instance=ExtResource( 2 )]
@@ -29,8 +29,7 @@ position = Vector2( 877.681, 440.06 )
 width = 150.0
 
 [node name="Treasure" type="Position2D" parent="."]
-position = Vector2( 428.08, 498.348 )
+position = Vector2( 181.136, 528.586 )
 
 [node name="SimpleEnemy" parent="." instance=ExtResource( 1 )]
-position = Vector2( 155.567, 148.752 )
-fall_velocity = 0.0
+position = Vector2( 130.873, -8.39268 )

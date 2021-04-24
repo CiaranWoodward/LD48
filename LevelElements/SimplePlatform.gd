@@ -6,6 +6,8 @@ const NAVPOINT_MARGIN = 1
 export var width = 100.0 setget _setwidth
 export var height = 25.0 setget _setheight
 
+var id = -1
+
 func _ready():
 	# We make a new rectangleshape because otherwise each platform shares the same one
 	$StaticBody2D/CollisionShape2D.shape = RectangleShape2D.new()
@@ -93,3 +95,13 @@ func GetClosestPoint(gpos : Vector2) -> Vector2:
 	var t = max(0, min(1, v1.dot(v2)/segLen2))
 	var p = $Left.global_position + (t * v2)
 	return p
+
+# Return The minimum distance between two platforms
+func GetMinDistanceToPlat(other):
+	var p1 = other.GetClosestPoint($Left.global_position)
+	var d1_2 = p1.distance_squared_to($Left.global_position)
+	var p2 = other.GetClosestPoint($Right.global_position)
+	var d2_2 = p2.distance_squared_to($Right.global_position)
+	if d1_2 < d2_2:
+		return sqrt(d1_2)
+	return sqrt(d2_2)

@@ -9,7 +9,7 @@ extents = Vector2( 15, 15.5 )
 [sub_resource type="Animation" id=2]
 resource_name = "Falling"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:fall_velocity")
+tracks/0/path = NodePath(".:fall_rate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -27,33 +27,32 @@ resource_name = "Idle"
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "Falling"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 
-[sub_resource type="AnimationNodeStateMachine" id=5]
+[sub_resource type="AnimationNodeStateMachine" id=8]
 states/Falling/node = SubResource( 4 )
 states/Falling/position = Vector2( 460, 156 )
-states/Idle/node = SubResource( 8 )
+states/Idle/node = SubResource( 5 )
 states/Idle/position = Vector2( 733, 156 )
-transitions = [ "Falling", "Idle", SubResource( 9 ), "Idle", "Falling", SubResource( 10 ) ]
+transitions = [ "Falling", "Idle", SubResource( 6 ), "Idle", "Falling", SubResource( 7 ) ]
 graph_offset = Vector2( 10, 25 )
 
-[sub_resource type="AnimationNodeBlendTree" id=6]
+[sub_resource type="AnimationNodeBlendTree" id=9]
 graph_offset = Vector2( -112, -41 )
-nodes/StateMachine/node = SubResource( 5 )
+nodes/StateMachine/node = SubResource( 8 )
 nodes/StateMachine/position = Vector2( 280, 120 )
 nodes/output/position = Vector2( 560, 120 )
 node_connections = [ "output", 0, "StateMachine" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
 [node name="SimpleEnemy" type="KinematicBody2D"]
 script = ExtResource( 2 )
-fall_velocity = null
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
@@ -67,10 +66,10 @@ anims/Falling = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 6 )
+tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 process_mode = 0
-parameters/StateMachine/playback = SubResource( 7 )
+parameters/StateMachine/playback = SubResource( 10 )
 
 [node name="Tween" type="Tween" parent="."]
