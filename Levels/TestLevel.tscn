@@ -6,18 +6,31 @@
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource( 3 )
+drawNavMesh = true
 
 [node name="SimplePlatform" parent="." instance=ExtResource( 2 )]
-position = Vector2( 215.436, 413.271 )
-width = 200.0
+position = Vector2( 270.437, 240.412 )
+width = 500.0
 
 [node name="SimplePlatform2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 541.436, 416.271 )
+position = Vector2( 514.003, 566.898 )
+width = 1000.0
+
+[node name="SimplePlatform3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 681.25, 323.324 )
 width = 150.0
 
-[node name="SimpleEnemy" parent="SimplePlatform2" instance=ExtResource( 1 )]
-position = Vector2( -399.127, -360.543 )
-fall_velocity = 0.0
+[node name="SimplePlatform4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 913.92, 183.221 )
+width = 150.0
+
+[node name="SimplePlatform5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 877.681, 440.06 )
+width = 150.0
 
 [node name="Treasure" type="Position2D" parent="."]
-position = Vector2( 574, 376 )
+position = Vector2( 428.08, 498.348 )
+
+[node name="SimpleEnemy" parent="." instance=ExtResource( 1 )]
+position = Vector2( 155.567, 148.752 )
+fall_velocity = 0.0

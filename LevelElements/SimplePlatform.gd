@@ -1,6 +1,8 @@
 tool
 extends Node2D
 
+const NAVPOINT_MARGIN = 1
+
 export var width = 100.0 setget _setwidth
 export var height = 25.0 setget _setheight
 
@@ -14,15 +16,15 @@ func _setwidth(w):
 	width = w
 	$Sprite.region_rect.size.x = w
 	$StaticBody2D/CollisionShape2D.shape.extents.x = w / 2
-	$Left.position.x = -w/2
-	$Right.position.x = w/2
+	$Left.position.x = -w/2 - NAVPOINT_MARGIN
+	$Right.position.x = w/2 + NAVPOINT_MARGIN
 
 func _setheight(h):
 	height = h
 	$Sprite.region_rect.size.y = h
 	$StaticBody2D/CollisionShape2D.shape.extents.y = h / 2
-	$Left.position.y = -h/2
-	$Right.position.y = -h/2
+	$Left.position.y = -h/2 - NAVPOINT_MARGIN
+	$Right.position.y = -h/2 - NAVPOINT_MARGIN
 
 func IsPlatform():
 	return true
@@ -52,8 +54,10 @@ func _optimizeNavMap(list, maxDist):
 		for j in range(i, list.size()):
 			if list[i]["dist"] > maxDist:
 				rmlist.push_front(i)
+				break
 			elif i != j && list[i]["src"] == list[j]["src"] && list[i]["dst"] == list[j]["dst"]:
 				rmlist.push_front(i)
+				break
 	for i in rmlist:
 		list.remove(i)
 	return list
@@ -80,7 +84,7 @@ func GetRight():
 
 # Get the closest point on the platform to the global position
 func GetClosestPoint(gpos : Vector2) -> Vector2:
-	var segLen2 = $Left.position.distance_squared_to($Right)
+	var segLen2 = $Left.position.distance_squared_to($Right.position)
 	assert(segLen2 > 0)
 	
 	# vector maths is fun
