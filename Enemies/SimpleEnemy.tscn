@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/SimpleEnemy.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15, 15.5 )
+extents = Vector2( 31.8081, 31.5319 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Falling"
@@ -24,6 +24,36 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
 
+[sub_resource type="Animation" id=16]
+resource_name = "SlowDown"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:speed_rate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "SpeedUp"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:speed_rate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
 [sub_resource type="Animation" id=11]
 resource_name = "Walking"
 
@@ -33,6 +63,15 @@ animation = "Falling"
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "Idle"
 
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "SlowDown"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "Walking"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "SpeedUp"
+
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Walking"
 
@@ -40,22 +79,44 @@ animation = "Walking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+switch_mode = 2
+auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
 
 [sub_resource type="AnimationNodeStateMachine" id=8]
 states/Falling/node = SubResource( 4 )
 states/Falling/position = Vector2( 460, 156 )
 states/Idle/node = SubResource( 5 )
-states/Idle/position = Vector2( 733, 156 )
+states/Idle/position = Vector2( 740, 156 )
+states/SlowDown/node = SubResource( 17 )
+states/SlowDown/position = Vector2( 642, 329.536 )
+states/SlowWalking/node = SubResource( 22 )
+states/SlowWalking/position = Vector2( 740, 246.536 )
+states/SpeedUp/node = SubResource( 18 )
+states/SpeedUp/position = Vector2( 852, 329.536 )
 states/Walking/node = SubResource( 12 )
-states/Walking/position = Vector2( 733, 292 )
-transitions = [ "Falling", "Idle", SubResource( 6 ), "Idle", "Falling", SubResource( 7 ), "Idle", "Walking", SubResource( 13 ), "Walking", "Idle", SubResource( 14 ) ]
+states/Walking/position = Vector2( 740, 428 )
+transitions = [ "Falling", "Idle", SubResource( 6 ), "Idle", "Falling", SubResource( 7 ), "SpeedUp", "Walking", SubResource( 20 ), "Walking", "SlowDown", SubResource( 21 ), "SlowDown", "SlowWalking", SubResource( 23 ), "SlowWalking", "SpeedUp", SubResource( 24 ), "SlowWalking", "Idle", SubResource( 25 ), "Idle", "SlowWalking", SubResource( 26 ), "SlowDown", "Falling", SubResource( 27 ), "SpeedUp", "Falling", SubResource( 28 ) ]
 graph_offset = Vector2( 10, 106.536 )
 
 [sub_resource type="AnimationNodeBlendTree" id=9]
-graph_offset = Vector2( -112, -41 )
+graph_offset = Vector2( -112, 90 )
 nodes/StateMachine/node = SubResource( 8 )
 nodes/StateMachine/position = Vector2( 280, 120 )
 nodes/output/position = Vector2( 560, 120 )
@@ -67,7 +128,6 @@ node_connections = [ "output", 0, "StateMachine" ]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -76,6 +136,8 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Falling = SubResource( 2 )
 anims/Idle = SubResource( 3 )
+anims/SlowDown = SubResource( 16 )
+anims/SpeedUp = SubResource( 15 )
 anims/Walking = SubResource( 11 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -84,3 +146,6 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 process_mode = 0
 parameters/StateMachine/playback = SubResource( 10 )
+
+[node name="Tween" type="Tween" parent="."]
+playback_process_mode = 0

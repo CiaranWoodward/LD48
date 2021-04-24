@@ -3,17 +3,24 @@ extends KinematicBody2D
 const MY_TYPE = "simpleton"
 
 export var max_fallspeed = 700
-export var max_speed = 500
+export var max_speed = 300
 export var max_jumpheight = 300
 export var max_fallheight = 300
+export var min_speed = 50
+
 export var max_jump_up_time = 0.7
+
 export var pathing_random_factor = 5.0
 
 #animation properties between 0 and 1
 export var fall_rate = 0.0
+export var speed_rate = 0.0
 
 onready var animTree = $AnimationTree
 onready var stateMachine : AnimationNodeStateMachinePlayback = animTree["parameters/StateMachine/playback"]
+
+var accel_transition = Tween.TRANS_LINEAR
+var accel_ease = Tween.EASE_OUT
 
 # pathing
 var _path = []
@@ -22,7 +29,8 @@ var _final_destination = Vector2.ZERO
 var _cur_plat = null # Platform that the current dst point is on
 var _cur_point = null # Current destination point we are moving towards
 var _cur_after_point = null # When we get to that point, where are we trying to go?
-var _cur_speed = 0
+var _direction = 0
+var _slowdown_time
 
 # current status
 var _on_floor = false
@@ -31,9 +39,12 @@ var _platform = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	stateMachine.start("Idle")
+	_slowdown_time = $AnimationPlayer.get_animation("SlowDown").length
+	$Tween.start()
 
 func _handle_movement(delta):
-	var kc = move_and_collide(Vector2(_cur_speed * max_speed, fall_rate * max_fallspeed) * delta)
+	var speed = _direction * speed_rate * (max_speed-min_speed) + _direction * min_speed
+	var kc = move_and_collide(Vector2(speed, fall_rate * max_fallspeed) * delta)
 	if is_instance_valid(kc):
 		if kc.normal.y < -0.5:
 			_on_floor = true
@@ -82,16 +93,25 @@ func _handle_idle(_delta):
 				_final_destination = get_parent().GetTreasureLocation()
 			_configure_next_point()
 
-func _handle_travel(_delta):
-	_cur_speed = 0
+func _walk_to_point(_delta, point :Vector2):
+	var vec = point - self.global_position
+	var dir = vec.normalized()
+	if dir.x > 0:
+		_direction = 1
+	else:
+		_direction = -1
+	if abs(vec.x) > _slowdown_time * max_speed:
+		stateMachine.travel("Walking")
+	else:
+		stateMachine.travel("SlowWalking")
+
+func _handle_travel(delta):
+	_direction = 0
 	if _on_floor:
 		if is_instance_valid(_platform):
 			if _platform == _cur_plat:
-				if self.global_position.direction_to(_cur_point).x > 0:
-					_cur_speed = 1
-				else:
-					_cur_speed = -1
-
+				_walk_to_point(delta, _cur_point)
+	
 func _physics_process(delta):
 	_handle_movement(delta)
 	_handle_falling(delta)
