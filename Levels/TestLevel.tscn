@@ -6,12 +6,12 @@
 [node name="TestLevel" type="Node2D"]
 
 [node name="SimplePlatform" parent="." instance=ExtResource( 2 )]
-position = Vector2( 219, 244 )
+position = Vector2( 215.436, 413.271 )
 width = 200.0
 
 [node name="SimplePlatform2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 545, 247 )
+position = Vector2( 541.436, 416.271 )
 width = 150.0
 
 [node name="SimpleEnemy" parent="SimplePlatform2" instance=ExtResource( 1 )]
-position = Vector2( -392, -120 )
+position = Vector2( -399.127, -360.543 )
