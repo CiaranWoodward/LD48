@@ -6,7 +6,7 @@
 [ext_resource path="res://Graphics/Enemies/Adventurer/Attack/Attack0002.png" type="Texture" id=4]
 [ext_resource path="res://Enemies/Adventurer.gd" type="Script" id=5]
 
-[sub_resource type="SpriteFrames" id=45]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ],
 "loop": true,
@@ -14,10 +14,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=46]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 30.2796, 50.1247 )
 
-[sub_resource type="Animation" id=47]
+[sub_resource type="Animation" id=3]
 length = 0.7
 step = 0.05
 tracks/0/type = "value"
@@ -57,7 +57,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=48]
+[sub_resource type="Animation" id=4]
 length = 0.3
 loop = true
 step = 0.05
@@ -98,7 +98,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=49]
+[sub_resource type="Animation" id=5]
 length = 0.3
 loop = true
 step = 0.05
@@ -139,7 +139,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=50]
+[sub_resource type="Animation" id=6]
 length = 0.4
 loop = true
 step = 0.05
@@ -180,7 +180,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=51]
+[sub_resource type="Animation" id=7]
 length = 0.6
 loop = true
 step = 0.05
@@ -221,7 +221,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=52]
+[sub_resource type="Animation" id=8]
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
@@ -273,7 +273,7 @@ tracks/3/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=53]
+[sub_resource type="Animation" id=9]
 length = 0.8
 loop = true
 step = 0.05
@@ -314,7 +314,7 @@ tracks/2/keys = {
 "values": [ 1.0, 5.0, -5.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=54]
+[sub_resource type="Animation" id=10]
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
@@ -366,7 +366,7 @@ tracks/3/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=55]
+[sub_resource type="Animation" id=11]
 length = 0.6
 loop = true
 step = 0.05
@@ -410,46 +410,39 @@ tracks/2/keys = {
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Attack"
 
-[sub_resource type="AnimationNodeAnimation" id=37]
-animation = "Jumping"
-
 [sub_resource type="AnimationNodeAnimation" id=13]
-animation = "Idle"
-
-[sub_resource type="AnimationNodeAnimation" id=36]
 animation = "Jumping"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
-animation = "Jumping"
+animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=15]
-animation = "Land"
+animation = "Jumping"
 
 [sub_resource type="AnimationNodeAnimation" id=16]
-animation = "PreJump"
+animation = "Jumping"
 
 [sub_resource type="AnimationNodeAnimation" id=17]
-animation = "SlowDown"
+animation = "Land"
 
 [sub_resource type="AnimationNodeAnimation" id=18]
-animation = "SlowWalk"
+animation = "PreJump"
 
 [sub_resource type="AnimationNodeAnimation" id=19]
-animation = "SpeedUp"
+animation = "SlowDown"
 
 [sub_resource type="AnimationNodeAnimation" id=20]
+animation = "SlowWalk"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "SpeedUp"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "Walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
 switch_mode = 2
@@ -460,6 +453,9 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
 switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
@@ -467,12 +463,24 @@ switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
 switch_mode = 2
 auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=38]
 
@@ -480,50 +488,43 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=41]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=42]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=43]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=44]
-
-[sub_resource type="AnimationNodeStateMachine" id=33]
+[sub_resource type="AnimationNodeStateMachine" id=41]
 states/Attack/node = SubResource( 12 )
 states/Attack/position = Vector2( 360, 243 )
-states/Falling/node = SubResource( 37 )
+states/Falling/node = SubResource( 13 )
 states/Falling/position = Vector2( 985.866, 29 )
-states/Idle/node = SubResource( 13 )
+states/Idle/node = SubResource( 14 )
 states/Idle/position = Vector2( 654, 243 )
-states/JumpDown/node = SubResource( 36 )
+states/JumpDown/node = SubResource( 15 )
 states/JumpDown/position = Vector2( 759, 29 )
-states/JumpUp/node = SubResource( 14 )
+states/JumpUp/node = SubResource( 16 )
 states/JumpUp/position = Vector2( 541, 29 )
-states/Land/node = SubResource( 15 )
+states/Land/node = SubResource( 17 )
 states/Land/position = Vector2( 759, 121 )
-states/PreJump/node = SubResource( 16 )
+states/PreJump/node = SubResource( 18 )
 states/PreJump/position = Vector2( 541, 121 )
-states/SlowDown/node = SubResource( 17 )
+states/SlowDown/node = SubResource( 19 )
 states/SlowDown/position = Vector2( 1021, 319 )
-states/SlowWalking/node = SubResource( 18 )
+states/SlowWalking/node = SubResource( 20 )
 states/SlowWalking/position = Vector2( 881, 243 )
-states/SpeedUp/node = SubResource( 19 )
+states/SpeedUp/node = SubResource( 21 )
 states/SpeedUp/position = Vector2( 1014, 162 )
-states/Walking/node = SubResource( 20 )
+states/Walking/node = SubResource( 22 )
 states/Walking/position = Vector2( 1143, 243 )
-transitions = [ "Idle", "PreJump", SubResource( 21 ), "Idle", "SlowWalking", SubResource( 22 ), "SlowWalking", "SpeedUp", SubResource( 23 ), "SpeedUp", "Walking", SubResource( 24 ), "Walking", "SlowDown", SubResource( 25 ), "SlowDown", "SlowWalking", SubResource( 26 ), "PreJump", "JumpUp", SubResource( 27 ), "Land", "Idle", SubResource( 29 ), "SlowWalking", "Idle", SubResource( 30 ), "Idle", "Attack", SubResource( 31 ), "Attack", "Idle", SubResource( 32 ), "JumpUp", "JumpDown", SubResource( 38 ), "JumpDown", "Land", SubResource( 39 ), "Falling", "Land", SubResource( 40 ), "SlowWalking", "Falling", SubResource( 41 ), "Walking", "Falling", SubResource( 42 ), "SpeedUp", "Falling", SubResource( 43 ), "SlowDown", "Falling", SubResource( 44 ) ]
+transitions = [ "Idle", "PreJump", SubResource( 23 ), "Idle", "SlowWalking", SubResource( 24 ), "SlowWalking", "SpeedUp", SubResource( 25 ), "SpeedUp", "Walking", SubResource( 26 ), "Walking", "SlowDown", SubResource( 27 ), "SlowDown", "SlowWalking", SubResource( 28 ), "PreJump", "JumpUp", SubResource( 29 ), "Land", "Idle", SubResource( 30 ), "SlowWalking", "Idle", SubResource( 31 ), "Idle", "Attack", SubResource( 32 ), "Attack", "Idle", SubResource( 33 ), "JumpUp", "JumpDown", SubResource( 34 ), "JumpDown", "Land", SubResource( 35 ), "Falling", "Land", SubResource( 36 ), "SlowWalking", "Falling", SubResource( 37 ), "Walking", "Falling", SubResource( 38 ), "SpeedUp", "Falling", SubResource( 39 ), "SlowDown", "Falling", SubResource( 40 ) ]
 graph_offset = Vector2( 152.866, -41.002 )
 
-[sub_resource type="AnimationNodeBlendTree" id=56]
+[sub_resource type="AnimationNodeBlendTree" id=42]
 graph_offset = Vector2( 0, -110 )
-nodes/StateMachine/node = SubResource( 33 )
+nodes/StateMachine/node = SubResource( 41 )
 nodes/StateMachine/position = Vector2( 420, 60 )
 nodes/output/position = Vector2( 680, 100 )
 node_connections = [ "output", 0, "StateMachine" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=57]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=43]
 
 [node name="Adventurer" type="KinematicBody2D"]
+collision_layer = 4
 script = ExtResource( 5 )
 my_type = "adventurer"
 myheight = 45
@@ -533,28 +534,28 @@ speed_rate = 1.0
 position = Vector2( 1.38571, 45.7499 )
 rotation = 0.0349066
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 45 )
+frames = SubResource( 1 )
 offset = Vector2( -29.3191, -89.004 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( -5.24406, -4.8695 )
-shape = SubResource( 46 )
+shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Attack = SubResource( 47 )
-anims/Idle = SubResource( 48 )
-anims/Jumping = SubResource( 49 )
-anims/Land = SubResource( 50 )
-anims/PreJump = SubResource( 51 )
-anims/SlowDown = SubResource( 52 )
-anims/SlowWalk = SubResource( 53 )
-anims/SpeedUp = SubResource( 54 )
-anims/Walk = SubResource( 55 )
+anims/Attack = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/Jumping = SubResource( 5 )
+anims/Land = SubResource( 6 )
+anims/PreJump = SubResource( 7 )
+anims/SlowDown = SubResource( 8 )
+anims/SlowWalk = SubResource( 9 )
+anims/SpeedUp = SubResource( 10 )
+anims/Walk = SubResource( 11 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 56 )
+tree_root = SubResource( 42 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 process_mode = 0
-parameters/StateMachine/playback = SubResource( 57 )
+parameters/StateMachine/playback = SubResource( 43 )

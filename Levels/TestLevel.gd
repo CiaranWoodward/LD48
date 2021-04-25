@@ -59,7 +59,7 @@ func _ready():
 	randomize()
 	_processPlatformMap()
 	assert(_platforms.size() > 0)
-	_treasure_platform = GetClosestPlatform($Treasure.global_position)
+	_treasure_platform = GetClosestPlatform($Shrine.global_position)
 
 func _physics_process(_delta):
 	if !_navmap_collided:
@@ -165,7 +165,7 @@ func GetClosestLowerPlatform(gpos, lower_threshold=0):
 	return retVal
 
 func GetTreasureLocation():
-	return $Treasure.global_position
+	return $Shrine.global_position
 
 func GetTreasurePlatform():
 	return _treasure_platform
