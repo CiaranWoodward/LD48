@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Graphics/Scenery/BackWall0000.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/Other/UI/Parchment0000.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/TheTheme.tres" type="Theme" id=4]
+
+[node name="Story1" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Parchment" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+patch_margin_left = 215
+patch_margin_top = 177
+patch_margin_right = 165
+patch_margin_bottom = 145
+
+[node name="Letter" type="TextEdit" parent="Parchment"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 128.018
+margin_top = 113.091
+margin_right = -112.982
+margin_bottom = -134.909
+theme = ExtResource( 4 )
+text = "Dear Security Demon 696,
+
+There has been a leak of maps to some of our holiest shrines. As a result, there are various treasure hunters making their way to steal our valuable treasures.
+
+Due to the high number of security demons required, you will need to fight off the treasure hunters heading to Shrine 43 on your own. We have sent you a company issue grappling trident for your use.
+
+Kind regards,
+Head Office"
+wrap_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

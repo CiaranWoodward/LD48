@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Graphics/TheTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Graphics/Scenery/BackWall0000.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Other/UI/Title0000.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Scenery/Platform0000.png" type="Texture" id=4]
+
+[node name="Start" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Platform" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = -211.443
+margin_right = -100.0
+margin_bottom = -97.4433
+texture = ExtResource( 4 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -499.0
+margin_top = -601.955
+margin_right = 500.0
+margin_bottom = -152.955
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="TextEdit" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -221.0
+margin_top = -88.0
+margin_right = 221.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "PRESS ANY BUTTON TO CONTINUE"
+__meta__ = {
+"_edit_use_anchors_": false
+}

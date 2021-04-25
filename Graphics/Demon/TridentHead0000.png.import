@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Knight0003.png-721592b695e044182d63a8bd520343c9.stex"
+path="res://.import/TridentHead0000.png-cf8691d26ce029851b87ac00c25d3fbf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Other/Knight0003.png"
-dest_files=[ "res://.import/Knight0003.png-721592b695e044182d63a8bd520343c9.stex" ]
+source_file="res://Graphics/Demon/TridentHead0000.png"
+dest_files=[ "res://.import/TridentHead0000.png-cf8691d26ce029851b87ac00c25d3fbf.stex" ]
 
 [params]
 
