@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const MY_TYPE = "simpleton"
+export var my_type = "simpleton"
 
 export var max_fallspeed = 300.0
 export var max_jumpspeed = 300.0
@@ -12,16 +12,20 @@ export var stop_dist = 30.0
 export var min_x_jump = 30.0
 export var min_jump_time = 0.2
 export var jump_y_overshoot = 30.0
+export var gravity_time = 0.5
 export var myheight = 32
 
-export var pathing_random_factor = 1.0#5.0
+export var pathing_random_factor = 5.0
 
 #animation properties between 0 and 1
-export var fall_rate = 0.0
 export var speed_rate = 0.0
 
 onready var animTree = $AnimationTree
 onready var stateMachine : AnimationNodeStateMachinePlayback = animTree["parameters/StateMachine/playback"]
+
+var jumpTween = Tween.new()
+var fallTween = Tween.new()
+var fall_rate = 0.0
 
 var accel_transition = Tween.TRANS_LINEAR
 var accel_ease = Tween.EASE_OUT
@@ -50,6 +54,13 @@ func _ready():
 	stateMachine.start("Idle")
 	_slowdown_time = $AnimationPlayer.get_animation("SlowDown").length
 	max_jump_up_time = max_jumpheight / max_jumpspeed
+	jumpTween = Tween.new()
+	fallTween = Tween.new()
+	add_child(jumpTween)
+	add_child(fallTween)
+	jumpTween.connect("tween_completed", self, "_on_Tween_tween_completed")
+	fallTween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
+	jumpTween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
 
 # Actually execute and move the character
 func _handle_movement(delta):
@@ -61,12 +72,17 @@ func _handle_movement(delta):
 
 func _handle_falling(delta):
 	if _on_floor:
+		fallTween.remove_all()
 		fall_rate = 0
 		if stateMachine.get_current_node() == "Falling":
 			stateMachine.travel("Idle")
 			_platform = get_parent().GetClosestLowerPlatform(global_position)
 	else:
 		stateMachine.travel("Falling")
+		if fall_rate == 0:
+			fall_rate = 0.01
+			fallTween.interpolate_property(self, "fall_rate", null, 1, gravity_time, Tween.TRANS_SINE, Tween.EASE_OUT)
+			fallTween.start()
 
 func _configure_next_point():
 	if is_instance_valid(_platform) && (_platform in _path) && (_platform != _cur_plat):
@@ -79,7 +95,7 @@ func _configure_next_point():
 			_cur_after_point = _final_destination
 			return
 		var next_plat = _path[pindex + 1]
-		var list = get_parent().GetNavMeshForType(MY_TYPE)[_platform]
+		var list = get_parent().GetNavMeshForType(my_type)[_platform]
 		# Get all potential paths to next platform
 		var potentials = []
 		for elem in list:
@@ -107,7 +123,7 @@ func _end_jump():
 	_jumping = false
 	_on_floor = false
 	_platform = null
-	$JumpTween.remove_all()
+	jumpTween.remove_all()
 	stateMachine.travel("Falling")
 
 func _mid_jump():
@@ -120,8 +136,8 @@ func _on_Tween_tween_completed(object, key):
 		_end_jump()
 	if key == ":global_position:y" && _jumping:
 		_mid_jump()
-		$JumpTween.interpolate_property(self, "global_position:y", null, _cur_after_point.y, fall_time, Tween.TRANS_CIRC, Tween.EASE_IN)
-		$JumpTween.start()
+		jumpTween.interpolate_property(self, "global_position:y", null, _cur_after_point.y, fall_time, Tween.TRANS_CIRC, Tween.EASE_IN)
+		jumpTween.start()
 
 func _reached_point(_delta):
 	if  _cur_after_point != _cur_point:
@@ -140,9 +156,9 @@ func _reached_point(_delta):
 			fall_time = jump_time * (fall_time/(rise_time + fall_time))
 		
 		var midpoint_ypos = global_position.y + jump_height
-		$JumpTween.interpolate_property(self, "global_position:x", global_position.x, _cur_after_point.x, jump_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		$JumpTween.interpolate_property(self, "global_position:y", global_position.y, midpoint_ypos, rise_time, Tween.TRANS_CIRC, Tween.EASE_OUT)
-		$JumpTween.start()
+		jumpTween.interpolate_property(self, "global_position:x", global_position.x, _cur_after_point.x, jump_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		jumpTween.interpolate_property(self, "global_position:y", global_position.y, midpoint_ypos, rise_time, Tween.TRANS_CIRC, Tween.EASE_OUT)
+		jumpTween.start()
 		stateMachine.travel("JumpUp")
 		_jumping = true
 		_cur_plat = null
@@ -212,7 +228,7 @@ func _create_typed_navmap():
 				rmlist.append(entry)
 		for val in rmlist:
 			map[plat].erase(val)
-	get_parent().SetNavMeshForType(MY_TYPE, map, pathing_random_factor)
+	get_parent().SetNavMeshForType(my_type, map, pathing_random_factor)
 
 # Find a path to the destination
 func _repath_to(dest_platform):
@@ -221,10 +237,10 @@ func _repath_to(dest_platform):
 	if !is_instance_valid(_platform):
 		return
 	
-	var astar = get_parent().GetAstarForType(MY_TYPE)
+	var astar = get_parent().GetAstarForType(my_type)
 	if astar == null:
 		_create_typed_navmap()
-		astar = get_parent().GetAstarForType(MY_TYPE)
+		astar = get_parent().GetAstarForType(my_type)
 	_path = astar.get_path(_platform, dest_platform)
 	get_parent()._drawPath(_path)
 

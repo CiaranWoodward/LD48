@@ -8,26 +8,14 @@ extents = Vector2( 31.8081, 31.5319 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Falling"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:fall_rate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 2.46229 ),
-"update": 0,
-"values": [ 0.0, 1.0 ]
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=4]
 resource_name = "Jumping"
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=5]
 resource_name = "SlowDown"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:speed_rate")
@@ -42,7 +30,7 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=6]
 resource_name = "SpeedUp"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:speed_rate")
@@ -57,36 +45,42 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=7]
 resource_name = "Walking"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Falling"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=30]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "Jumping"
 
-[sub_resource type="AnimationNodeAnimation" id=31]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "Jumping"
-
-[sub_resource type="AnimationNodeAnimation" id=17]
-animation = "SlowDown"
-
-[sub_resource type="AnimationNodeAnimation" id=22]
-animation = "Walking"
-
-[sub_resource type="AnimationNodeAnimation" id=18]
-animation = "SpeedUp"
 
 [sub_resource type="AnimationNodeAnimation" id=12]
+animation = "SlowDown"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "Walking"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "SpeedUp"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "Walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
 switch_mode = 2
@@ -94,9 +88,9 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
 
@@ -108,40 +102,34 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
-
-[sub_resource type="AnimationNodeStateMachine" id=8]
-states/Falling/node = SubResource( 4 )
+[sub_resource type="AnimationNodeStateMachine" id=29]
+states/Falling/node = SubResource( 8 )
 states/Falling/position = Vector2( 460, 156 )
-states/Idle/node = SubResource( 5 )
+states/Idle/node = SubResource( 9 )
 states/Idle/position = Vector2( 740, 156 )
-states/JumpDown/node = SubResource( 30 )
+states/JumpDown/node = SubResource( 10 )
 states/JumpDown/position = Vector2( 841, 37.1259 )
-states/JumpUp/node = SubResource( 31 )
+states/JumpUp/node = SubResource( 11 )
 states/JumpUp/position = Vector2( 657, 37.1259 )
-states/SlowDown/node = SubResource( 17 )
+states/SlowDown/node = SubResource( 12 )
 states/SlowDown/position = Vector2( 642, 329.536 )
-states/SlowWalking/node = SubResource( 22 )
+states/SlowWalking/node = SubResource( 13 )
 states/SlowWalking/position = Vector2( 740, 246.536 )
-states/SpeedUp/node = SubResource( 18 )
+states/SpeedUp/node = SubResource( 14 )
 states/SpeedUp/position = Vector2( 853, 329.536 )
-states/Walking/node = SubResource( 12 )
+states/Walking/node = SubResource( 15 )
 states/Walking/position = Vector2( 740, 428 )
-transitions = [ "Falling", "Idle", SubResource( 6 ), "Idle", "Falling", SubResource( 7 ), "SpeedUp", "Walking", SubResource( 20 ), "Walking", "SlowDown", SubResource( 21 ), "SlowDown", "SlowWalking", SubResource( 23 ), "SlowWalking", "SpeedUp", SubResource( 24 ), "SlowWalking", "Idle", SubResource( 25 ), "Idle", "SlowWalking", SubResource( 26 ), "SlowDown", "Falling", SubResource( 27 ), "SpeedUp", "Falling", SubResource( 28 ), "Idle", "JumpUp", SubResource( 32 ), "JumpUp", "JumpDown", SubResource( 33 ), "JumpDown", "Idle", SubResource( 34 ) ]
-graph_offset = Vector2( 64, 17.5206 )
+transitions = [ "Falling", "Idle", SubResource( 16 ), "Idle", "Falling", SubResource( 17 ), "SpeedUp", "Walking", SubResource( 18 ), "Walking", "SlowDown", SubResource( 19 ), "SlowDown", "SlowWalking", SubResource( 20 ), "SlowWalking", "SpeedUp", SubResource( 21 ), "SlowWalking", "Idle", SubResource( 22 ), "Idle", "SlowWalking", SubResource( 23 ), "SlowDown", "Falling", SubResource( 24 ), "SpeedUp", "Falling", SubResource( 25 ), "Idle", "JumpUp", SubResource( 26 ), "JumpUp", "JumpDown", SubResource( 27 ), "JumpDown", "Idle", SubResource( 28 ) ]
+graph_offset = Vector2( 64, -27.3607 )
 
-[sub_resource type="AnimationNodeBlendTree" id=9]
+[sub_resource type="AnimationNodeBlendTree" id=30]
 graph_offset = Vector2( -112, 49 )
-nodes/StateMachine/node = SubResource( 8 )
+nodes/StateMachine/node = SubResource( 29 )
 nodes/StateMachine/position = Vector2( 280, 120 )
 nodes/output/position = Vector2( 560, 120 )
 node_connections = [ "output", 0, "StateMachine" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
 
 [node name="SimpleEnemy" type="KinematicBody2D"]
 collision_layer = 4
@@ -157,18 +145,14 @@ shape = SubResource( 1 )
 playback_process_mode = 0
 anims/Falling = SubResource( 2 )
 anims/Idle = SubResource( 3 )
-anims/Jumping = SubResource( 29 )
-anims/SlowDown = SubResource( 16 )
-anims/SpeedUp = SubResource( 15 )
-anims/Walking = SubResource( 11 )
+anims/Jumping = SubResource( 4 )
+anims/SlowDown = SubResource( 5 )
+anims/SpeedUp = SubResource( 6 )
+anims/Walking = SubResource( 7 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 9 )
+tree_root = SubResource( 30 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 process_mode = 0
-parameters/StateMachine/playback = SubResource( 10 )
-
-[node name="JumpTween" type="Tween" parent="."]
-
-[connection signal="tween_completed" from="JumpTween" to="." method="_on_Tween_tween_completed"]
+parameters/StateMachine/playback = SubResource( 31 )
