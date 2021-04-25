@@ -2,15 +2,19 @@ extends KinematicBody2D
 
 const MY_TYPE = "simpleton"
 
-export var max_fallspeed = 700
-export var max_speed = 300
-export var max_jumpheight = 300
-export var max_fallheight = 300
-export var min_speed = 50
+export var max_fallspeed = 300.0
+export var max_jumpspeed = 300.0
+export var max_speed = 300.0
+export var max_jumpheight = 300.0
+export var max_fallheight = 300.0
+export var min_speed = 100.0
+export var stop_dist = 30.0
+export var min_x_jump = 30.0
+export var min_jump_time = 0.2
+export var jump_y_overshoot = 30.0
+export var myheight = 32
 
-export var max_jump_up_time = 0.7
-
-export var pathing_random_factor = 5.0
+export var pathing_random_factor = 1.0#5.0
 
 #animation properties between 0 and 1
 export var fall_rate = 0.0
@@ -30,18 +34,24 @@ var _cur_plat = null # Platform that the current dst point is on
 var _cur_point = null # Current destination point we are moving towards
 var _cur_after_point = null # When we get to that point, where are we trying to go?
 var _direction = 0
+
+# Cached
 var _slowdown_time
+var max_jump_up_time
 
 # current status
 var _on_floor = false
 var _platform = null
+var _jumping = false
+var fall_time = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	stateMachine.start("Idle")
 	_slowdown_time = $AnimationPlayer.get_animation("SlowDown").length
-	$Tween.start()
+	max_jump_up_time = max_jumpheight / max_jumpspeed
 
+# Actually execute and move the character
 func _handle_movement(delta):
 	var speed = _direction * speed_rate * (max_speed-min_speed) + _direction * min_speed
 	var kc = move_and_collide(Vector2(speed, fall_rate * max_fallspeed) * delta)
@@ -93,7 +103,52 @@ func _handle_idle(_delta):
 				_final_destination = get_parent().GetTreasureLocation()
 			_configure_next_point()
 
-func _walk_to_point(_delta, point :Vector2):
+func _end_jump():
+	_jumping = false
+	_on_floor = false
+	_platform = null
+	$JumpTween.remove_all()
+	stateMachine.travel("Falling")
+
+func _mid_jump():
+	stateMachine.travel("JumpDown")
+
+func _on_Tween_tween_completed(object, key):
+	if object != self:
+		return
+	if key == ":global_position:x":
+		_end_jump()
+	if key == ":global_position:y" && _jumping:
+		_mid_jump()
+		$JumpTween.interpolate_property(self, "global_position:y", null, _cur_after_point.y, fall_time, Tween.TRANS_CIRC, Tween.EASE_IN)
+		$JumpTween.start()
+
+func _reached_point(_delta):
+	if  _cur_after_point != _cur_point:
+		# We jumping
+		_cur_after_point.y = _cur_after_point.y - myheight
+		var diff = _cur_after_point - global_position
+		var jump_height = -jump_y_overshoot + min(0, diff.y) # Maximum jump height relative to start position (negative is higher)
+		var fall_height = jump_height - max(0, diff.y) # Maximum fall height between peak of jump and the end position (negative is higher)
+		fall_time = max(0, -fall_height/max_fallspeed)
+		var rise_time = -jump_height/max_jumpspeed
+		var jump_time = max(rise_time + fall_time, diff.x/max_speed)
+		
+		# Make an arc
+		if jump_time > (rise_time + fall_time):
+			rise_time = jump_time * (rise_time/(rise_time + fall_time))
+			fall_time = jump_time * (fall_time/(rise_time + fall_time))
+		
+		var midpoint_ypos = global_position.y + jump_height
+		$JumpTween.interpolate_property(self, "global_position:x", global_position.x, _cur_after_point.x, jump_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$JumpTween.interpolate_property(self, "global_position:y", global_position.y, midpoint_ypos, rise_time, Tween.TRANS_CIRC, Tween.EASE_OUT)
+		$JumpTween.start()
+		stateMachine.travel("JumpUp")
+		_jumping = true
+		_cur_plat = null
+		_cur_point = null
+
+func _walk_to_point(delta, point : Vector2):
 	var vec = point - self.global_position
 	var dir = vec.normalized()
 	if dir.x > 0:
@@ -102,6 +157,10 @@ func _walk_to_point(_delta, point :Vector2):
 		_direction = -1
 	if abs(vec.x) > _slowdown_time * max_speed:
 		stateMachine.travel("Walking")
+	elif abs(vec.x) < stop_dist:
+		_direction = 0
+		stateMachine.travel("Idle")
+		_reached_point(delta)
 	else:
 		stateMachine.travel("SlowWalking")
 
@@ -113,10 +172,13 @@ func _handle_travel(delta):
 				_walk_to_point(delta, _cur_point)
 	
 func _physics_process(delta):
-	_handle_movement(delta)
-	_handle_falling(delta)
-	_handle_idle(delta)
-	_handle_travel(delta)
+	if is_nan(global_position.x):
+		print("Help!")
+	if !_jumping:
+		_handle_movement(delta)
+		_handle_falling(delta)
+		_handle_idle(delta)
+		_handle_travel(delta)
 
 func _is_jump_possible(from : Vector2, to : Vector2) -> bool:
 	var heightincrease = from.y - to.y # This is backwards because y is inverted!
@@ -156,6 +218,8 @@ func _create_typed_navmap():
 func _repath_to(dest_platform):
 	if !is_instance_valid(_platform):
 		_platform = get_parent().GetClosestLowerPlatform(self.global_position)
+	if !is_instance_valid(_platform):
+		return
 	
 	var astar = get_parent().GetAstarForType(MY_TYPE)
 	if astar == null:

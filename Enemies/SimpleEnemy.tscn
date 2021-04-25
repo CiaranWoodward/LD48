@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/SimpleEnemy.gd" type="Script" id=2]
@@ -23,6 +23,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
+
+[sub_resource type="Animation" id=29]
+resource_name = "Jumping"
 
 [sub_resource type="Animation" id=16]
 resource_name = "SlowDown"
@@ -63,6 +66,12 @@ animation = "Falling"
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "Idle"
 
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "Jumping"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "Jumping"
+
 [sub_resource type="AnimationNodeAnimation" id=17]
 animation = "SlowDown"
 
@@ -99,24 +108,34 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
 [sub_resource type="AnimationNodeStateMachine" id=8]
 states/Falling/node = SubResource( 4 )
 states/Falling/position = Vector2( 460, 156 )
 states/Idle/node = SubResource( 5 )
 states/Idle/position = Vector2( 740, 156 )
+states/JumpDown/node = SubResource( 30 )
+states/JumpDown/position = Vector2( 841, 37.1259 )
+states/JumpUp/node = SubResource( 31 )
+states/JumpUp/position = Vector2( 657, 37.1259 )
 states/SlowDown/node = SubResource( 17 )
 states/SlowDown/position = Vector2( 642, 329.536 )
 states/SlowWalking/node = SubResource( 22 )
 states/SlowWalking/position = Vector2( 740, 246.536 )
 states/SpeedUp/node = SubResource( 18 )
-states/SpeedUp/position = Vector2( 852, 329.536 )
+states/SpeedUp/position = Vector2( 853, 329.536 )
 states/Walking/node = SubResource( 12 )
 states/Walking/position = Vector2( 740, 428 )
-transitions = [ "Falling", "Idle", SubResource( 6 ), "Idle", "Falling", SubResource( 7 ), "SpeedUp", "Walking", SubResource( 20 ), "Walking", "SlowDown", SubResource( 21 ), "SlowDown", "SlowWalking", SubResource( 23 ), "SlowWalking", "SpeedUp", SubResource( 24 ), "SlowWalking", "Idle", SubResource( 25 ), "Idle", "SlowWalking", SubResource( 26 ), "SlowDown", "Falling", SubResource( 27 ), "SpeedUp", "Falling", SubResource( 28 ) ]
-graph_offset = Vector2( 10, 106.536 )
+transitions = [ "Falling", "Idle", SubResource( 6 ), "Idle", "Falling", SubResource( 7 ), "SpeedUp", "Walking", SubResource( 20 ), "Walking", "SlowDown", SubResource( 21 ), "SlowDown", "SlowWalking", SubResource( 23 ), "SlowWalking", "SpeedUp", SubResource( 24 ), "SlowWalking", "Idle", SubResource( 25 ), "Idle", "SlowWalking", SubResource( 26 ), "SlowDown", "Falling", SubResource( 27 ), "SpeedUp", "Falling", SubResource( 28 ), "Idle", "JumpUp", SubResource( 32 ), "JumpUp", "JumpDown", SubResource( 33 ), "JumpDown", "Idle", SubResource( 34 ) ]
+graph_offset = Vector2( 64, 17.5206 )
 
 [sub_resource type="AnimationNodeBlendTree" id=9]
-graph_offset = Vector2( -112, 90 )
+graph_offset = Vector2( -112, 49 )
 nodes/StateMachine/node = SubResource( 8 )
 nodes/StateMachine/position = Vector2( 280, 120 )
 nodes/output/position = Vector2( 560, 120 )
@@ -125,6 +144,7 @@ node_connections = [ "output", 0, "StateMachine" ]
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
 [node name="SimpleEnemy" type="KinematicBody2D"]
+collision_layer = 4
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -134,8 +154,10 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
 anims/Falling = SubResource( 2 )
 anims/Idle = SubResource( 3 )
+anims/Jumping = SubResource( 29 )
 anims/SlowDown = SubResource( 16 )
 anims/SpeedUp = SubResource( 15 )
 anims/Walking = SubResource( 11 )
@@ -147,5 +169,6 @@ active = true
 process_mode = 0
 parameters/StateMachine/playback = SubResource( 10 )
 
-[node name="Tween" type="Tween" parent="."]
-playback_process_mode = 0
+[node name="JumpTween" type="Tween" parent="."]
+
+[connection signal="tween_completed" from="JumpTween" to="." method="_on_Tween_tween_completed"]

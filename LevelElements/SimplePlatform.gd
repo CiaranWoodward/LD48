@@ -64,6 +64,22 @@ func _optimizeNavMap(list, maxDist):
 		list.remove(i)
 	return list
 
+func _reduceNavMap(list):
+	var rmlist = []
+	var distmap = {} # dst to dist
+	# Remove suboptimal paths
+	# Find shortest paths
+	for elem in list:
+		if distmap.get(elem["other"], INF) > elem["dist"]:
+			distmap[elem["other"]] = elem["dist"]
+	# Remove any path that is longer than the minimum
+	for i in range(list.size()):
+		if list[i]["dist"] > distmap[list[i]["other"]]:
+			rmlist.push_front(i)
+	for i in rmlist:
+		list.remove(i)
+	return list
+
 func InvertNavMap(navMap, newOther):
 	var newList = []
 	for elem in navMap:
@@ -76,7 +92,8 @@ func GetNavMap(other, maxDist):
 	list.append(_getNavPoint(other, other.GetRight()))
 	list.append(_invertNavPoint(other._getNavPoint(self, self.GetLeft()), other))
 	list.append(_invertNavPoint(other._getNavPoint(self, self.GetRight()), other))
-	return _optimizeNavMap(list, maxDist)
+	list = _optimizeNavMap(list, maxDist)
+	return _reduceNavMap(list)
 
 func GetLeft():
 	return $Left.global_position

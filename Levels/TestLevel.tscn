@@ -29,10 +29,10 @@ position = Vector2( 921.457, 437.815 )
 width = 200.0
 
 [node name="Treasure" type="Position2D" parent="."]
-position = Vector2( 215.932, 508.382 )
+position = Vector2( 917.563, 121.056 )
 
 [node name="SimpleEnemy" parent="." instance=ExtResource( 1 )]
-position = Vector2( 130.873, -8.39268 )
+position = Vector2( 130.873, 156.697 )
 
 [node name="Demon" parent="." instance=ExtResource( 4 )]
 position = Vector2( 347.369, 42.5388 )
