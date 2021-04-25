@@ -27,14 +27,14 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "Grapple",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "Walking",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "Grapple",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ), ExtResource( 16 ), ExtResource( 17 ) ],
@@ -652,14 +652,16 @@ script = ExtResource( 19 )
 
 [node name="Demon" type="AnimatedSprite" parent="Flipper"]
 position = Vector2( 7.76523, 111.127 )
-scale = Vector2( 0.5, 0.499999 )
+scale = Vector2( 0.5, 0.498648 )
 frames = SubResource( 1 )
 animation = "Idle"
+frame = 1
 offset = Vector2( -20.8795, -237.75 )
 
 [node name="Eyes" type="AnimatedSprite" parent="Flipper/Demon"]
 position = Vector2( -26.6968, -237.602 )
 frames = SubResource( 2 )
+frame = 1
 
 [node name="Hand" type="Position2D" parent="Flipper/Demon"]
 position = Vector2( -9.84994, -197.861 )

@@ -8,6 +8,10 @@ export var max_jumpspeed = 1000
 export var gravity_time = 0.4
 export var jump_time = 0.5
 export var tiny_jump_time = 0.1
+export var grapple_length = 1400
+export var grapple_accel_time = 0.3
+export var max_grapplespeed = 600
+export var grapple_stick_in_dist = 20.0
 
 # current state
 var _direction = 0
@@ -19,6 +23,7 @@ var _speed = 0
 var _fallspeed = 1
 var cur_maxspeed = max_speed
 var _state = state.IDLE
+var _grapplePoint = Vector2.INF
 
 # tween vars
 var speed_proportion = 0
@@ -26,6 +31,8 @@ var speed_proportion = 0
 enum state {IDLE, FALLING, WALKING, ATTACK, GRAPPLE}
 
 onready var stateMachine : AnimationNodeStateMachinePlayback = $AnimationTree["parameters/StateMachine/playback"]
+onready var myHand = $Flipper/Demon/Hand
+onready var myTrident = $Flipper/Demon/Hand/Trident
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +43,7 @@ func _ready():
 func _input(event: InputEvent) -> void:
 	#jump
 	if event.is_action_pressed("player_jump") && !_jumping:
+		_end_grapple()
 		stateMachine.travel("JumpStart")
 		_jumping = true
 	if event.is_action_released("player_jump") && _jumping:
@@ -46,9 +54,52 @@ func _input(event: InputEvent) -> void:
 			stateMachine.travel("FlyingAttack")
 		else:
 			stateMachine.travel("Attack")
+	# Grapple
+	if event.is_action_pressed("player_grapple"):
+		var space_state = get_world_2d().direct_space_state
+		var gmp = get_global_mouse_position()
+		var ghp = myHand.global_position
+		var dir = ghp.direction_to(gmp)
+		var vec = dir * grapple_length
+		var res = space_state.intersect_ray(ghp, ghp + vec, [self], 1 + 4)
+		if res.empty():
+			pass #TODO: Failed animation
+		else:
+			_grapplePoint = res["position"] + dir * grapple_stick_in_dist
+			_start_grapple()
+			
+	if event.is_action_released("player_grapple"):
+		_end_grapple()
+
+func _start_grapple():
+	_on_floor = false
+	$GravityTween.remove_all()
+	$SpeedTween.remove_all()
+	$SpeedTween.interpolate_property(self, "speed_proportion", null, 1, grapple_accel_time, Tween.TRANS_EXPO, Tween.EASE_OUT)
+	$SpeedTween.start()
+	stateMachine.travel("Grapple")
+
+func _end_grapple():
+	if !IsGrappling():
+		return
+	var dir = myHand.global_position.direction_to(_grapplePoint)
+	_fallspeed = dir.y * speed_proportion * max_grapplespeed
+	speed_proportion = abs(dir.x)
+	if dir.x > 0:
+		_direction = 1
+	else:
+		_direction = -1
+	_grapplePoint = Vector2.INF
+	_leavefloor()
+
+func IsGrappling() -> bool:
+	return (_grapplePoint != Vector2.INF)
 
 # Continuous actions
 func _handle_continuous_input() -> void:
+	_handle_player_movement()
+
+func _handle_player_movement() -> void:
 	var left = Input.is_action_pressed("player_left")
 	var right = Input.is_action_pressed("player_right")
 	var oldDir = _direction
@@ -77,7 +128,10 @@ func _handle_continuous_input() -> void:
 		$Flipper.scale.x = -abs($Flipper.scale.x)
 	
 	if oldDir && !_direction:
-		_stopmove()
+		if _on_floor:
+			_stopmove()
+		else:
+			_direction = oldDir # keep floating in air
 	elif !oldDir && _direction:
 		_startmove()
 
@@ -158,9 +212,18 @@ func _cancel_momentum():
 		cur_maxspeed = max_airspeed
 
 func _handle_playermove(delta: float) -> void:
-	var kc = move_and_collide(Vector2(_direction, 0) * delta * cur_maxspeed)
+	var kc = move_and_collide(Vector2(_direction, 0) * delta * speed_proportion * cur_maxspeed)
+
+func _handle_playergrapplemove(delta: float) -> void:
+	var dir = myHand.global_position.direction_to(_grapplePoint)
+	var kc = move_and_collide(dir * delta * speed_proportion * max_grapplespeed)
+	if is_instance_valid(kc):
+		_end_grapple()
 
 func _physics_process(delta: float) -> void:
-	_handle_continuous_input()
-	_handle_falling(delta)
-	_handle_playermove(delta)
+	if IsGrappling():
+		_handle_playergrapplemove(delta)
+	else:
+		_handle_continuous_input()
+		_handle_falling(delta)
+		_handle_playermove(delta)
