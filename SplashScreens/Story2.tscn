@@ -4,7 +4,7 @@
 [ext_resource path="res://Graphics/Other/UI/Parchment0000.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/TheTheme.tres" type="Theme" id=4]
 
-[node name="Story1" type="TextureRect"]
+[node name="Story2" type="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
@@ -32,9 +32,9 @@ margin_bottom = -134.909
 theme = ExtResource( 4 )
 text = "Dear Security Demon 696,
 
-There has been a leak of maps to some of our holiest shrines. As a result, there are various treasure hunters making their way to steal our valuable treasures.
+In recognition of your hard work warding off adventurers from Shrine 43, we have decided to entrust the safety of Shrine 18 to you.
 
-Due to the high number of security demons required, you will need to fight off the treasure hunters heading to Shrine 43 on your own. We have sent you a company issue grappling trident for your use.
+We are expecting a larger influx of adventurers due to the nature of the valuables so we have provided you Companion Cat 362. The companion cat will feed off human blood in order to heal you should you need it.
 
 Kind regards,
 Head Office"

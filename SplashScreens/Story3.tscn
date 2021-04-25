@@ -4,7 +4,7 @@
 [ext_resource path="res://Graphics/Other/UI/Parchment0000.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/TheTheme.tres" type="Theme" id=4]
 
-[node name="Story1" type="TextureRect"]
+[node name="Story3" type="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
@@ -32,9 +32,7 @@ margin_bottom = -134.909
 theme = ExtResource( 4 )
 text = "Dear Security Demon 696,
 
-There has been a leak of maps to some of our holiest shrines. As a result, there are various treasure hunters making their way to steal our valuable treasures.
-
-Due to the high number of security demons required, you will need to fight off the treasure hunters heading to Shrine 43 on your own. We have sent you a company issue grappling trident for your use.
+You have proved yourself a valuable asset to the team. Shrine 1 is highly important to the organisation so this will now be your responsibility to guard. A mere touch from a mortal to Shrine 1 will lead to instant dismissal.
 
 Kind regards,
 Head Office"
