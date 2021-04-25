@@ -21,9 +21,9 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ) ],
 "loop": true,
-"name": "Idle",
+"name": "Walking",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ), ExtResource( 13 ) ],
@@ -31,14 +31,14 @@ animations = [ {
 "name": "Grapple",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "Walking",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 18 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "Attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "Idle",
 "speed": 5.0
 } ]
 
@@ -62,7 +62,8 @@ height = 24.4123
 
 [sub_resource type="Animation" id=6]
 resource_name = "Attack"
-length = 0.3
+length = 0.5
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Demon:animation")
 tracks/0/interp = 1
@@ -82,7 +83,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1.8, 1.8 ),
 "update": 0,
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0.495 ) ]
@@ -106,7 +107,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
+"times": PoolRealArray( 0, 0.1, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
@@ -465,9 +466,9 @@ node_connections = [ "output", 0, "StateMachine" ]
 
 [node name="Demon" type="AnimatedSprite" parent="."]
 position = Vector2( 7.76523, 111.127 )
-scale = Vector2( 0.5, 0.495036 )
+scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
-animation = "Grapple"
+animation = "Attack"
 offset = Vector2( -20.8795, -237.75 )
 
 [node name="Eyes" type="AnimatedSprite" parent="Demon"]
@@ -477,6 +478,7 @@ frames = SubResource( 2 )
 frame = 1
 
 [node name="Hand" type="Position2D" parent="Demon"]
+visible = false
 position = Vector2( 34.3409, -255.527 )
 
 [node name="Trident" type="Sprite" parent="Demon/Hand"]
@@ -484,17 +486,14 @@ texture = ExtResource( 12 )
 offset = Vector2( -11.2427, -4.47361 )
 
 [node name="FeetCollision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -0.231463, 7.11057 )
 shape = SubResource( 3 )
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 6.15934, 36.6066 )
 shape = SubResource( 4 )
 
 [node name="HeadCollision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -1.07233, -29.632 )
 rotation = 1.4951
 shape = SubResource( 5 )
