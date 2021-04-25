@@ -60,6 +60,7 @@ func _ready():
 	_processPlatformMap()
 	assert(_platforms.size() > 0)
 	_treasure_platform = GetClosestPlatform($Shrine.global_position)
+	$MainCamera.follow_target = $Demon
 
 func _physics_process(_delta):
 	if !_navmap_collided:

@@ -64,7 +64,7 @@ func _input(event: InputEvent) -> void:
 		var vec = dir * grapple_length
 		var res = space_state.intersect_ray(ghp, ghp + vec, [self], 1 + 4)
 		if res.empty():
-			pass #TODO: Failed animation
+			stateMachine.travel("GrappleFail")
 		else:
 			_grapplePoint = res["position"] + dir * grapple_stick_in_dist
 			_start_grapple()
@@ -74,6 +74,7 @@ func _input(event: InputEvent) -> void:
 
 func _start_grapple():
 	_on_floor = false
+	_moving = false
 	$GravityTween.remove_all()
 	$SpeedTween.remove_all()
 	$SpeedTween.interpolate_property(self, "speed_proportion", null, 1, grapple_accel_time, Tween.TRANS_EXPO, Tween.EASE_OUT)
@@ -98,6 +99,7 @@ func _end_grapple():
 	$GrappleChain.visible = false
 	$GrappleHook.visible = false
 	myTrident.visible = true
+	_startmoveifkeypressed()
 
 func IsGrappling() -> bool:
 	return (_grapplePoint != Vector2.INF)
@@ -140,6 +142,14 @@ func _handle_player_movement() -> void:
 			_direction = oldDir # keep floating in air
 	elif !oldDir && _direction:
 		_startmove()
+	_startmoveifkeypressed()
+#	elif speed_proportion < 1 && _direction && _on_floor && !_jumping:
+#		_startmove()
+
+func _startmoveifkeypressed():
+	if Input.is_action_pressed("player_left") || Input.is_action_pressed("player_right"):
+		if !_moving:
+			_startmove()
 
 func _startmove():
 	$SpeedTween.remove_all()
@@ -196,6 +206,7 @@ func _jump():
 func _endjump():
 	if _jumping:
 		_leavefloor()
+		_startmoveifkeypressed()
 
 func _handle_falling(delta: float) -> void:
 	var kc = move_and_collide(Vector2(0, _fallspeed) * delta)

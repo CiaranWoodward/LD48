@@ -709,6 +709,8 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id=38]
 states/Attack/node = SubResource( 12 )
@@ -730,10 +732,10 @@ states/JumpStop/position = Vector2( 330, 104.405 )
 states/Walk/node = SubResource( 20 )
 states/Walk/position = Vector2( 767, 126 )
 transitions = [ "Idle", "Walk", SubResource( 21 ), "Idle", "Grapple", SubResource( 22 ), "Walk", "Idle", SubResource( 23 ), "Grapple", "Idle", SubResource( 24 ), "Grapple", "Attack", SubResource( 25 ), "Walk", "Attack", SubResource( 26 ), "Idle", "Attack", SubResource( 27 ), "Attack", "Idle", SubResource( 28 ), "JumpStop", "Idle", SubResource( 29 ), "Idle", "JumpStart", SubResource( 30 ), "Falling", "JumpStop", SubResource( 31 ), "Idle", "Falling", SubResource( 32 ), "JumpStart", "Falling", SubResource( 33 ), "FlyingAttack", "Falling", SubResource( 34 ), "Falling", "FlyingAttack", SubResource( 35 ), "Idle", "GrappleFail", SubResource( 36 ), "GrappleFail", "Idle", SubResource( 37 ) ]
-graph_offset = Vector2( -75.7607, -153.157 )
+graph_offset = Vector2( -75.7607, -18.2633 )
 
 [sub_resource type="AnimationNodeBlendTree" id=39]
-graph_offset = Vector2( 0, -92.5 )
+graph_offset = Vector2( 0, 149.75 )
 nodes/StateMachine/node = SubResource( 38 )
 nodes/StateMachine/position = Vector2( 540, 140 )
 nodes/output/position = Vector2( 800, 120 )
@@ -752,7 +754,7 @@ script = ExtResource( 19 )
 position = Vector2( 7.76523, 111.127 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
-animation = "Grapple"
+animation = "Attack"
 offset = Vector2( -20.8795, -237.75 )
 
 [node name="Eyes" type="AnimatedSprite" parent="Flipper/Demon"]
@@ -762,6 +764,7 @@ frames = SubResource( 2 )
 frame = 1
 
 [node name="Hand" type="Position2D" parent="Flipper/Demon"]
+visible = false
 position = Vector2( 4.49581, -248.4 )
 
 [node name="Trident" type="Sprite" parent="Flipper/Demon/Hand"]
