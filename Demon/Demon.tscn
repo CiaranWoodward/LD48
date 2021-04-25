@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Graphics/Demon/Walking/DemonWalk0000.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Demon/Walking/DemonWalk0001.png" type="Texture" id=2]
@@ -18,27 +18,28 @@
 [ext_resource path="res://Graphics/Demon/Attack/Attack0001.png" type="Texture" id=16]
 [ext_resource path="res://Graphics/Demon/Attack/Attack0002.png" type="Texture" id=17]
 [ext_resource path="res://Graphics/Demon/Attack/Attack0000.png" type="Texture" id=18]
+[ext_resource path="res://Demon/Demon.gd" type="Script" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "Walking",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "Grapple",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ), ExtResource( 16 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "Attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Walking",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "Attack",
 "speed": 5.0
 } ]
 
@@ -51,19 +52,11 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 11.3016, 23.7628 )
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 8.61895, 5.58301 )
-
-[sub_resource type="CapsuleShape2D" id=5]
-radius = 11.7043
-height = 24.4123
+extents = Vector2( 10.8456, 41.2267 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "Attack"
 length = 0.5
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Demon:animation")
 tracks/0/interp = 1
@@ -456,49 +449,42 @@ transitions = [ "Idle", "Walk", SubResource( 14 ), "Idle", "Grapple", SubResourc
 
 [sub_resource type="AnimationNodeBlendTree" id=23]
 nodes/StateMachine/node = SubResource( 22 )
-nodes/StateMachine/position = Vector2( 540, 100 )
+nodes/StateMachine/position = Vector2( 540, 140 )
 nodes/output/position = Vector2( 800, 120 )
 node_connections = [ "output", 0, "StateMachine" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
 [node name="Demon" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 19 )
 
 [node name="Demon" type="AnimatedSprite" parent="."]
 position = Vector2( 7.76523, 111.127 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.5, 0.497 )
 frames = SubResource( 1 )
-animation = "Attack"
+animation = "Idle"
+frame = 1
 offset = Vector2( -20.8795, -237.75 )
 
 [node name="Eyes" type="AnimatedSprite" parent="Demon"]
-visible = false
 position = Vector2( -26.6968, -237.602 )
 frames = SubResource( 2 )
 frame = 1
 
 [node name="Hand" type="Position2D" parent="Demon"]
-visible = false
-position = Vector2( 34.3409, -255.527 )
+position = Vector2( -9.84994, -197.861 )
 
 [node name="Trident" type="Sprite" parent="Demon/Hand"]
 texture = ExtResource( 12 )
 offset = Vector2( -11.2427, -4.47361 )
 
-[node name="FeetCollision" type="CollisionShape2D" parent="."]
-position = Vector2( -0.231463, 7.11057 )
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2( -0.585009, 0.393056 )
 shape = SubResource( 3 )
 
-[node name="BodyCollision" type="CollisionShape2D" parent="."]
-position = Vector2( 6.15934, 36.6066 )
-shape = SubResource( 4 )
-
-[node name="HeadCollision" type="CollisionShape2D" parent="."]
-position = Vector2( -1.07233, -29.632 )
-rotation = 1.4951
-shape = SubResource( 5 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
 anims/Attack = SubResource( 6 )
 anims/Grapple = SubResource( 7 )
 anims/Idle = SubResource( 8 )
@@ -507,5 +493,11 @@ anims/Walk = SubResource( 9 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 23 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
+process_mode = 0
 parameters/StateMachine/playback = SubResource( 24 )
+
+[node name="SpeedTween" type="Tween" parent="."]
+playback_process_mode = 0
+
+[node name="GravityTween" type="Tween" parent="."]
+playback_process_mode = 0
