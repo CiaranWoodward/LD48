@@ -1,0 +1,443 @@
+[gd_scene load_steps=41 format=2]
+
+[ext_resource path="res://Graphics/Enemies/Ninja/Attack/Attack0002.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/Enemies/Ninja/Attack/Attack0000.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Enemies/Ninja/Attack/Attack0003.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Enemies/Ninja/Attack/Attack0006.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Enemies/Ninja/Attack/Attack0001.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/Enemies/Ninja/Attack/Attack0007.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/Enemies/Ninja/Attack/Attack0005.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/Enemies/Ninja/Attack/Attack0008.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/Enemies/Ninja/Attack/Attack0004.png" type="Texture" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 52.8767, 56.6266 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 63.5861, 37.7278 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Attack"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ninja:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ninja:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1.36604, 1.56917, 0.535887, 0.574349, 1.18921, 1.56917, 0.574349, 1.18921, 1.56917, 1.56917, 1.36604 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.485, 0.485 ), Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.495 ), Vector2( 0.5, 0.5 ), Vector2( 0.485, 0.485 ), Vector2( 0.49, 0.495 ), Vector2( 0.5, 0.5 ), Vector2( 0.485, 0.485 ), Vector2( 0.49, 0.495 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Ninja:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ninja:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ninja:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1.36604, 1.56917, 0.535887, 0.574349, 1.18921 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.485, 0.485 ), Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.495 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Ninja:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "JumpUp"
+length = 0.325
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ninja:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3, 0.325 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 90.0, 180.0, 270.0, 360.0, 10.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ninja:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1.36604, 1, 1.36604 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.4, 0.4 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Ninja:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Ninja:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( -27.2384, -4.86564 ), Vector2( -25.6464, -88.0545 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Ninja:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( -0.0207043, -0.0258379 ), Vector2( -0.81785, 41.5591 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "Jumping"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ninja:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ninja:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1.36604, 1.56917, 0.535887, 0.574349, 1.18921 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.485, 0.485 ), Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.495 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Ninja:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "Land"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ninja:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ninja:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 0.482968, 1.56917, 1.18921 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.551196, 0.370724 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Ninja:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "PreJump"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ninja:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ninja:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1.36604, 0.535887, 2.07053, 1.18921 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.522104, 0.417569 ), Vector2( 0.451234, 0.543691 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Ninja:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Walk"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ninja:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 16.497, 9.21851, 14.1834, 11.7886, 16.497 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ninja:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1.36604, 1.56917, 0.535887, 0.574349, 1.18921 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.485, 0.485 ), Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.495 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Ninja:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Attack"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "JumpUp"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "Jumping"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "Land"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "PreJump"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=17]
+states/Attack/node = SubResource( 9 )
+states/Attack/position = Vector2( 695, 245 )
+states/Idle/node = SubResource( 10 )
+states/Idle/position = Vector2( 494, 137 )
+states/JumpUp/node = SubResource( 22 )
+states/JumpUp/position = Vector2( 494, -97.3489 )
+states/Jumping/node = SubResource( 23 )
+states/Jumping/position = Vector2( 695, -97.3489 )
+states/Land/node = SubResource( 24 )
+states/Land/position = Vector2( 695, -19.3489 )
+states/PreJump/node = SubResource( 25 )
+states/PreJump/position = Vector2( 494, -19.3489 )
+states/Walk/node = SubResource( 11 )
+states/Walk/position = Vector2( 695, 137 )
+transitions = [ "Idle", "Walk", SubResource( 12 ), "Walk", "Idle", SubResource( 13 ), "Walk", "Attack", SubResource( 14 ), "Idle", "Attack", SubResource( 15 ), "Attack", "Walk", SubResource( 16 ), "PreJump", "JumpUp", SubResource( 26 ), "JumpUp", "Jumping", SubResource( 27 ), "Jumping", "Land", SubResource( 28 ), "Idle", "PreJump", SubResource( 29 ), "Land", "Idle", SubResource( 30 ), "Land", "Walk", SubResource( 31 ) ]
+graph_offset = Vector2( -111.768, -136.843 )
+
+[sub_resource type="AnimationNodeBlendTree" id=18]
+nodes/StateMachine/node = SubResource( 17 )
+nodes/StateMachine/position = Vector2( 485, 142 )
+nodes/output/position = Vector2( 700, 140 )
+node_connections = [ "output", 0, "StateMachine" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+
+[node name="Ninja" type="KinematicBody2D"]
+
+[node name="Ninja" type="AnimatedSprite" parent="."]
+position = Vector2( -0.81785, 41.5591 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+offset = Vector2( -25.6464, -88.0545 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -11.9693, 27.0883 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -15.749, -58.5863 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.9
+anims/Attack = SubResource( 5 )
+anims/Idle = SubResource( 4 )
+anims/JumpUp = SubResource( 7 )
+anims/Jumping = SubResource( 20 )
+anims/Land = SubResource( 21 )
+anims/PreJump = SubResource( 8 )
+anims/Walk = SubResource( 6 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 18 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/StateMachine/playback = SubResource( 19 )
