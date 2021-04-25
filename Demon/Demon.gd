@@ -51,6 +51,7 @@ func _input(event: InputEvent) -> void:
 	# Attack
 	if event.is_action_pressed("player_attack"):
 		if _jumping || !_on_floor:
+			_end_grapple()
 			stateMachine.travel("FlyingAttack")
 		else:
 			stateMachine.travel("Attack")
@@ -78,6 +79,9 @@ func _start_grapple():
 	$SpeedTween.interpolate_property(self, "speed_proportion", null, 1, grapple_accel_time, Tween.TRANS_EXPO, Tween.EASE_OUT)
 	$SpeedTween.start()
 	stateMachine.travel("Grapple")
+	$GrappleChain.visible = true
+	$GrappleHook.visible = true
+	myTrident.visible = false
 
 func _end_grapple():
 	if !IsGrappling():
@@ -91,6 +95,9 @@ func _end_grapple():
 		_direction = -1
 	_grapplePoint = Vector2.INF
 	_leavefloor()
+	$GrappleChain.visible = false
+	$GrappleHook.visible = false
+	myTrident.visible = true
 
 func IsGrappling() -> bool:
 	return (_grapplePoint != Vector2.INF)
@@ -106,7 +113,6 @@ func _handle_player_movement() -> void:
 	if left && !right:
 		_direction = -1
 		_state = state.WALKING
-		$Flipper.scale.x = -abs($Flipper.scale.x)
 		_rapid_switcher = true
 	elif right && !left:
 		_direction = 1
@@ -216,9 +222,21 @@ func _handle_playermove(delta: float) -> void:
 
 func _handle_playergrapplemove(delta: float) -> void:
 	var dir = myHand.global_position.direction_to(_grapplePoint)
+	var dist = myHand.global_position.distance_to(_grapplePoint)
+	var midpoint = (myHand.global_position + _grapplePoint)/2
+	var angle = myHand.global_position.angle_to_point(_grapplePoint) -PI/2
 	var kc = move_and_collide(dir * delta * speed_proportion * max_grapplespeed)
 	if is_instance_valid(kc):
 		_end_grapple()
+	$GrappleChain.global_rotation = angle
+	$GrappleChain.global_position = midpoint
+	$GrappleChain.region_rect.size.y = int(dist)/$GrappleChain.scale.x
+	$GrappleHook.rotation = angle
+	$GrappleHook.global_position = _grapplePoint
+	if dir.x > 0:
+		$Flipper.scale.x = abs($Flipper.scale.x)
+	if dir.x < 0:
+		$Flipper.scale.x = -abs($Flipper.scale.x)
 
 func _physics_process(delta: float) -> void:
 	if IsGrappling():
