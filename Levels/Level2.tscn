@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://LevelElements/Walls.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Demon/Demon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://LevelElements/SimplePlatform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Graphics/Scenery/BackWall0000.png" type="Texture" id=4]
+
+[node name="Level2" type="Node2D"]
+
+[node name="BackWall" type="Sprite" parent="."]
+position = Vector2( 642.968, 749.516 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2700, 3000 )
+
+[node name="Walls" parent="." instance=ExtResource( 1 )]
+position = Vector2( 750.455, 42.3272 )
+rotation = 1.5708
+length = 1600.0
+
+[node name="Walls2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 451.811, 240.772 )
+length = 100.0
+
+[node name="Walls4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 178.479, 556.174 )
+length = 600.0
+
+[node name="Walls3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 301.33, 290.839 )
+rotation = 1.5708
+length = 300.0
+
+[node name="SimplePlatform" parent="." instance=ExtResource( 3 )]
+position = Vector2( 201.506, 208.967 )
+width = 500.0
+
+[node name="SimplePlatform2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1300.9, 208.967 )
+width = 500.0
+
+[node name="SimplePlatform3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1013.11, 428.442 )
+width = 500.0
+
+[node name="Demon" parent="." instance=ExtResource( 2 )]
+position = Vector2( 54.93, 141.131 )
