@@ -27,6 +27,7 @@ var _grapplePoint = Vector2.INF
 
 # tween vars
 var speed_proportion = 0
+var _max_speed_proportion
 
 enum state {IDLE, FALLING, WALKING, ATTACK, GRAPPLE}
 
@@ -38,6 +39,12 @@ onready var myTrident = $Flipper/Demon/Hand/Trident
 func _ready():
 	$AnimationTree.active = true
 	stateMachine.start("Idle")
+
+func GetXcomponent() -> float:
+	if IsGrappling():
+		return myHand.global_position.direction_to(_grapplePoint).x
+	else:
+		return _direction
 
 # Button press actions
 func _input(event: InputEvent) -> void:
