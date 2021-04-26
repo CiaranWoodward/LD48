@@ -12,6 +12,7 @@
 [ext_resource path="res://LevelElements/MainCamera.tscn" type="PackedScene" id=10]
 
 [node name="Level3" type="Node2D"]
+position = Vector2( -0.00012207, -2.82843 )
 script = ExtResource( 7 )
 drawNavMesh = true
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Enemies/Ninja.tscn" type="PackedScene" id=1]
+[ext_resource path="res://LevelElements/Spawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://LevelElements/SimplePlatform.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/TestLevel.gd" type="Script" id=3]
 [ext_resource path="res://Demon/Demon.tscn" type="PackedScene" id=4]
@@ -75,11 +75,9 @@ __meta__ = {
 speed = 10
 lookahead_speed = 2
 
-[node name="Ninja" parent="." instance=ExtResource( 1 )]
-position = Vector2( 947.461, 80.635 )
-
 [node name="KinematicBody2D" parent="." instance=ExtResource( 9 )]
 position = Vector2( 748.394, 446.012 )
 
-[node name="Knight" parent="." instance=ExtResource( 10 )]
-position = Vector2( 1614.62, 487.353 )
+[node name="Spawner" parent="." instance=ExtResource( 1 )]
+position = Vector2( 909.02, -4.23785 )
+to_spawn = ExtResource( 10 )

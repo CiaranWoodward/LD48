@@ -13,6 +13,8 @@ var _treasure_platform = null
 var _typed_navmap = {}
 var _typed_astar = {}
 
+var enemy_count = 0
+
 class LevelAStar:
 	extends AStar2D
 	
