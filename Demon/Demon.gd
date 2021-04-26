@@ -19,7 +19,7 @@ export(float, 0.0, 1.0) var grappling_slidyness = 0.5 #higher is more slidy
 export var damage = 10.0
 export var max_health = 50.0
 export var attack_ticks : int = 2
-export var pushback_amount = 50.0
+export var pushback_amount = 600.0
 export var recoil_amount = 20.0
 
 # current state

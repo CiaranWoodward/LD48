@@ -17,6 +17,11 @@ export var myheight = 32
 
 export var pathing_random_factor = 5.0
 
+# Attack system properties
+export var health = 20
+export var pushback_multiplier = 1.0
+export var pushback_time = 0.2
+
 #animation properties between 0 and 1
 export var speed_rate = 0.0
 
@@ -25,6 +30,7 @@ onready var stateMachine : AnimationNodeStateMachinePlayback = animTree["paramet
 
 var jumpTween = Tween.new()
 var fallTween = Tween.new()
+var pushbackTween = Tween.new()
 var fall_rate = 0.0
 
 var accel_transition = Tween.TRANS_LINEAR
@@ -44,9 +50,11 @@ var _slowdown_time
 var max_jump_up_time
 
 # current status
+enum state {IDLE, GOING_TO_TREASURE, FIGHTING}
 var _on_floor = false
 var _platform = null
 var _jumping = false
+var _pushback = Vector2.ZERO
 var fall_time = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -56,19 +64,23 @@ func _ready():
 	max_jump_up_time = max_jumpheight / max_jumpspeed
 	jumpTween = Tween.new()
 	fallTween = Tween.new()
+	pushbackTween = Tween.new()
 	add_child(jumpTween)
 	add_child(fallTween)
+	add_child(pushbackTween)
 	jumpTween.connect("tween_completed", self, "_on_Tween_tween_completed")
 	fallTween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
 	jumpTween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
+	pushbackTween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
 
 # Actually execute and move the character
 func _handle_movement(delta):
 	var speed = _direction * speed_rate * (max_speed-min_speed) + _direction * min_speed
-	var kc = move_and_collide(Vector2(speed, fall_rate * max_fallspeed) * delta)
+	var kc = move_and_collide(Vector2(speed + _pushback.x, fall_rate * max_fallspeed + _pushback.y) * delta)
 	if is_instance_valid(kc):
 		if kc.normal.y < -0.5:
 			_on_floor = true
+			stop_pushback()
 
 func _handle_falling(delta):
 	if _on_floor:
@@ -77,6 +89,8 @@ func _handle_falling(delta):
 		if stateMachine.get_current_node() == "Falling":
 			stateMachine.travel("Idle")
 			_platform = get_parent().GetClosestLowerPlatform(global_position)
+	elif _pushback.y != 0:
+		pass # We're beign pushed back
 	else:
 		stateMachine.travel("Falling")
 		if fall_rate == 0:
@@ -84,8 +98,31 @@ func _handle_falling(delta):
 			fallTween.interpolate_property(self, "fall_rate", null, 1, gravity_time, Tween.TRANS_SINE, Tween.EASE_OUT)
 			fallTween.start()
 
+func stop_pushback():
+	if _pushback != Vector2.ZERO:
+		pushbackTween.remove_all()
+		_pushback = Vector2.ZERO
+
+func start_pushback(pushback : Vector2):
+	_jumping = false
+	_on_floor = false
+	_platform = null
+	_pushback = pushback * pushback_multiplier
+	pushbackTween.remove_all()
+	pushbackTween.interpolate_property(self, "_pushback", null, Vector2.ZERO, pushback_time, Tween.TRANS_EXPO, Tween.EASE_IN)
+	pushbackTween.interpolate_callback(self, pushback_time, "stop_pushback")
+	pushbackTween.start()
+
+func is_pushedback() -> bool:
+	return _pushback != Vector2.ZERO
+
 func take_damage(damage, pushback):
-	pass
+	health -= damage
+	fallTween.reset_all()
+	jumpTween.reset_all()
+	stateMachine.start("Idle")# TODO: Hit
+	start_pushback(pushback)
+	#TODO: Die
 
 func _configure_next_point():
 	if is_instance_valid(_platform) && (_platform in _path) && (_platform != _cur_plat):
