@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Graphics/Demon/Cat0000.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Other/BloodParticle0000.png" type="Texture" id=2]
@@ -7,7 +7,7 @@
 radius = 30.0444
 height = 42.8849
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=2]
 resource_name = "Absorb"
 length = 0.9
 tracks/0/type = "value"
@@ -47,8 +47,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Idle"
+[sub_resource type="Animation" id=3]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -76,8 +75,7 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Jumping"
+[sub_resource type="Animation" id=4]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -105,7 +103,7 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "Land"
 length = 0.4
 step = 0.05
@@ -134,8 +132,7 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "PreJump"
+[sub_resource type="Animation" id=6]
 length = 0.4
 step = 0.05
 tracks/0/type = "value"
@@ -222,7 +219,7 @@ tracks/1/keys = {
 "values": [ -2.0, 5.0, -5.22052, -2.0 ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=9]
 resource_name = "SpeedUp"
 length = 0.2
 step = 0.05
@@ -251,8 +248,7 @@ tracks/1/keys = {
 "values": [ -2.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Walk"
+[sub_resource type="Animation" id=10]
 length = 0.4
 loop = true
 step = 0.05
@@ -281,42 +277,46 @@ tracks/1/keys = {
 "values": [ 1.0, -5.22052, 5.0, 1.0 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=33]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "Absorb"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
-animation = "Idle"
-
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Jumping"
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "Jumping"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "Jumping"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "Land"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "PreJump"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "SlowDown"
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "SlowWalk"
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "SpeedUp"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "Walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
 switch_mode = 2
 auto_advance = true
 
@@ -338,42 +338,61 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=18]
-states/Absorb/node = SubResource( 33 )
-states/Absorb/position = Vector2( 311, 204 )
-states/Idle/node = SubResource( 9 )
-states/Idle/position = Vector2( 559, 204 )
-states/Jumping/node = SubResource( 10 )
-states/Jumping/position = Vector2( 559, 35 )
-states/Land/node = SubResource( 11 )
-states/Land/position = Vector2( 667, 104 )
-states/PreJump/node = SubResource( 12 )
-states/PreJump/position = Vector2( 454, 104 )
-states/SlowDown/node = SubResource( 22 )
-states/SlowDown/position = Vector2( 874, 278 )
-states/SlowWalk/node = SubResource( 23 )
-states/SlowWalk/position = Vector2( 754, 204 )
-states/SpeedUp/node = SubResource( 24 )
-states/SpeedUp/position = Vector2( 874, 131 )
-states/Walk/node = SubResource( 13 )
-states/Walk/position = Vector2( 986, 204 )
-transitions = [ "Idle", "PreJump", SubResource( 14 ), "Jumping", "Land", SubResource( 15 ), "PreJump", "Jumping", SubResource( 16 ), "Land", "Idle", SubResource( 17 ), "Idle", "SlowWalk", SubResource( 25 ), "SlowWalk", "SpeedUp", SubResource( 26 ), "SpeedUp", "Walk", SubResource( 27 ), "SlowDown", "SlowWalk", SubResource( 28 ), "Walk", "SlowDown", SubResource( 29 ), "SlowWalk", "Idle", SubResource( 30 ), "Idle", "Absorb", SubResource( 34 ), "Absorb", "Idle", SubResource( 35 ) ]
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
 
-[sub_resource type="AnimationNodeBlendTree" id=19]
-nodes/StateMachine/node = SubResource( 18 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachine" id=40]
+states/Absorb/node = SubResource( 11 )
+states/Absorb/position = Vector2( 311, 204 )
+states/Falling/node = SubResource( 12 )
+states/Falling/position = Vector2( 826, -19 )
+states/Idle/node = SubResource( 13 )
+states/Idle/position = Vector2( 559, 204 )
+states/JumpDown/node = SubResource( 14 )
+states/JumpDown/position = Vector2( 667, 1 )
+states/JumpUp/node = SubResource( 15 )
+states/JumpUp/position = Vector2( 454, 1 )
+states/Land/node = SubResource( 16 )
+states/Land/position = Vector2( 667, 104 )
+states/PreJump/node = SubResource( 17 )
+states/PreJump/position = Vector2( 454, 104 )
+states/SlowDown/node = SubResource( 18 )
+states/SlowDown/position = Vector2( 874, 278 )
+states/SlowWalk/node = SubResource( 19 )
+states/SlowWalk/position = Vector2( 754, 204 )
+states/SpeedUp/node = SubResource( 20 )
+states/SpeedUp/position = Vector2( 874, 131 )
+states/Walk/node = SubResource( 21 )
+states/Walk/position = Vector2( 986, 204 )
+transitions = [ "Idle", "PreJump", SubResource( 22 ), "PreJump", "JumpUp", SubResource( 23 ), "Land", "Idle", SubResource( 24 ), "Idle", "SlowWalk", SubResource( 25 ), "SlowWalk", "SpeedUp", SubResource( 26 ), "SpeedUp", "Walk", SubResource( 27 ), "SlowDown", "SlowWalk", SubResource( 28 ), "Walk", "SlowDown", SubResource( 29 ), "SlowWalk", "Idle", SubResource( 30 ), "Idle", "Absorb", SubResource( 31 ), "Absorb", "Idle", SubResource( 32 ), "JumpUp", "JumpDown", SubResource( 33 ), "JumpDown", "Land", SubResource( 34 ), "Falling", "Land", SubResource( 35 ), "SlowWalk", "Falling", SubResource( 36 ), "SpeedUp", "Falling", SubResource( 37 ), "Walk", "Falling", SubResource( 38 ), "SlowDown", "Falling", SubResource( 39 ) ]
+graph_offset = Vector2( 37, -77 )
+
+[sub_resource type="AnimationNodeBlendTree" id=41]
+nodes/StateMachine/node = SubResource( 40 )
 nodes/StateMachine/position = Vector2( 360, 80 )
 nodes/output/position = Vector2( 620, 120 )
 node_connections = [ "output", 0, "StateMachine" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=42]
 
-[sub_resource type="Gradient" id=31]
+[sub_resource type="Gradient" id=43]
 offsets = PoolRealArray( 0, 0.793893 )
 colors = PoolColorArray( 0.631373, 0, 0, 1, 0.631373, 0, 0, 0 )
 
@@ -396,20 +415,20 @@ scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Absorb = SubResource( 32 )
-anims/Idle = SubResource( 2 )
-anims/Jumping = SubResource( 3 )
-anims/Land = SubResource( 6 )
-anims/PreJump = SubResource( 4 )
+anims/Absorb = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/Jumping = SubResource( 4 )
+anims/Land = SubResource( 5 )
+anims/PreJump = SubResource( 6 )
 anims/SlowDown = SubResource( 7 )
 anims/SlowWalk = SubResource( 8 )
-anims/SpeedUp = SubResource( 21 )
-anims/Walk = SubResource( 5 )
+anims/SpeedUp = SubResource( 9 )
+anims/Walk = SubResource( 10 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 19 )
+tree_root = SubResource( 41 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/StateMachine/playback = SubResource( 20 )
+parameters/StateMachine/playback = SubResource( 42 )
 
 [node name="Blood" type="CPUParticles2D" parent="."]
 position = Vector2( 0.105804, 20.3589 )
@@ -429,4 +448,4 @@ angular_velocity_random = 0.7
 tangential_accel = -25.56
 tangential_accel_random = 1.0
 scale_amount = 0.5
-color_ramp = SubResource( 31 )
+color_ramp = SubResource( 43 )

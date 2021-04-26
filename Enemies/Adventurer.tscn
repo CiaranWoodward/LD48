@@ -248,7 +248,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 0.784584, 1 ),
 "update": 0,
-"values": [ Color( 1, 0.635294, 0.635294, 0.392157 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0.768627, 0, 0, 0.392157 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Blood:emitting")
@@ -868,7 +868,7 @@ states/Attack/position = Vector2( 360, 243 )
 states/Die/node = SubResource( 15 )
 states/Die/position = Vector2( 759, 415.998 )
 states/Falling/node = SubResource( 16 )
-states/Falling/position = Vector2( 985.866, 29 )
+states/Falling/position = Vector2( 1064.87, 3 )
 states/Hit/node = SubResource( 17 )
 states/Hit/position = Vector2( 573.866, 415.998 )
 states/Idle/node = SubResource( 18 )
@@ -908,9 +908,11 @@ my_type = "adventurer"
 myheight = 45
 
 [node name="Adventurer" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 0.635294, 0.635294, 0.392157 )
 position = Vector2( 1.38571, 45.7499 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
+frame = 4
 offset = Vector2( -29.3191, -89.004 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
