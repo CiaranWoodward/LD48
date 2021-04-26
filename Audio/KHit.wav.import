@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/KHit.wav-de9030dc87e99aec818a211472d74b6d.sample"
+
+[deps]
+
+source_file="res://Audio/KHit.wav"
+dest_files=[ "res://.import/KHit.wav-de9030dc87e99aec818a211472d74b6d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/AAttack.wav-9a8e1a4136a4bdf4ba8a3e546ee84cb8.sample"
+
+[deps]
+
+source_file="res://Audio/AAttack.wav"
+dest_files=[ "res://.import/AAttack.wav-9a8e1a4136a4bdf4ba8a3e546ee84cb8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
