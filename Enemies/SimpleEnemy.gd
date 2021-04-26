@@ -8,7 +8,7 @@ export var max_speed = 300.0
 export var max_jumpheight = 300.0
 export var max_fallheight = 300.0
 export var min_speed = 100.0
-export var stop_dist = 30.0
+export var stop_dist = 40.0
 export var min_x_jump = 30.0
 export var min_jump_time = 0.2
 export var jump_y_overshoot = 30.0
@@ -24,7 +24,9 @@ export var health = 20
 export var pushback_multiplier = 1.0
 export var pushback_time = 0.2
 export var damage = 10
-export var attack_range = 70
+export var attack_range = 80
+export var attack_period = 1.5
+export var pushback_amount = 100
 
 #animation properties between 0 and 1
 export var speed_rate = 0.0
@@ -32,9 +34,10 @@ export var speed_rate = 0.0
 onready var animTree = $AnimationTree
 onready var stateMachine : AnimationNodeStateMachinePlayback = animTree["parameters/StateMachine/playback"]
 
-var jumpTween = Tween.new()
-var fallTween = Tween.new()
-var pushbackTween = Tween.new()
+onready var jumpTween = Tween.new()
+onready var fallTween = Tween.new()
+onready var pushbackTween = Tween.new()
+onready var attackTimer = Timer.new()
 var fall_rate = 0.0
 
 var accel_transition = Tween.TRANS_LINEAR
@@ -45,8 +48,8 @@ var _path = []
 var _final_destination = Vector2.ZERO
 # moving
 var _cur_plat = null # Platform that the current dst point is on
-var _cur_point = null # Current destination point we are moving towards
-var _cur_after_point = null # When we get to that point, where are we trying to go?
+var _cur_point = Vector2.INF # Current destination point we are moving towards
+var _cur_after_point = Vector2.INF # When we get to that point, where are we trying to go?
 var _direction = 0
 
 # Cached
@@ -70,16 +73,16 @@ func _ready():
 	stateMachine.start("Idle")
 	_slowdown_time = $AnimationPlayer.get_animation("SlowDown").length
 	max_jump_up_time = max_jumpheight / max_jumpspeed
-	jumpTween = Tween.new()
-	fallTween = Tween.new()
-	pushbackTween = Tween.new()
 	add_child(jumpTween)
 	add_child(fallTween)
 	add_child(pushbackTween)
+	add_child(attackTimer)
 	jumpTween.connect("tween_completed", self, "_on_Tween_tween_completed")
 	fallTween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
 	jumpTween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
 	pushbackTween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
+	attackTimer.one_shot = true
+	attackTimer.wait_time = attack_period
 
 func SetPlayerReference(p):
 	self.player = p
@@ -125,6 +128,17 @@ func _get_last_player_plat():
 func _clear_path():
 	_path = []
 	_cur_plat = null
+	_cur_point = Vector2.INF
+
+func _run_attackanim():
+	stateMachine.start("Attack")
+
+func _attack():
+	if !_dead && is_instance_valid(player):
+		var dist = global_position.distance_to(player.global_position)
+		if dist < attack_range:
+			var dir = sign(global_position.direction_to(player.global_position).x)
+			player.take_damage(damage, Vector2(dir * pushback_amount, 0))
 
 func _relogic_if_necessary(_delta):
 	# Higher purpose logic
@@ -153,14 +167,19 @@ func _relogic_if_necessary(_delta):
 		var target_plat = _get_last_player_plat()
 		if is_instance_valid(target_plat):
 			if _platform == target_plat:
-				pass # Same platform!
+				_final_destination = player.global_position
+				if global_position.distance_to(player.global_position) < attack_range && attackTimer.is_stopped():
+					attackTimer.start()
+					call_deferred("_run_attackanim")
 			elif !_is_path_valid() || _path[-1] != target_plat:
 				_repath_to(target_plat)
 				_final_destination = player.global_position
 	
 	if _is_path_valid():
 		if _is_path_completed():
-			pass
+			_cur_plat = _platform
+			_cur_point = _final_destination
+			_cur_after_point = _final_destination
 		else:
 			_configure_next_point()
 
@@ -193,7 +212,7 @@ func _handle_falling(delta):
 			_travel_animation("Idle")
 			_platform = get_parent().GetClosestLowerPlatform(global_position)
 	elif _pushback.y != 0:
-		pass # We're beign pushed back
+		pass # We're being pushed back
 	else:
 		_travel_animation("Falling")
 		if fall_rate == 0:
@@ -281,7 +300,7 @@ func _on_Tween_tween_completed(object, key):
 		jumpTween.start()
 
 func _reached_point(_delta):
-	if  _cur_after_point != _cur_point:
+	if  _cur_after_point != _cur_point && _cur_point != Vector2.INF && _cur_after_point != Vector2.INF:
 		# We jumping
 		_cur_after_point.y = _cur_after_point.y - myheight
 		var diff = _cur_after_point - global_position
@@ -302,8 +321,9 @@ func _reached_point(_delta):
 		jumpTween.start()
 		_travel_animation("JumpUp")
 		_jumping = true
+		_on_floor = false
 		_cur_plat = null
-		_cur_point = null
+		_cur_point = Vector2.INF
 
 func _set_visual_facing_dir(direction):
 	if direction == 0:
@@ -331,10 +351,10 @@ func _walk_to_point(delta, point : Vector2):
 
 func _handle_travel(delta):
 	_direction = 0
-	if _on_floor && !_dead:
-		if is_instance_valid(_platform):
-			if _platform == _cur_plat:
-				_walk_to_point(delta, _cur_point)
+	if _on_floor && !_dead && _cur_point != Vector2.INF:
+		_walk_to_point(delta, _cur_point)
+		if _on_floor && _direction == 0 && _is_path_valid() && !_is_path_completed():
+			_clear_path()
 	
 func _physics_process(delta):
 	if is_nan(global_position.x):

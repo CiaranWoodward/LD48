@@ -38,6 +38,8 @@ var _state = state.IDLE
 var _grapplePoint = Vector2.INF
 var _grapplee = null
 var last_platform = null
+var health = max_health
+var _dead = false
 #attacking state
 var _attack_countdown = 0
 var _recoil_countdown = 0
@@ -72,10 +74,12 @@ func _start_attack():
 
 # Button press actions
 func _input(event: InputEvent) -> void:
+	if _dead:
+		return
 	#jump
 	if event.is_action_pressed("player_jump") && !_jumping:
 		_end_grapple()
-		stateMachine.travel("JumpStart")
+		_travel_animation("JumpStart")
 		_jumping = true
 	if event.is_action_released("player_jump"):
 		if _jumping:
@@ -84,9 +88,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_attack"):
 		if _jumping || !_on_floor:
 			_end_grapple()
-			stateMachine.travel("FlyingAttack")
+			_travel_animation("FlyingAttack")
 		else:
-			stateMachine.travel("Attack")
+			_travel_animation("Attack")
 	# Grapple
 	if event.is_action_pressed("player_grapple"):
 		var space_state = get_world_2d().direct_space_state
@@ -97,14 +101,14 @@ func _input(event: InputEvent) -> void:
 		var res = space_state.intersect_ray(ghp, ghp + vec, [self], 1 + 4)
 		var colobj = res.get("collider")
 		if res.empty():
-			stateMachine.travel("GrappleFail")
+			_travel_animation("GrappleFail")
 		elif is_instance_valid(colobj) && colobj.has_method("_grapple_if_possible"):
 			if colobj._grapple_if_possible(ghp):
 				_grapplee = colobj
 				_grapplePoint = res["position"] + dir * grapple_stick_in_dist
 				_start_grapple()
 			else:
-				stateMachine.travel("GrappleFail")
+				_travel_animation("GrappleFail")
 		else:
 			_grapplePoint = res["position"] + dir * grapple_stick_in_dist
 			_start_grapple()
@@ -119,7 +123,7 @@ func _start_grapple():
 	$SpeedTween.remove_all()
 	$SpeedTween.interpolate_property(self, "speed_proportion", null, 1, grapple_accel_time, Tween.TRANS_EXPO, Tween.EASE_OUT)
 	$SpeedTween.start()
-	stateMachine.travel("Grapple")
+	_travel_animation("Grapple")
 	$GrappleChain.visible = true
 	$GrappleHook.visible = true
 	myTrident.visible = false
@@ -199,7 +203,7 @@ func _startmove():
 	$SpeedTween.interpolate_property(self, "speed_proportion", null, 1, accel_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$SpeedTween.start()
 	if(_on_floor):
-		stateMachine.travel("Walk")
+		_travel_animation("Walk")
 	_moving = true
 
 func _stopmove():
@@ -207,7 +211,7 @@ func _stopmove():
 	$SpeedTween.interpolate_property(self, "speed_proportion", null, 0, accel_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$SpeedTween.start()
 	if(_on_floor):
-		stateMachine.travel("Idle")
+		_travel_animation("Idle")
 	_moving = false
 
 func _hitfloor():
@@ -219,9 +223,9 @@ func _hitfloor():
 	_jumping = false
 	cur_maxspeed = max_speed
 	if _moving:
-		stateMachine.travel("Walk")
+		_travel_animation("Walk")
 	else:
-		stateMachine.travel("Idle")
+		_travel_animation("Idle")
 
 func _leavefloor():
 	# we just left the floor (or ended jump)
@@ -231,7 +235,7 @@ func _leavefloor():
 	_on_floor = false
 	if !_direction:
 		cur_maxspeed = max_airspeed
-	stateMachine.travel("Falling")
+	_travel_animation("Falling")
 
 func _jump():
 	_on_floor = false
@@ -329,8 +333,26 @@ func _on_AttackArea_body_entered(body: Node) -> void:
 		_recoil_countdown = _recoil_countdown - dir * recoil_amount
 		_already_hit.append(body)
 
+func take_damage(damage, pushback):
+	if _dead:
+		return
+	_recoil_countdown = _recoil_countdown + pushback.x
+	stateMachine.start("Hit")
+	health = health - damage
+	if health < 0:
+		_travel_animation("Die")
+		_dead = true
+		_end_grapple()
+		_endjump()
+
+func _travel_animation(dest : String):
+	if !_dead:
+		stateMachine.travel(dest)
+
 func _physics_process(delta: float) -> void:
 	_countdown_attack()
+	if _on_floor:
+		_jumping = false
 	if IsGrappling():
 		_handle_playergrapplemove(delta)
 		_handle_playergrappleattack(delta)

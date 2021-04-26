@@ -929,7 +929,7 @@ states/Grapple/position = Vector2( 549, 245 )
 states/GrappleFail/node = SubResource( 20 )
 states/GrappleFail/position = Vector2( 330, 245 )
 states/Hit/node = SubResource( 21 )
-states/Hit/position = Vector2( 910.239, -20.105 )
+states/Hit/position = Vector2( 909.239, -20.105 )
 states/Idle/node = SubResource( 22 )
 states/Idle/position = Vector2( 549, 126 )
 states/JumpStart/node = SubResource( 23 )
@@ -963,7 +963,7 @@ max_grapplespeed = 800
 
 [node name="Demon" type="AnimatedSprite" parent="Flipper"]
 position = Vector2( 7.76523, 111.127 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.5, 0.499799 )
 frames = SubResource( 1 )
 animation = "Idle"
 offset = Vector2( -20.8795, -237.75 )

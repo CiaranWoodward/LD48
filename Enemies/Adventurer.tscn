@@ -72,6 +72,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_attack"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "Die"
@@ -939,7 +953,7 @@ myheight = 45
 
 [node name="Adventurer" type="AnimatedSprite" parent="Flipper"]
 position = Vector2( 1.38571, 45.7499 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.491798, 0.483597 )
 frames = SubResource( 1 )
 offset = Vector2( -29.3191, -89.004 )
 
@@ -956,6 +970,7 @@ position = Vector2( -5.24406, -4.8695 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
 anims/Attack = SubResource( 3 )
 anims/Die = SubResource( 4 )
 anims/Hit = SubResource( 5 )
