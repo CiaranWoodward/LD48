@@ -1007,7 +1007,6 @@ frame = 1
 offset = Vector2( -29.3191, -89.004 )
 
 [node name="Sword" type="Sprite" parent="Flipper"]
-position = Vector2( -17.3845, -86.1639 )
 position = Vector2( 3.3781, 3.39785 )
 rotation = 0.438278
 scale = Vector2( 0.503726, 0.458541 )

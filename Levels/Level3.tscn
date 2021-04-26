@@ -11,7 +11,7 @@
 [ext_resource path="res://Levels/HUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://LevelElements/MainCamera.tscn" type="PackedScene" id=10]
 
-[node name="Level2" type="Node2D"]
+[node name="Level3" type="Node2D"]
 script = ExtResource( 7 )
 drawNavMesh = true
 
@@ -198,7 +198,7 @@ position = Vector2( 681.698, 196.34 )
 width = 300.0
 
 [node name="SimplePlatform13" parent="." instance=ExtResource( 3 )]
-position = Vector2( 372.452, 482.025 )
+position = Vector2( 395.105, 478.249 )
 width = 250.0
 
 [node name="SimplePlatform4" parent="." instance=ExtResource( 3 )]
