@@ -76,6 +76,7 @@ player_grapple={
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="playerbullets"
 2d_physics/layer_5="enemybullets"
+2d_physics/layer_6="cat"
 
 [physics]
 

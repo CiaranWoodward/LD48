@@ -21,6 +21,9 @@ export var max_health = 50.0
 export var attack_ticks : int = 2
 export var pushback_amount = 600.0
 export var recoil_amount = 20.0
+export var min_grapple_attack_dist = 200.0
+export var grapple_attack_hit_dist = 40.0
+export var grapple_attack_bonus = 2.0
 
 # current state
 var _direction = 0
@@ -33,6 +36,7 @@ var _fallspeed = 1
 var cur_maxspeed = max_speed
 var _state = state.IDLE
 var _grapplePoint = Vector2.INF
+var _grapplee = null
 #attacking state
 var _attack_countdown = 0
 var _recoil_countdown = 0
@@ -90,8 +94,16 @@ func _input(event: InputEvent) -> void:
 		var dir = ghp.direction_to(gmp)
 		var vec = dir * grapple_length
 		var res = space_state.intersect_ray(ghp, ghp + vec, [self], 1 + 4)
+		var colobj = res.get("collider")
 		if res.empty():
 			stateMachine.travel("GrappleFail")
+		elif is_instance_valid(colobj) && colobj.has_method("_grapple_if_possible"):
+			if colobj._grapple_if_possible(ghp):
+				_grapplee = colobj
+				_grapplePoint = res["position"] + dir * grapple_stick_in_dist
+				_start_grapple()
+			else:
+				stateMachine.travel("GrappleFail")
 		else:
 			_grapplePoint = res["position"] + dir * grapple_stick_in_dist
 			_start_grapple()
@@ -126,6 +138,9 @@ func _end_grapple():
 	$GrappleChain.visible = false
 	$GrappleHook.visible = false
 	myTrident.visible = true
+	if is_instance_valid(_grapplee):
+		_grapplee._grapple_done()
+	_grapplee = null
 	_startmoveifkeypressed()
 
 func IsGrappling() -> bool:
@@ -285,6 +300,14 @@ func _handle_playergrapplemove(delta: float) -> void:
 	if dir.x < 0:
 		$Flipper.scale.x = -abs($Flipper.scale.x)
 
+func _handle_playergrappleattack(delta: float) -> void:
+	if is_instance_valid(_grapplee):
+		if global_position.distance_to(_grapplee.global_position) <= grapple_attack_hit_dist:
+			var dir = sign($Flipper.scale.x)
+			var pushback = Vector2(dir * 0.5, -0.5) * pushback_amount * grapple_attack_bonus
+			_grapplee.take_damage(damage * grapple_attack_bonus, pushback)
+			_end_grapple()
+
 func _countdown_attack():
 	if myAttackShape.disabled:
 		_attack_countdown = 0
@@ -308,6 +331,7 @@ func _physics_process(delta: float) -> void:
 	_countdown_attack()
 	if IsGrappling():
 		_handle_playergrapplemove(delta)
+		_handle_playergrappleattack(delta)
 	else:
 		_handle_continuous_input()
 		_handle_falling(delta)

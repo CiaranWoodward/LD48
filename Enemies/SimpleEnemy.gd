@@ -54,6 +54,7 @@ enum state {IDLE, GOING_TO_TREASURE, GOING_TO_PLAYER, FIGHTING, DEAD}
 var _on_floor = false
 var _platform = null
 var _jumping = false
+var _grappled = false
 var _dead = false
 var _pushback = Vector2.ZERO
 var fall_time = 0
@@ -74,6 +75,16 @@ func _ready():
 	jumpTween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
 	pushbackTween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
 
+func _grapple_if_possible(_source) -> bool:
+	_grappled = true
+	fallTween.stop_all()
+	jumpTween.stop_all()
+	return true
+
+func _grapple_done():
+	_grappled = false
+	_end_jump()
+
 # Actually execute and move the character
 func _handle_movement(delta):
 	var speed = _direction * speed_rate * (max_speed-min_speed) + _direction * min_speed
@@ -83,6 +94,7 @@ func _handle_movement(delta):
 			_on_floor = true
 			stop_pushback()
 
+# Handle gravity timing
 func _handle_falling(delta):
 	if _on_floor:
 		fallTween.remove_all()
@@ -248,11 +260,15 @@ func _handle_travel(delta):
 func _physics_process(delta):
 	if is_nan(global_position.x):
 		print("Help!")
-	if !_jumping:
+	if !_jumping && !_grappled:
 		_handle_movement(delta)
 		_handle_falling(delta)
+		_relogic_if_necessary(delta)
 		_handle_idle(delta)
 		_handle_travel(delta)
+
+func _relogic_if_necessary(_delta):
+	pass
 
 func _is_jump_possible(from : Vector2, to : Vector2) -> bool:
 	var heightincrease = from.y - to.y # This is backwards because y is inverted!
