@@ -542,6 +542,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [ Vector2( 0.787598, 35.8914 ) ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("Knight:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=9]
 length = 0.4
@@ -1097,7 +1109,7 @@ node_connections = [ "output", 0, "StateMachine" ]
 [node name="Knight" type="KinematicBody2D"]
 
 [node name="Knight" type="AnimatedSprite" parent="."]
-position = Vector2( 0.788, 13 )
+position = Vector2( 0.787598, 35.8914 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "Idle"

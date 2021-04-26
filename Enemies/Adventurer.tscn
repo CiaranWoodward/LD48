@@ -938,15 +938,13 @@ myheight = 45
 [node name="Flipper" type="Node2D" parent="."]
 
 [node name="Adventurer" type="AnimatedSprite" parent="Flipper"]
-position = Vector2( 1.38571, 26.094 )
-rotation = -1.16688
+position = Vector2( 1.38571, 45.7499 )
 scale = Vector2( 0.5, 0.5 )
-z_index = -1
 frames = SubResource( 1 )
-frame = 5
 offset = Vector2( -29.3191, -89.004 )
 
 [node name="Sword" type="Sprite" parent="Flipper"]
+visible = false
 position = Vector2( -21.6906, -81.0367 )
 rotation = -2.59705
 scale = Vector2( 0.503726, 0.458541 )
