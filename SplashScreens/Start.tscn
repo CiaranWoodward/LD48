@@ -29,13 +29,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BloodDrip" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1063.5, 509.927 )
-
-[node name="BloodDrip2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 453.925, 509.538 )
-scale = Vector2( -1, 1 )
-
 [node name="Title" type="TextureRect" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -49,5 +42,13 @@ texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BloodDrip2" parent="Title" instance=ExtResource( 5 )]
+position = Vector2( 312.925, 391.493 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+
+[node name="BloodDrip" parent="Title" instance=ExtResource( 5 )]
+position = Vector2( 922.5, 391.882 )
 
 [node name="Continue" parent="." instance=ExtResource( 1 )]
