@@ -13,6 +13,7 @@ export var grapple_length = 1400
 export var grapple_accel_time = 0.3
 export var max_grapplespeed = 600
 export var grapple_stick_in_dist = 20.0
+export(float, 0.0, 1.0) var grappling_slidyness = 0.5 #higher is more slidy
 
 #attacking
 export var damage = 10.0
@@ -35,6 +36,7 @@ var _grapplePoint = Vector2.INF
 #attacking state
 var _attack_countdown = 0
 var _recoil_countdown = 0
+var _already_hit = []
 
 # tween vars
 var speed_proportion = 0
@@ -59,6 +61,7 @@ func GetXcomponent() -> float:
 		return _direction
 
 func _start_attack():
+	_already_hit = []
 	_attack_countdown = attack_ticks
 	myAttackShape.disabled = false
 
@@ -265,7 +268,13 @@ func _handle_playergrapplemove(delta: float) -> void:
 	var angle = myHand.global_position.angle_to_point(_grapplePoint) -PI/2
 	var kc = move_and_collide(dir * delta * speed_proportion * max_grapplespeed)
 	if is_instance_valid(kc):
-		_end_grapple()
+		var slidedir = dir.slide(kc.normal)
+		if slidedir.length() < (1.0-grappling_slidyness):
+			_end_grapple()
+		else:
+			kc = move_and_collide(slidedir * delta * speed_proportion * max_grapplespeed)
+			if is_instance_valid(kc):
+				_end_grapple()
 	$GrappleChain.global_rotation = angle
 	$GrappleChain.global_position = midpoint
 	$GrappleChain.region_rect.size.y = int(dist)/$GrappleChain.scale.x
@@ -287,10 +296,13 @@ func _countdown_attack():
 
 func _on_AttackArea_body_entered(body: Node) -> void:
 	if body.has_method("take_damage"):
+		if body in _already_hit:
+			return
 		var dir = sign($Flipper.scale.x)
 		var pushback = Vector2(dir * 0.5, -0.5) * pushback_amount
 		body.take_damage(damage, pushback)
 		_recoil_countdown = _recoil_countdown - dir * recoil_amount
+		_already_hit.append(body)
 
 func _physics_process(delta: float) -> void:
 	_countdown_attack()
