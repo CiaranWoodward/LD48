@@ -1,14 +1,18 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Graphics/Enemies/Adventurer/Attack/Attack0000.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Enemies/Adventurer/Attack/Attack0001.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/Enemies/Adventurer/Attack/Attack0003.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/Enemies/Adventurer/Attack/Attack0002.png" type="Texture" id=4]
 [ext_resource path="res://Enemies/Adventurer.gd" type="Script" id=5]
+[ext_resource path="res://Graphics/Enemies/Adventurer/Sword0013.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/Enemies/Adventurer/Hit0012.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/Enemies/Adventurer/Dead0013.png" type="Texture" id=8]
+[ext_resource path="res://Enemies/Blood.tscn" type="PackedScene" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -56,11 +60,23 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=4]
-length = 0.3
-loop = true
-step = 0.05
+resource_name = "Die"
+length = 0.8
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Adventurer:frame")
 tracks/0/interp = 1
@@ -71,7 +87,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 5 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Adventurer:scale")
@@ -80,10 +96,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
-"transitions": PoolRealArray( 1.7411, 1.86607, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1.7411 ),
 "update": 0,
-"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.48 ), Vector2( 0.5, 0.5 ) ]
+"values": [ Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Adventurer:rotation_degrees")
@@ -92,13 +108,174 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -90.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.35, 0.8 ),
+"transitions": PoolRealArray( 1, 2.2, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Adventurer:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.38571, 45.7499 ), Vector2( 1.38571, 19.29 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Adventurer:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.35 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -1 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sword:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.15, 0.35 ),
+"transitions": PoolRealArray( 0.378929, 2.82843, 1 ),
+"update": 0,
+"values": [ Vector2( 3.3781, 3.39785 ), Vector2( -20.592, -100 ), Vector2( -26.5517, 2.86812 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sword:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 25.1115, -209.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Sword:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Sword:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.35, 0.8 ),
+"transitions": PoolRealArray( 2.2, 2.2, 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=5]
+resource_name = "Hit"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 0.307786, 1.86607, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.45, 0.52 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.784584, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.635294, 0.635294, 0.392157 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Blood:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sword:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
 length = 0.3
 loop = true
 step = 0.05
@@ -138,8 +315,109 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Adventurer:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.38571, 45.7499 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Adventurer:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sword:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1.7411, 1.86607, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.48 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
 length = 0.4
 loop = true
 step = 0.05
@@ -179,8 +457,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 length = 0.6
 loop = true
 step = 0.05
@@ -220,8 +510,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
@@ -272,8 +574,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [ 1.0, 0.0 ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Adventurer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=11]
 length = 0.8
 loop = true
 step = 0.05
@@ -313,8 +627,44 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 1.0, 5.0, -5.0, 1.0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Adventurer:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.38571, 45.7499 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sword:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=12]
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
@@ -366,7 +716,7 @@ tracks/3/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=13]
 length = 0.6
 loop = true
 step = 0.05
@@ -406,81 +756,91 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 2.0, 5.0, -5.0, 2.0 ]
 }
-
-[sub_resource type="AnimationNodeAnimation" id=12]
-animation = "Attack"
-
-[sub_resource type="AnimationNodeAnimation" id=13]
-animation = "Jumping"
+tracks/3/type = "value"
+tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=14]
-animation = "Idle"
+animation = "Attack"
 
 [sub_resource type="AnimationNodeAnimation" id=15]
-animation = "Jumping"
+animation = "Die"
 
 [sub_resource type="AnimationNodeAnimation" id=16]
 animation = "Jumping"
 
 [sub_resource type="AnimationNodeAnimation" id=17]
-animation = "Land"
+animation = "Hit"
 
 [sub_resource type="AnimationNodeAnimation" id=18]
-animation = "PreJump"
+animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=19]
-animation = "SlowDown"
+animation = "Jumping"
 
 [sub_resource type="AnimationNodeAnimation" id=20]
-animation = "SlowWalk"
+animation = "Jumping"
 
 [sub_resource type="AnimationNodeAnimation" id=21]
-animation = "SpeedUp"
+animation = "Land"
 
 [sub_resource type="AnimationNodeAnimation" id=22]
+animation = "PreJump"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "SlowDown"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "SlowWalk"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "SpeedUp"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
 animation = "Walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
-switch_mode = 2
-auto_advance = true
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
 switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
 switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=33]
 switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=38]
 
@@ -488,73 +848,106 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
 
-[sub_resource type="AnimationNodeStateMachine" id=41]
-states/Attack/node = SubResource( 12 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=47]
+states/Attack/node = SubResource( 14 )
 states/Attack/position = Vector2( 360, 243 )
-states/Falling/node = SubResource( 13 )
+states/Die/node = SubResource( 15 )
+states/Die/position = Vector2( 759, 415.998 )
+states/Falling/node = SubResource( 16 )
 states/Falling/position = Vector2( 985.866, 29 )
-states/Idle/node = SubResource( 14 )
+states/Hit/node = SubResource( 17 )
+states/Hit/position = Vector2( 573.866, 415.998 )
+states/Idle/node = SubResource( 18 )
 states/Idle/position = Vector2( 654, 243 )
-states/JumpDown/node = SubResource( 15 )
+states/JumpDown/node = SubResource( 19 )
 states/JumpDown/position = Vector2( 759, 29 )
-states/JumpUp/node = SubResource( 16 )
+states/JumpUp/node = SubResource( 20 )
 states/JumpUp/position = Vector2( 541, 29 )
-states/Land/node = SubResource( 17 )
+states/Land/node = SubResource( 21 )
 states/Land/position = Vector2( 759, 121 )
-states/PreJump/node = SubResource( 18 )
+states/PreJump/node = SubResource( 22 )
 states/PreJump/position = Vector2( 541, 121 )
-states/SlowDown/node = SubResource( 19 )
+states/SlowDown/node = SubResource( 23 )
 states/SlowDown/position = Vector2( 1021, 319 )
-states/SlowWalking/node = SubResource( 20 )
+states/SlowWalking/node = SubResource( 24 )
 states/SlowWalking/position = Vector2( 881, 243 )
-states/SpeedUp/node = SubResource( 21 )
+states/SpeedUp/node = SubResource( 25 )
 states/SpeedUp/position = Vector2( 1014, 162 )
-states/Walking/node = SubResource( 22 )
+states/Walking/node = SubResource( 26 )
 states/Walking/position = Vector2( 1143, 243 )
-transitions = [ "Idle", "PreJump", SubResource( 23 ), "Idle", "SlowWalking", SubResource( 24 ), "SlowWalking", "SpeedUp", SubResource( 25 ), "SpeedUp", "Walking", SubResource( 26 ), "Walking", "SlowDown", SubResource( 27 ), "SlowDown", "SlowWalking", SubResource( 28 ), "PreJump", "JumpUp", SubResource( 29 ), "Land", "Idle", SubResource( 30 ), "SlowWalking", "Idle", SubResource( 31 ), "Idle", "Attack", SubResource( 32 ), "Attack", "Idle", SubResource( 33 ), "JumpUp", "JumpDown", SubResource( 34 ), "JumpDown", "Land", SubResource( 35 ), "Falling", "Land", SubResource( 36 ), "SlowWalking", "Falling", SubResource( 37 ), "Walking", "Falling", SubResource( 38 ), "SpeedUp", "Falling", SubResource( 39 ), "SlowDown", "Falling", SubResource( 40 ) ]
+transitions = [ "Idle", "PreJump", SubResource( 27 ), "Idle", "SlowWalking", SubResource( 28 ), "SlowWalking", "SpeedUp", SubResource( 29 ), "SpeedUp", "Walking", SubResource( 30 ), "Walking", "SlowDown", SubResource( 31 ), "SlowDown", "SlowWalking", SubResource( 32 ), "PreJump", "JumpUp", SubResource( 33 ), "Land", "Idle", SubResource( 34 ), "SlowWalking", "Idle", SubResource( 35 ), "Idle", "Attack", SubResource( 36 ), "Attack", "Idle", SubResource( 37 ), "JumpUp", "JumpDown", SubResource( 38 ), "JumpDown", "Land", SubResource( 39 ), "Falling", "Land", SubResource( 40 ), "SlowWalking", "Falling", SubResource( 41 ), "Walking", "Falling", SubResource( 42 ), "SpeedUp", "Falling", SubResource( 43 ), "SlowDown", "Falling", SubResource( 44 ), "Hit", "Idle", SubResource( 45 ), "Hit", "Die", SubResource( 46 ) ]
 graph_offset = Vector2( 152.866, -41.002 )
 
-[sub_resource type="AnimationNodeBlendTree" id=42]
+[sub_resource type="AnimationNodeBlendTree" id=48]
 graph_offset = Vector2( 0, -110 )
-nodes/StateMachine/node = SubResource( 41 )
+nodes/StateMachine/node = SubResource( 47 )
 nodes/StateMachine/position = Vector2( 420, 60 )
 nodes/output/position = Vector2( 680, 100 )
 node_connections = [ "output", 0, "StateMachine" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=43]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=49]
 
 [node name="Adventurer" type="KinematicBody2D"]
 collision_layer = 4
 script = ExtResource( 5 )
 my_type = "adventurer"
 myheight = 45
-speed_rate = 1.0
 
 [node name="Adventurer" type="AnimatedSprite" parent="."]
-position = Vector2( 1.38571, 45.7499 )
-rotation = 0.0349066
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 1.38571, 19.29 )
+rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
+z_index = -1
 frames = SubResource( 1 )
+frame = 5
 offset = Vector2( -29.3191, -89.004 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -5.24406, -4.8695 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 3 )
-anims/Idle = SubResource( 4 )
-anims/Jumping = SubResource( 5 )
-anims/Land = SubResource( 6 )
-anims/PreJump = SubResource( 7 )
-anims/SlowDown = SubResource( 8 )
-anims/SlowWalk = SubResource( 9 )
-anims/SpeedUp = SubResource( 10 )
-anims/Walk = SubResource( 11 )
+anims/Die = SubResource( 4 )
+anims/Hit = SubResource( 5 )
+anims/Idle = SubResource( 6 )
+anims/Jumping = SubResource( 7 )
+anims/Land = SubResource( 8 )
+anims/PreJump = SubResource( 9 )
+anims/SlowDown = SubResource( 10 )
+anims/SlowWalk = SubResource( 11 )
+anims/SpeedUp = SubResource( 12 )
+anims/Walk = SubResource( 13 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 42 )
+tree_root = SubResource( 48 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 process_mode = 0
-parameters/StateMachine/playback = SubResource( 43 )
+parameters/StateMachine/playback = SubResource( 49 )
+
+[node name="Blood" parent="." instance=ExtResource( 9 )]
+
+[node name="Sword" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -26.5517, 2.86812 )
+rotation = -3.64774
+scale = Vector2( 0.503726, 0.458541 )
+texture = ExtResource( 6 )
