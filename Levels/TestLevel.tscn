@@ -14,7 +14,7 @@ script = ExtResource( 3 )
 drawNavMesh = true
 
 [node name="Shrine" parent="." instance=ExtResource( 6 )]
-position = Vector2( 923.867, 379.389 )
+position = Vector2( 2407.76, 390.614 )
 
 [node name="SimplePlatform" parent="." instance=ExtResource( 2 )]
 position = Vector2( 249.018, 246.712 )
@@ -25,14 +25,30 @@ position = Vector2( 514.003, 566.898 )
 width = 1000.0
 
 [node name="SimplePlatform3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 639.719, 307.472 )
+position = Vector2( 653.188, 343.391 )
 width = 150.0
+
+[node name="SimplePlatform6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1191.97, 736.252 )
+width = 400.0
+
+[node name="SimplePlatform7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 879.926, 918.091 )
+width = 400.0
+
+[node name="SimplePlatform8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1739.73, 567.883 )
+width = 400.0
+
+[node name="SimplePlatform9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2283, 455.637 )
+width = 400.0
 
 [node name="SimplePlatform4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 913.92, 183.221 )
 
 [node name="SimplePlatform5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 921.457, 437.815 )
+position = Vector2( 921.457, 426.815 )
 width = 200.0
 
 [node name="SimpleEnemy" parent="." instance=ExtResource( 1 )]
@@ -56,3 +72,5 @@ __meta__ = {
 }
 
 [node name="MainCamera" parent="." instance=ExtResource( 8 )]
+speed = 10
+lookahead_speed = 2

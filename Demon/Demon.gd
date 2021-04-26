@@ -53,8 +53,9 @@ func _input(event: InputEvent) -> void:
 		_end_grapple()
 		stateMachine.travel("JumpStart")
 		_jumping = true
-	if event.is_action_released("player_jump") && _jumping:
-		_endjump()
+	if event.is_action_released("player_jump"):
+		if _jumping:
+			$GravityTween.interpolate_callback(self, tiny_jump_time, "_endjump")
 	# Attack
 	if event.is_action_pressed("player_attack"):
 		if _jumping || !_on_floor:
