@@ -1,3 +1,192 @@
-[gd_scene format=2]
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://LevelElements/Walls.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Demon/Demon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://LevelElements/SimplePlatform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Graphics/Scenery/BackWall0000.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Scenery/Shrine/Shrine.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/Adventurer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Levels/TestLevel.gd" type="Script" id=7]
+[ext_resource path="res://Graphics/Scenery/Textured0000.png" type="Texture" id=8]
+[ext_resource path="res://Levels/HUD.tscn" type="PackedScene" id=9]
+[ext_resource path="res://LevelElements/MainCamera.tscn" type="PackedScene" id=10]
 
 [node name="Level1" type="Node2D"]
+script = ExtResource( 7 )
+drawNavMesh = true
+
+[node name="BackWall" type="Sprite" parent="."]
+position = Vector2( 642.968, 482.025 )
+scale = Vector2( 0.5, 0.5 )
+z_index = -100
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 3200, 2200 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DarkAreas" type="Node2D" parent="BackWall"]
+
+[node name="Sprite" type="Sprite" parent="BackWall/DarkAreas"]
+modulate = Color( 0.207843, 0.184314, 0.184314, 1 )
+position = Vector2( -583.017, -490.109 )
+scale = Vector2( 1.19306, 1.39286 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 80 )
+
+[node name="Sprite2" type="Sprite" parent="BackWall/DarkAreas"]
+modulate = Color( 0.207843, 0.184314, 0.184314, 1 )
+position = Vector2( 933.27, -458.803 )
+scale = Vector2( 0.487472, 1.94967 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 80 )
+
+[node name="Sprite3" type="Sprite" parent="BackWall/DarkAreas"]
+modulate = Color( 0.207843, 0.184314, 0.184314, 1 )
+position = Vector2( 1398.34, 216.367 )
+scale = Vector2( 0.487472, 1.5482 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 1000 )
+
+[node name="Sprite4" type="Sprite" parent="BackWall/DarkAreas"]
+modulate = Color( 0.207843, 0.184314, 0.184314, 1 )
+position = Vector2( 921.748, 1176.62 )
+scale = Vector2( 1.46894, 0.476228 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 1000 )
+
+[node name="Sprite5" type="Sprite" parent="BackWall/DarkAreas"]
+modulate = Color( 0.207843, 0.184314, 0.184314, 1 )
+position = Vector2( -899.759, 1165.3 )
+scale = Vector2( 0.693947, 0.476228 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 1000 )
+
+[node name="Sprite7" type="Sprite" parent="BackWall/DarkAreas"]
+modulate = Color( 0.207843, 0.184314, 0.184314, 1 )
+position = Vector2( -1495.03, 433.513 )
+scale = Vector2( 0.773317, 1.95886 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 1000 )
+
+[node name="Sprite6" type="Sprite" parent="BackWall/DarkAreas"]
+modulate = Color( 0.207843, 0.184314, 0.184314, 1 )
+position = Vector2( -192.652, 1252.89 )
+scale = Vector2( 0.874966, 0.311994 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 1000 )
+
+[node name="Sprite8" type="Sprite" parent="BackWall/DarkAreas"]
+modulate = Color( 0.207843, 0.184314, 0.184314, 1 )
+position = Vector2( 46.1624, -1121.8 )
+scale = Vector2( 3.1622, 0.311994 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 1000 )
+
+[node name="Walls" parent="." instance=ExtResource( 1 )]
+position = Vector2( 674.869, 21.5619 )
+rotation = 1.5708
+length = 1600.0
+
+[node name="Walls2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 672.987, 235.832 )
+length = 100.0
+
+[node name="Walls6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 368.593, 984.218 )
+length = 120.0
+
+[node name="Walls7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 714.5, 990.685 )
+rotation = 3.14159
+length = 110.0
+
+[node name="Walls14" parent="." instance=ExtResource( 1 )]
+position = Vector2( 972.328, 240.772 )
+rotation = 3.14159
+length = 100.0
+
+[node name="Walls4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100.69, 610.165 )
+length = 680.0
+
+[node name="Walls5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1196.64, 623.251 )
+rotation = 3.14159
+length = 680.0
+
+[node name="Walls3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 372.597, 286.082 )
+rotation = 1.5708
+length = 600.0
+
+[node name="Walls15" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1098.08, 311.954 )
+rotation = 1.5708
+length = 250.0
+
+[node name="SimplePlatform" parent="." instance=ExtResource( 3 )]
+position = Vector2( 272.914, 203.918 )
+width = 800.0
+
+[node name="SimplePlatform2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1222.33, 208.967 )
+width = 500.0
+
+[node name="SimplePlatform17" parent="." instance=ExtResource( 3 )]
+position = Vector2( 659.103, 792.218 )
+width = 400.0
+
+[node name="SimplePlatform16" parent="." instance=ExtResource( 3 )]
+position = Vector2( 191.785, 771.87 )
+width = 200.0
+
+[node name="SimplePlatform14" parent="." instance=ExtResource( 3 )]
+position = Vector2( 852.121, 614.874 )
+width = 700.0
+
+[node name="SimplePlatform18" parent="." instance=ExtResource( 3 )]
+position = Vector2( 964.582, 954.257 )
+width = 500.0
+
+[node name="SimplePlatform19" parent="." instance=ExtResource( 3 )]
+position = Vector2( 540.721, 1031.83 )
+width = 400.0
+
+[node name="SimplePlatform20" parent="." instance=ExtResource( 3 )]
+position = Vector2( 217.911, 942.365 )
+width = 300.0
+
+[node name="SimplePlatform15" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1096.61, 460.599 )
+width = 200.0
+
+[node name="SimplePlatform13" parent="." instance=ExtResource( 3 )]
+position = Vector2( 311.653, 469.679 )
+width = 250.0
+
+[node name="SimplePlatform21" parent="." instance=ExtResource( 3 )]
+position = Vector2( 777.822, 388.813 )
+width = 150.0
+
+[node name="Demon" parent="." instance=ExtResource( 2 )]
+position = Vector2( 963.864, 867.831 )
+
+[node name="Shrine" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1091.29, 835.119 )
+
+[node name="Adventurer" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1348.63, 128.267 )
+
+[node name="HUD" parent="." instance=ExtResource( 9 )]
+
+[node name="MainCamera" parent="." instance=ExtResource( 10 )]
