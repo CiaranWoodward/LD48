@@ -32,12 +32,16 @@ margin_bottom = -134.909
 theme = ExtResource( 4 )
 text = "Dear Security Demon 696,
 
-There has been a leak of maps to some of our holiest shrines. As a result, there are various treasure hunters making their way to steal our valuable treasures.
+We have received information regarding the leak of maps to some of our holiest shrines. We have yet to discover all that will be targeted by adventurers after this breach of security but Shrine 43 is on the list. You are to be dispatched to Shrine 43 immediately.
 
-Due to the high number of security demons required, you will need to fight off the treasure hunters heading to Shrine 43 on your own. We have sent you a company issue grappling trident for your use.
+Due to the budget cuts,, you will need to fight off the treasure hunters heading to Shrine 43 on your own. We have sent you a company issue grappling trident for your use.
 
 Kind regards,
 Head Office"
+context_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_enabled = false
+selecting_enabled = false
 wrap_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
