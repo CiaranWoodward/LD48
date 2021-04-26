@@ -24,14 +24,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "Walking",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "Idle",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ), ExtResource( 13 ) ],
@@ -54,7 +54,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 10.8456, 41.2267 )
+extents = Vector2( 10.8456, 31.6747 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "Attack"
@@ -745,7 +745,10 @@ node_connections = [ "output", 0, "StateMachine" ]
 z_index = 1
 collision_layer = 2
 script = ExtResource( 19 )
+jump_time = 0.7
 grapple_length = 600
+grapple_accel_time = 0.2
+max_grapplespeed = 800
 
 [node name="Flipper" type="Node2D" parent="."]
 
@@ -770,7 +773,7 @@ texture = ExtResource( 12 )
 offset = Vector2( -11.2427, -4.47361 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2( -0.585009, 0.393056 )
+position = Vector2( -0.585009, 7.52024 )
 shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
