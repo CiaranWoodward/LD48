@@ -839,15 +839,14 @@ gravity_time = 0.3
 myheight = 40
 health = 30
 attack_range = 600
-attack_period = 2.5
 
 [node name="Flipper" type="Node2D" parent="."]
 
 [node name="Ninja" type="AnimatedSprite" parent="Flipper"]
 position = Vector2( -0.81785, 41.5591 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.485, 0.485 )
 frames = SubResource( 1 )
-frame = 1
+frame = 2
 offset = Vector2( -25.6464, -88.0545 )
 
 [node name="Knife" type="Sprite" parent="Flipper"]

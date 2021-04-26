@@ -66,13 +66,12 @@ var _jumping = false
 var _grappled = false
 var _dead = false
 var _pushback = Vector2.ZERO
-var _current_animation = ""
 var fall_time = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animTree.active = true
-	_force_animation("Idle")
+	stateMachine.start("Idle")
 	_slowdown_time = $AnimationPlayer.get_animation("SlowDown").length
 	max_jump_up_time = max_jumpheight / max_jumpspeed
 	add_child(jumpTween)
@@ -135,8 +134,7 @@ func _clear_path():
 func _run_attackanim():
 	if _dead:
 		return
-	_force_animation("Attack")
-	print("Attak")
+	stateMachine.start("Attack")
 
 func _is_attack_possible(_position : Vector2) -> bool:
 	return global_position.distance_to(player.global_position) < attack_range
@@ -176,12 +174,12 @@ func _relogic_if_necessary(_delta):
 		if is_instance_valid(target_plat):
 			if _platform == target_plat:
 				_final_destination = player.global_position
+				if attackTimer.is_stopped() && _is_attack_possible(player.global_position):
+					attackTimer.start()
+					call_deferred("_run_attackanim")
 			elif !_is_path_valid() || _path[-1] != target_plat:
 				_repath_to(target_plat)
 				_final_destination = player.global_position
-		if attackTimer.is_stopped() && _is_attack_possible(player.global_position):
-			attackTimer.start()
-			call_deferred("_run_attackanim")
 	
 	if _is_path_valid():
 		if _is_path_completed():
@@ -216,7 +214,7 @@ func _handle_falling(delta):
 	if _on_floor:
 		fallTween.remove_all()
 		fall_rate = 0
-		if _current_animation == "Falling":
+		if stateMachine.get_current_node() == "Falling":
 			_travel_animation("Idle")
 			_platform = get_parent().GetClosestLowerPlatform(global_position)
 	elif _pushback.y != 0:
@@ -252,7 +250,7 @@ func take_damage(damage, pushback):
 	health -= damage
 	fallTween.remove_all()
 	jumpTween.remove_all()
-	_force_animation("Hit")
+	stateMachine.start("Hit")
 	start_pushback(pushback)
 	if health <= 0:
 		_travel_animation("Die")
@@ -296,18 +294,11 @@ func _end_jump():
 func _mid_jump():
 	_travel_animation("JumpDown")
 
-func _force_animation(dest : String):
-	_current_animation = dest
-	stateMachine.start(dest)
-
 func _travel_animation(dest : String):
-	if !_dead && dest != _current_animation:
-		_current_animation = dest
-		stateMachine.travel(dest)
-		#call_deferred("_deferred_travel", dest)
+	if !_dead:
+		call_deferred("_deferred_travel", dest)
 
 func _deferred_travel(dest):
-	print(dest)
 	if !_dead || dest == "Die":
 		stateMachine.travel(dest)
 

@@ -89,7 +89,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "Die"
-length = 0.8
+length = 0.9
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Flipper/Adventurer:frame")
@@ -935,7 +935,7 @@ transitions = [ "Idle", "PreJump", SubResource( 27 ), "Idle", "SlowWalking", Sub
 graph_offset = Vector2( 152.866, -41.002 )
 
 [sub_resource type="AnimationNodeBlendTree" id=48]
-graph_offset = Vector2( 0, -110 )
+graph_offset = Vector2( 0, -177 )
 nodes/StateMachine/node = SubResource( 47 )
 nodes/StateMachine/position = Vector2( 420, 60 )
 nodes/output/position = Vector2( 680, 100 )
@@ -948,19 +948,21 @@ collision_layer = 4
 script = ExtResource( 5 )
 my_type = "adventurer"
 myheight = 45
+speed_rate = 1.0
 
 [node name="Flipper" type="Node2D" parent="."]
 
 [node name="Adventurer" type="AnimatedSprite" parent="Flipper"]
-position = Vector2( 1.38571, 45.7499 )
-scale = Vector2( 0.491798, 0.483597 )
+position = Vector2( 1.38571, 39.7019 )
+scale = Vector2( 0.5, 0.5 )
+z_index = -1
 frames = SubResource( 1 )
+frame = 1
 offset = Vector2( -29.3191, -89.004 )
 
 [node name="Sword" type="Sprite" parent="Flipper"]
-visible = false
-position = Vector2( -21.6906, -81.0367 )
-rotation = -2.59705
+position = Vector2( -17.3845, -86.1639 )
+rotation = -0.495668
 scale = Vector2( 0.503726, 0.458541 )
 texture = ExtResource( 6 )
 

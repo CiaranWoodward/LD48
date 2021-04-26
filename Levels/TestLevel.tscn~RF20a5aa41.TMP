@@ -74,4 +74,4 @@ speed = 10
 lookahead_speed = 2
 
 [node name="Ninja" parent="." instance=ExtResource( 1 )]
-position = Vector2( 947.461, 80.635 )
+position = Vector2( 924.782, -148.671 )

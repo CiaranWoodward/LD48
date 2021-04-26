@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Adventurer",
 "language": "GDScript",
 "path": "res://Enemies/Adventurer.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Ninja",
+"language": "GDScript",
+"path": "res://Enemies/Ninja.gd"
 } ]
 _global_script_class_icons={
-"Adventurer": ""
+"Adventurer": "",
+"Ninja": ""
 }
 
 [application]
