@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Enemies/Ninja.tscn" type="PackedScene" id=1]
 [ext_resource path="res://LevelElements/SimplePlatform.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Graphics/Scenery/Shrine/Shrine.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Graphics/Scenery/BackWall0000.png" type="Texture" id=7]
 [ext_resource path="res://LevelElements/MainCamera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Demon/Cat.tscn" type="PackedScene" id=9]
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource( 3 )
@@ -75,3 +76,6 @@ lookahead_speed = 2
 
 [node name="Ninja" parent="." instance=ExtResource( 1 )]
 position = Vector2( 947.461, 80.635 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 9 )]
+position = Vector2( 748.394, 446.012 )

@@ -24,4 +24,5 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		damage = 0
 		pushback_amount = 0
+		collision_mask = 0
 		$Rotator/Knife/CPUParticles2D.emitting = false

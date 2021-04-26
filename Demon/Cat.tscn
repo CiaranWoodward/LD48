@@ -1,7 +1,8 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Graphics/Demon/Cat0000.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Other/BloodParticle0000.png" type="Texture" id=2]
+[ext_resource path="res://Demon/Cat.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 30.0444
@@ -11,7 +12,7 @@ height = 42.8849
 resource_name = "Absorb"
 length = 0.9
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Cat:scale")
+tracks/0/path = NodePath("Flipper/Cat:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -23,7 +24,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.466, 0.456 ), Vector2( 0.502931, 0.513577 ), Vector2( 0.5, 0.5 ), Vector2( 0.466, 0.456 ), Vector2( 0.502931, 0.513577 ), Vector2( 0.5, 0.5 ), Vector2( 0.466, 0.456 ), Vector2( 0.502931, 0.513577 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Cat:rotation_degrees")
+tracks/1/path = NodePath("Flipper/Cat:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -51,7 +52,7 @@ tracks/2/keys = {
 length = 0.3
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Cat:scale")
+tracks/0/path = NodePath("Flipper/Cat:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -63,7 +64,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.466, 0.456 ), Vector2( 0.502931, 0.513577 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Cat:rotation_degrees")
+tracks/1/path = NodePath("Flipper/Cat:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -79,7 +80,7 @@ tracks/1/keys = {
 length = 0.3
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Cat:scale")
+tracks/0/path = NodePath("Flipper/Cat:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -91,7 +92,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.49 ), Vector2( 0.51, 0.51 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Cat:rotation_degrees")
+tracks/1/path = NodePath("Flipper/Cat:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -108,7 +109,7 @@ resource_name = "Land"
 length = 0.4
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Cat:scale")
+tracks/0/path = NodePath("Flipper/Cat:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -120,7 +121,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.52, 0.43 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Cat:rotation_degrees")
+tracks/1/path = NodePath("Flipper/Cat:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -136,7 +137,7 @@ tracks/1/keys = {
 length = 0.4
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Cat:scale")
+tracks/0/path = NodePath("Flipper/Cat:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -148,7 +149,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.466, 0.456 ), Vector2( 0.503, 0.55 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Cat:rotation_degrees")
+tracks/1/path = NodePath("Flipper/Cat:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -165,7 +166,7 @@ resource_name = "SlowDown"
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Cat:scale")
+tracks/0/path = NodePath("Flipper/Cat:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -177,7 +178,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.466, 0.456 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Cat:rotation_degrees")
+tracks/1/path = NodePath("Flipper/Cat:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -188,6 +189,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 1.0, -2.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:speed_rate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
 
 [sub_resource type="Animation" id=8]
 resource_name = "SlowWalk"
@@ -195,7 +208,7 @@ length = 0.7
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Cat:scale")
+tracks/0/path = NodePath("Flipper/Cat:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -207,7 +220,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.466, 0.456 ), Vector2( 0.502931, 0.513577 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Cat:rotation_degrees")
+tracks/1/path = NodePath("Flipper/Cat:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -224,7 +237,7 @@ resource_name = "SpeedUp"
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Cat:scale")
+tracks/0/path = NodePath("Flipper/Cat:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -236,7 +249,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.466, 0.456 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Cat:rotation_degrees")
+tracks/1/path = NodePath("Flipper/Cat:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -247,13 +260,25 @@ tracks/1/keys = {
 "update": 0,
 "values": [ -2.0, 1.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:speed_rate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
 
 [sub_resource type="Animation" id=10]
 length = 0.4
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Cat:scale")
+tracks/0/path = NodePath("Flipper/Cat:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -265,7 +290,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.466, 0.456 ), Vector2( 0.502931, 0.513577 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Cat:rotation_degrees")
+tracks/1/path = NodePath("Flipper/Cat:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -375,13 +400,13 @@ states/PreJump/node = SubResource( 17 )
 states/PreJump/position = Vector2( 454, 104 )
 states/SlowDown/node = SubResource( 18 )
 states/SlowDown/position = Vector2( 874, 278 )
-states/SlowWalk/node = SubResource( 19 )
-states/SlowWalk/position = Vector2( 754, 204 )
+states/SlowWalking/node = SubResource( 19 )
+states/SlowWalking/position = Vector2( 754, 204 )
 states/SpeedUp/node = SubResource( 20 )
 states/SpeedUp/position = Vector2( 874, 131 )
-states/Walk/node = SubResource( 21 )
-states/Walk/position = Vector2( 986, 204 )
-transitions = [ "Idle", "PreJump", SubResource( 22 ), "PreJump", "JumpUp", SubResource( 23 ), "Land", "Idle", SubResource( 24 ), "Idle", "SlowWalk", SubResource( 25 ), "SlowWalk", "SpeedUp", SubResource( 26 ), "SpeedUp", "Walk", SubResource( 27 ), "SlowDown", "SlowWalk", SubResource( 28 ), "Walk", "SlowDown", SubResource( 29 ), "SlowWalk", "Idle", SubResource( 30 ), "Idle", "Absorb", SubResource( 31 ), "Absorb", "Idle", SubResource( 32 ), "JumpUp", "JumpDown", SubResource( 33 ), "JumpDown", "Land", SubResource( 34 ), "Falling", "Land", SubResource( 35 ), "SlowWalk", "Falling", SubResource( 36 ), "SpeedUp", "Falling", SubResource( 37 ), "Walk", "Falling", SubResource( 38 ), "SlowDown", "Falling", SubResource( 39 ) ]
+states/Walking/node = SubResource( 21 )
+states/Walking/position = Vector2( 986, 204 )
+transitions = [ "Idle", "PreJump", SubResource( 22 ), "PreJump", "JumpUp", SubResource( 23 ), "Land", "Idle", SubResource( 24 ), "Idle", "SlowWalking", SubResource( 25 ), "SlowWalking", "SpeedUp", SubResource( 26 ), "SpeedUp", "Walking", SubResource( 27 ), "SlowDown", "SlowWalking", SubResource( 28 ), "Walking", "SlowDown", SubResource( 29 ), "SlowWalking", "Idle", SubResource( 30 ), "Idle", "Absorb", SubResource( 31 ), "Absorb", "Idle", SubResource( 32 ), "JumpUp", "JumpDown", SubResource( 33 ), "JumpDown", "Land", SubResource( 34 ), "Falling", "Land", SubResource( 35 ), "SlowWalking", "Falling", SubResource( 36 ), "SpeedUp", "Falling", SubResource( 37 ), "Walking", "Falling", SubResource( 38 ), "SlowDown", "Falling", SubResource( 39 ) ]
 graph_offset = Vector2( 37, -77 )
 
 [sub_resource type="AnimationNodeBlendTree" id=41]
@@ -396,13 +421,25 @@ node_connections = [ "output", 0, "StateMachine" ]
 offsets = PoolRealArray( 0, 0.793893 )
 colors = PoolColorArray( 0.631373, 0, 0, 1, 0.631373, 0, 0, 0 )
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="Cat" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 3 )
+my_type = "cat"
+max_jumpspeed = 400.0
+max_speed = 400.0
+max_jumpheight = 400.0
+max_fallheight = 600.0
+min_speed = 200.0
+min_x_jump = 40.0
+gravity_time = 0.3
+player_aggro_distance = 1e+06
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Flipper" type="Node2D" parent="."]
 position = Vector2( 0.0380249, 20.058 )
 
-[node name="Cat" type="Sprite" parent="Node2D"]
-scale = Vector2( 0.48323, 0.482863 )
+[node name="Cat" type="Sprite" parent="Flipper"]
+rotation = 0.0174533
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 offset = Vector2( -0.0760498, -40.1159 )
 flip_h = true
@@ -415,6 +452,7 @@ scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
 anims/Absorb = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/Jumping = SubResource( 4 )
@@ -428,6 +466,8 @@ anims/Walk = SubResource( 10 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 41 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
+process_mode = 0
 parameters/StateMachine/playback = SubResource( 42 )
 
 [node name="Blood" type="CPUParticles2D" parent="."]
