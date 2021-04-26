@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Graphics/Demon/Walking/DemonWalk0000.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Demon/Walking/DemonWalk0001.png" type="Texture" id=2]
@@ -52,6 +52,9 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=41]
+extents = Vector2( 35.1473, 76.597 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10.8456, 41.2267 )
@@ -118,6 +121,20 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_start_attack"
+} ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -732,7 +749,7 @@ states/JumpStop/position = Vector2( 330, 104.405 )
 states/Walk/node = SubResource( 20 )
 states/Walk/position = Vector2( 767, 126 )
 transitions = [ "Idle", "Walk", SubResource( 21 ), "Idle", "Grapple", SubResource( 22 ), "Walk", "Idle", SubResource( 23 ), "Grapple", "Idle", SubResource( 24 ), "Grapple", "Attack", SubResource( 25 ), "Walk", "Attack", SubResource( 26 ), "Idle", "Attack", SubResource( 27 ), "Attack", "Idle", SubResource( 28 ), "JumpStop", "Idle", SubResource( 29 ), "Idle", "JumpStart", SubResource( 30 ), "Falling", "JumpStop", SubResource( 31 ), "Idle", "Falling", SubResource( 32 ), "JumpStart", "Falling", SubResource( 33 ), "FlyingAttack", "Falling", SubResource( 34 ), "Falling", "FlyingAttack", SubResource( 35 ), "Idle", "GrappleFail", SubResource( 36 ), "GrappleFail", "Idle", SubResource( 37 ) ]
-graph_offset = Vector2( -75.7607, -18.2633 )
+graph_offset = Vector2( -75.7607, -188.105 )
 
 [sub_resource type="AnimationNodeBlendTree" id=39]
 graph_offset = Vector2( 0, 149.75 )
@@ -752,9 +769,10 @@ script = ExtResource( 19 )
 
 [node name="Demon" type="AnimatedSprite" parent="Flipper"]
 position = Vector2( 7.76523, 111.127 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.5, 0.499308 )
 frames = SubResource( 1 )
 animation = "Attack"
+frame = 1
 offset = Vector2( -20.8795, -237.75 )
 
 [node name="Eyes" type="AnimatedSprite" parent="Flipper/Demon"]
@@ -770,6 +788,16 @@ position = Vector2( 4.49581, -248.4 )
 [node name="Trident" type="Sprite" parent="Flipper/Demon/Hand"]
 texture = ExtResource( 12 )
 offset = Vector2( -11.2427, -4.47361 )
+
+[node name="AttackArea" type="Area2D" parent="Flipper/Demon"]
+monitorable = false
+collision_layer = 0
+collision_mask = 4
+
+[node name="AttackShape" type="CollisionShape2D" parent="Flipper/Demon/AttackArea"]
+position = Vector2( 16.6677, -253.542 )
+shape = SubResource( 41 )
+disabled = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( -0.585009, 0.393056 )
@@ -810,3 +838,5 @@ region_rect = Rect2( 0, 0, 11, 50 )
 visible = false
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 21 )
+
+[connection signal="body_entered" from="Flipper/Demon/AttackArea" to="." method="_on_AttackArea_body_entered"]

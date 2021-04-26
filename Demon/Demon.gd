@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+#movement
 export var accel_time = 0.3
 export var max_speed = 400
 export var max_airspeed = 300
@@ -13,6 +14,13 @@ export var grapple_accel_time = 0.3
 export var max_grapplespeed = 600
 export var grapple_stick_in_dist = 20.0
 
+#attacking
+export var damage = 10.0
+export var max_health = 50.0
+export var attack_ticks : int = 2
+export var pushback_amount = 50.0
+export var recoil_amount = 20.0
+
 # current state
 var _direction = 0
 var _on_floor = true
@@ -24,6 +32,9 @@ var _fallspeed = 1
 var cur_maxspeed = max_speed
 var _state = state.IDLE
 var _grapplePoint = Vector2.INF
+#attacking state
+var _attack_countdown = 0
+var _recoil_countdown = 0
 
 # tween vars
 var speed_proportion = 0
@@ -34,6 +45,7 @@ enum state {IDLE, FALLING, WALKING, ATTACK, GRAPPLE}
 onready var stateMachine : AnimationNodeStateMachinePlayback = $AnimationTree["parameters/StateMachine/playback"]
 onready var myHand = $Flipper/Demon/Hand
 onready var myTrident = $Flipper/Demon/Hand/Trident
+onready var myAttackShape = $Flipper/Demon/AttackArea/AttackShape
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,6 +57,10 @@ func GetXcomponent() -> float:
 		return myHand.global_position.direction_to(_grapplePoint).x
 	else:
 		return _direction
+
+func _start_attack():
+	_attack_countdown = attack_ticks
+	myAttackShape.disabled = false
 
 # Button press actions
 func _input(event: InputEvent) -> void:
@@ -238,6 +254,9 @@ func _cancel_momentum():
 
 func _handle_playermove(delta: float) -> void:
 	var kc = move_and_collide(Vector2(_direction, 0) * delta * speed_proportion * cur_maxspeed)
+	if abs(_recoil_countdown) > 1:
+		kc = move_and_collide(Vector2(_recoil_countdown/2, 0))
+		_recoil_countdown = _recoil_countdown/2
 
 func _handle_playergrapplemove(delta: float) -> void:
 	var dir = myHand.global_position.direction_to(_grapplePoint)
@@ -257,7 +276,24 @@ func _handle_playergrapplemove(delta: float) -> void:
 	if dir.x < 0:
 		$Flipper.scale.x = -abs($Flipper.scale.x)
 
+func _countdown_attack():
+	if myAttackShape.disabled:
+		_attack_countdown = 0
+		return
+	_attack_countdown = _attack_countdown - 1
+	if _attack_countdown <= 0:
+		myAttackShape.disabled = true
+		_attack_countdown = 0
+
+func _on_AttackArea_body_entered(body: Node) -> void:
+	if body.has_method("take_damage"):
+		var dir = sign($Flipper.scale.x)
+		var pushback = Vector2(dir * 0.5, -0.5) * pushback_amount
+		body.take_damage(damage, pushback)
+		_recoil_countdown = _recoil_countdown - dir * recoil_amount
+
 func _physics_process(delta: float) -> void:
+	_countdown_attack()
 	if IsGrappling():
 		_handle_playergrapplemove(delta)
 	else:

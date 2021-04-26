@@ -84,6 +84,9 @@ func _handle_falling(delta):
 			fallTween.interpolate_property(self, "fall_rate", null, 1, gravity_time, Tween.TRANS_SINE, Tween.EASE_OUT)
 			fallTween.start()
 
+func take_damage(damage, pushback):
+	pass
+
 func _configure_next_point():
 	if is_instance_valid(_platform) && (_platform in _path) && (_platform != _cur_plat):
 		var pindex = _path.find(_platform)
