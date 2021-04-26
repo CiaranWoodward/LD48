@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/NDie.wav-ebe7d73a2660827fd01bb89d32d08021.sample"
+
+[deps]
+
+source_file="res://Audio/NDie.wav"
+dest_files=[ "res://.import/NDie.wav-ebe7d73a2660827fd01bb89d32d08021.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Graphics/Enemies/Knight/Idle0000.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Enemies/Knight/Shield0001.png" type="Texture" id=2]
@@ -7,17 +7,22 @@
 [ext_resource path="res://Graphics/Enemies/Knight/Attack/Attack0002.png" type="Texture" id=5]
 [ext_resource path="res://Graphics/Enemies/Knight/Attack/Attack0000.png" type="Texture" id=6]
 [ext_resource path="res://Enemies/Blood.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Audio/Scenes/Audio.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Audio/KAttack.wav" type="AudioStream" id=9]
+[ext_resource path="res://Audio/KBlock.wav" type="AudioStream" id=10]
+[ext_resource path="res://Audio/KHit.wav" type="AudioStream" id=11]
+[ext_resource path="res://Audio/KDie.wav" type="AudioStream" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "Attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Idle",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -142,6 +147,146 @@ tracks/8/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/9/type = "method"
+tracks/9/path = NodePath("Attack")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=55]
+resource_name = "Block"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Knight:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Defend" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Knight:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Shield:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Knight:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1.56917, 0.784584, 1.56917 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.46, 0.52 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Knight:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Shield:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AnimationPlayer:playback_speed")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Knight:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath("Hit")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Spark:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Defend"
@@ -205,7 +350,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, -38.915 ) ]
+"values": [ Vector2( 0, -3 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Shield:scale")
@@ -343,6 +488,20 @@ tracks/7/keys = {
 "update": 0,
 "values": [ Vector2( 0.787598, 35.8914 ), Vector2( 0.788, 13 ) ]
 }
+tracks/8/type = "method"
+tracks/8/path = NodePath("Die")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
 
 [sub_resource type="Animation" id=7]
 length = 0.4
@@ -453,6 +612,20 @@ tracks/8/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/9/type = "method"
+tracks/9/path = NodePath("Hit")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -707,7 +880,7 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=11]
-length = 0.8
+length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Knight:animation")
 tracks/0/interp = 1
@@ -751,10 +924,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.3, 0.7, 0.8 ),
-"transitions": PoolRealArray( 1.86607, 1.86607, 0.574349, 1.56917 ),
+"times": PoolRealArray( 0, 0.2, 0.6 ),
+"transitions": PoolRealArray( 2.82843, 0.435276, 1.56917 ),
 "update": 0,
-"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.565272, 0.437743 ), Vector2( 0.476876, 0.531999 ), Vector2( 0.5, 0.5 ) ]
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.565272, 0.437743 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Knight:rotation_degrees")
@@ -967,6 +1140,9 @@ tracks/5/keys = {
 [sub_resource type="AnimationNodeAnimation" id=16]
 animation = "Attack"
 
+[sub_resource type="AnimationNodeAnimation" id=56]
+animation = "Block"
+
 [sub_resource type="AnimationNodeAnimation" id=17]
 animation = "Defend"
 
@@ -1007,12 +1183,6 @@ animation = "SpeedUp"
 animation = "Walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=33]
 
@@ -1065,11 +1235,25 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=51]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=59]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=60]
+
 [sub_resource type="AnimationNodeStateMachine" id=52]
 states/Attack/node = SubResource( 16 )
-states/Attack/position = Vector2( 302, 37 )
+states/Attack/position = Vector2( 320, 10 )
+states/Block/node = SubResource( 56 )
+states/Block/position = Vector2( 320, 200.596 )
 states/Defend/node = SubResource( 17 )
-states/Defend/position = Vector2( 302, 170 )
+states/Defend/position = Vector2( 171, 99 )
 states/Die/node = SubResource( 18 )
 states/Die/position = Vector2( 666, 261.596 )
 states/Falling/node = SubResource( 19 )
@@ -1094,8 +1278,8 @@ states/SpeedUp/node = SubResource( 28 )
 states/SpeedUp/position = Vector2( 891, 18.631 )
 states/Walking/node = SubResource( 29 )
 states/Walking/position = Vector2( 1007, 99 )
-transitions = [ "Defend", "Idle", SubResource( 30 ), "Idle", "Attack", SubResource( 31 ), "Attack", "Idle", SubResource( 32 ), "Idle", "PreJump", SubResource( 33 ), "PreJump", "JumpUp", SubResource( 34 ), "Land", "Idle", SubResource( 35 ), "Idle", "Defend", SubResource( 36 ), "SlowWalking", "SpeedUp", SubResource( 37 ), "Walking", "SlowDown", SubResource( 38 ), "SlowDown", "SlowWalking", SubResource( 39 ), "SpeedUp", "Walking", SubResource( 40 ), "Idle", "SlowWalking", SubResource( 41 ), "SlowWalking", "Idle", SubResource( 42 ), "Hit", "Die", SubResource( 43 ), "Hit", "Idle", SubResource( 44 ), "JumpUp", "JumpDown", SubResource( 45 ), "JumpDown", "Land", SubResource( 46 ), "Falling", "Land", SubResource( 47 ), "SlowWalking", "Falling", SubResource( 48 ), "SpeedUp", "Falling", SubResource( 49 ), "Walking", "Falling", SubResource( 50 ), "SlowDown", "Falling", SubResource( 51 ) ]
-graph_offset = Vector2( 115, -265.404 )
+transitions = [ "Defend", "Idle", SubResource( 30 ), "Idle", "PreJump", SubResource( 33 ), "PreJump", "JumpUp", SubResource( 34 ), "Land", "Idle", SubResource( 35 ), "Idle", "Defend", SubResource( 36 ), "SlowWalking", "SpeedUp", SubResource( 37 ), "Walking", "SlowDown", SubResource( 38 ), "SlowDown", "SlowWalking", SubResource( 39 ), "SpeedUp", "Walking", SubResource( 40 ), "Idle", "SlowWalking", SubResource( 41 ), "SlowWalking", "Idle", SubResource( 42 ), "Hit", "Die", SubResource( 43 ), "Hit", "Idle", SubResource( 44 ), "JumpUp", "JumpDown", SubResource( 45 ), "JumpDown", "Land", SubResource( 46 ), "Falling", "Land", SubResource( 47 ), "SlowWalking", "Falling", SubResource( 48 ), "SpeedUp", "Falling", SubResource( 49 ), "Walking", "Falling", SubResource( 50 ), "SlowDown", "Falling", SubResource( 51 ), "Block", "Idle", SubResource( 57 ), "Attack", "Idle", SubResource( 58 ), "Defend", "Attack", SubResource( 59 ), "Defend", "Block", SubResource( 60 ) ]
+graph_offset = Vector2( -174, -52.404 )
 
 [sub_resource type="AnimationNodeBlendTree" id=53]
 graph_offset = Vector2( 0, -36 )
@@ -1136,6 +1320,7 @@ shape = SubResource( 3 )
 playback_process_mode = 0
 method_call_mode = 1
 anims/Attack = SubResource( 4 )
+anims/Block = SubResource( 55 )
 anims/Defend = SubResource( 5 )
 anims/Die = SubResource( 6 )
 anims/Hit = SubResource( 7 )
@@ -1154,3 +1339,21 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/StateMachine/playback = SubResource( 54 )
 
 [node name="Blood" parent="." instance=ExtResource( 7 )]
+
+[node name="Spark" parent="." instance=ExtResource( 7 )]
+lifetime = 0.4
+texture = null
+initial_velocity = 180.0
+scale_amount = 5.0
+
+[node name="Attack" parent="." instance=ExtResource( 8 )]
+stream = ExtResource( 9 )
+
+[node name="Hit" parent="." instance=ExtResource( 8 )]
+stream = ExtResource( 11 )
+
+[node name="Die" parent="." instance=ExtResource( 8 )]
+stream = ExtResource( 12 )
+
+[node name="Block" parent="." instance=ExtResource( 8 )]
+stream = ExtResource( 10 )

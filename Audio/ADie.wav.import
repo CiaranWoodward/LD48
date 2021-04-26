@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ADie.wav-b13d1088f29e939fc0082dd961d4b053.sample"
+
+[deps]
+
+source_file="res://Audio/ADie.wav"
+dest_files=[ "res://.import/ADie.wav-b13d1088f29e939fc0082dd961d4b053.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
