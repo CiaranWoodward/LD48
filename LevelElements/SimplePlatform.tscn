@@ -4,9 +4,10 @@
 [ext_resource path="res://LevelElements/SimplePlatform.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 400, 18.5 )
+extents = Vector2( 45, 18.5 )
 
 [node name="SimplePlatform" type="Node2D"]
+z_index = -10
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

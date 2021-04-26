@@ -53,9 +53,9 @@ tracks/2/keys = {
 texture = ExtResource( 2 )
 
 [node name="Light" type="Sprite" parent="Shrine"]
-self_modulate = Color( 1, 0.134779, 0.134779, 0.995243 )
+self_modulate = Color( 1, 0.731776, 0.731776, 0.974173 )
 position = Vector2( 0.286926, -35.4105 )
-scale = Vector2( 1.01695, 1.03081 )
+scale = Vector2( 1.00205, 1.00373 )
 texture = ExtResource( 1 )
 offset = Vector2( -0.286926, 35.4105 )
 
@@ -63,4 +63,5 @@ offset = Vector2( -0.286926, 35.4105 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 anims/Idle = SubResource( 1 )
