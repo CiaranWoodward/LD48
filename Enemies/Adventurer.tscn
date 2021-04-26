@@ -908,11 +908,9 @@ my_type = "adventurer"
 myheight = 45
 
 [node name="Adventurer" type="AnimatedSprite" parent="."]
-modulate = Color( 1, 0.635294, 0.635294, 0.392157 )
 position = Vector2( 1.38571, 45.7499 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
-frame = 4
 offset = Vector2( -29.3191, -89.004 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -13,10 +13,12 @@
 
 [node name="Level2" type="Node2D"]
 script = ExtResource( 7 )
+drawNavMesh = true
 
 [node name="BackWall" type="Sprite" parent="."]
 position = Vector2( 642.968, 749.516 )
 scale = Vector2( 0.5, 0.5 )
+z_index = -100
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 3200, 3000 )
@@ -241,7 +243,7 @@ position = Vector2( 122.933, 144.81 )
 position = Vector2( 612.15, 1302.93 )
 
 [node name="Adventurer" parent="." instance=ExtResource( 6 )]
-position = Vector2( 285.252, 132.047 )
+position = Vector2( 1348.63, 128.267 )
 
 [node name="HUD" parent="." instance=ExtResource( 9 )]
 

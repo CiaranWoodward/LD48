@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Graphics/TheTheme.tres" type="Theme" id=1]
+[ext_resource path="res://SplashScreens/Continue.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Scenery/BackWall0000.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/Other/UI/Title0000.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/Scenery/Platform0000.png" type="Texture" id=4]
+[ext_resource path="res://LevelElements/BloodDrip.tscn" type="PackedScene" id=5]
 
 [node name="Start" type="TextureRect"]
 anchor_right = 1.0
@@ -28,6 +29,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BloodDrip" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1063.5, 509.927 )
+
+[node name="BloodDrip2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 453.925, 509.538 )
+scale = Vector2( -1, 1 )
+
 [node name="Title" type="TextureRect" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -42,17 +50,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Continue" type="TextEdit" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -221.0
-margin_top = -88.0
-margin_right = 221.0
-theme = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "PRESS ANY BUTTON TO CONTINUE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Continue" parent="." instance=ExtResource( 1 )]
