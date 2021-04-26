@@ -994,12 +994,13 @@ collision_layer = 4
 script = ExtResource( 5 )
 my_type = "adventurer"
 myheight = 45
+speed_rate = 1.0
 
 [node name="Flipper" type="Node2D" parent="."]
 
 [node name="Adventurer" type="AnimatedSprite" parent="Flipper"]
 position = Vector2( 1.38571, 39.7019 )
-rotation = 0.0174533
+rotation = 0.0349066
 scale = Vector2( 0.5, 0.5 )
 z_index = -1
 frames = SubResource( 1 )

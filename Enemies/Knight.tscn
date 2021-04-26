@@ -1353,7 +1353,7 @@ pushback_amount = 200
 
 [node name="Knight" type="AnimatedSprite" parent="Flipper"]
 position = Vector2( 0.787598, 35.8914 )
-scale = Vector2( 0.498354, 0.497038 )
+scale = Vector2( 0.49979, 0.499623 )
 frames = SubResource( 1 )
 animation = "Idle"
 offset = Vector2( -28.3793, -86.9866 )
