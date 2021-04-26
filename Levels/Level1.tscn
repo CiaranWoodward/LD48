@@ -1,0 +1,236 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://LevelElements/Walls.tscn" type="PackedScene" id=1]
+[ext_resource path="res://LevelElements/SimplePlatform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Demon/Demon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Graphics/Scenery/BackWall0000.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Scenery/Shrine/Shrine.tscn" type="PackedScene" id=5]
+
+[node name="Level1" type="Node2D"]
+position = Vector2( 169.079, 20.6362 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1078.92, 979.364 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 5000, 4000 )
+
+[node name="Walls" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1048, 0 )
+rotation = 1.5708
+length = 3000.0
+
+[node name="Walls7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2114.39, 452.198 )
+rotation = -3.14159
+length = 400.0
+
+[node name="Walls6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1945.22, 282.464 )
+rotation = 1.5708
+length = 400.0
+
+[node name="Walls4" parent="." instance=ExtResource( 1 )]
+position = Vector2( -27.1201, 464.73 )
+length = 400.0
+
+[node name="Walls3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 146.075, 293.966 )
+rotation = 1.5708
+length = 400.0
+
+[node name="Walls2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 352, 248.326 )
+length = 90.0
+
+[node name="Walls5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1744, 237.101 )
+rotation = 3.14159
+length = 90.0
+
+[node name="SimplePlatform" parent="." instance=ExtResource( 2 )]
+position = Vector2( -48, 208.326 )
+width = 800.0
+
+[node name="SimplePlatform8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 342.476, 656.948 )
+width = 800.0
+
+[node name="SimplePlatform9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1700.91, 656.948 )
+width = 900.0
+
+[node name="Walls8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2207.82, 1007.13 )
+rotation = -3.14159
+length = 600.0
+
+[node name="Walls23" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2167.94, 1615.1 )
+rotation = -3.14159
+length = 300.0
+
+[node name="Walls9" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1756.86, 731.4 )
+rotation = 1.5708
+length = 950.0
+
+[node name="Walls10" parent="." instance=ExtResource( 1 )]
+position = Vector2( 269.752, 900.792 )
+length = 400.0
+
+[node name="Walls18" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1617.27, 1391.87 )
+rotation = -3.14159
+length = 90.0
+
+[node name="Walls20" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1494.89, 1378.1 )
+rotation = 1.5708
+length = 300.0
+
+[node name="Walls11" parent="." instance=ExtResource( 1 )]
+position = Vector2( 492.679, 728.755 )
+rotation = 1.5708
+length = 500.0
+
+[node name="Walls15" parent="." instance=ExtResource( 1 )]
+position = Vector2( 540.518, 1193.08 )
+rotation = 1.5708
+length = 1000.0
+
+[node name="Walls21" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1767.8, 1439.42 )
+rotation = 1.5708
+length = 300.0
+
+[node name="Walls22" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2044.62, 1495.16 )
+rotation = 1.5708
+length = 300.0
+
+[node name="Walls12" parent="." instance=ExtResource( 1 )]
+position = Vector2( 742.921, 683.364 )
+length = 90.0
+
+[node name="Walls14" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1040.91, 1132.77 )
+length = 120.0
+
+[node name="Walls13" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1250.61, 686.074 )
+rotation = 3.14159
+length = 90.0
+
+[node name="Walls17" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1338.54, 1333.13 )
+rotation = 3.14159
+length = 90.0
+
+[node name="Walls19" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1893.02, 1449.91 )
+rotation = 3.14159
+length = 90.0
+
+[node name="Walls24" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1926.85, 1735.54 )
+length = 90.0
+
+[node name="Walls25" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1660.18, 1666.09 )
+length = 90.0
+
+[node name="SimplePlatform13" parent="." instance=ExtResource( 2 )]
+position = Vector2( 849.67, 1638.1 )
+width = 1620.0
+
+[node name="SimplePlatform10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 640.8, 1090.59 )
+width = 800.0
+
+[node name="Walls16" parent="." instance=ExtResource( 1 )]
+position = Vector2( 68.2998, 1404.99 )
+length = 480.0
+
+[node name="SimplePlatform11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1788.91, 1301.41 )
+width = 900.0
+
+[node name="SimplePlatform2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 990.921, 347.364 )
+width = 500.0
+
+[node name="SimplePlatform5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 694.921, 203.364 )
+width = 200.0
+
+[node name="SimplePlatform6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1278.92, 195.364 )
+width = 200.0
+
+[node name="SimplePlatform14" parent="." instance=ExtResource( 2 )]
+position = Vector2( 399.074, 1513.66 )
+width = 200.0
+
+[node name="SimplePlatform15" parent="." instance=ExtResource( 2 )]
+position = Vector2( 721.21, 1380.31 )
+width = 200.0
+
+[node name="SimplePlatform16" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1966.92, 1155.36 )
+width = 200.0
+
+[node name="SimplePlatform17" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1558.92, 1019.36 )
+width = 300.0
+
+[node name="SimplePlatform18" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1182.92, 931.364 )
+width = 200.0
+
+[node name="SimplePlatform23" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1086.92, 1491.36 )
+width = 300.0
+
+[node name="SimplePlatform22" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1966.92, 891.364 )
+width = 200.0
+
+[node name="SimplePlatform19" parent="." instance=ExtResource( 2 )]
+position = Vector2( 574.921, 907.364 )
+width = 300.0
+
+[node name="SimplePlatform20" parent="." instance=ExtResource( 2 )]
+position = Vector2( 982.921, 739.364 )
+width = 200.0
+
+[node name="SimplePlatform7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 702.921, 499.364 )
+width = 200.0
+
+[node name="SimplePlatform21" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1286.92, 499.364 )
+width = 200.0
+
+[node name="SimplePlatform4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2054.03, 1774.23 )
+width = 300.0
+
+[node name="SimplePlatform12" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1777.04, 1706.18 )
+width = 300.0
+
+[node name="SimplePlatform3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2144, 208.326 )
+width = 800.0
+
+[node name="Demon" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2061.35, 1622.65 )
+
+[node name="Camera2D" type="Camera2D" parent="Demon"]
+current = true
+process_mode = 0
+
+[node name="Shrine" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2056.86, 1655.36 )

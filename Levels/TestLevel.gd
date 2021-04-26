@@ -67,7 +67,7 @@ func _physics_process(_delta):
 		_navmap_collided = true
 		_collide_navmesh()
 		#TODO: Hack to draw navmap
-		$SimpleEnemy._create_typed_navmap()
+		$Adventurer._create_typed_navmap()
 		_drawNavMesh()
 
 func _collide_navmesh():
@@ -88,7 +88,7 @@ func _drawNavMesh():
 		return
 	for plat in _platforms:
 		#var lst = _platform_navmap[plat]
-		var lst = _typed_navmap["simpleton"][plat]
+		var lst = _typed_navmap["adventurer"][plat]
 		for cnt in lst:
 			var line = Line2D.new()
 			line.width = 1
