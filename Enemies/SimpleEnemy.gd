@@ -14,6 +14,8 @@ export var min_jump_time = 0.2
 export var jump_y_overshoot = 30.0
 export var gravity_time = 0.5
 export var myheight = 32
+export var player_escape_distance = 1000.0
+export var player_aggro_distance = 400.0
 
 export var pathing_random_factor = 5.0
 
@@ -21,6 +23,8 @@ export var pathing_random_factor = 5.0
 export var health = 20
 export var pushback_multiplier = 1.0
 export var pushback_time = 0.2
+export var damage = 10
+export var attack_range = 70
 
 #animation properties between 0 and 1
 export var speed_rate = 0.0
@@ -48,9 +52,11 @@ var _direction = 0
 # Cached
 var _slowdown_time
 var max_jump_up_time
+var player = null
 
 # current status
-enum state {IDLE, GOING_TO_TREASURE, GOING_TO_PLAYER, FIGHTING, DEAD}
+enum higher_purpose {TREASURE, KILL, STUCK}
+var _higher_purpose = higher_purpose.TREASURE
 var _on_floor = false
 var _platform = null
 var _jumping = false
@@ -75,6 +81,78 @@ func _ready():
 	jumpTween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
 	pushbackTween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
 
+func SetPlayerReference(p):
+	self.player = p
+
+func _is_player_in_sight() -> bool:
+	if is_instance_valid(player):
+		var space_state = get_world_2d().direct_space_state
+		var res = space_state.intersect_ray(global_position, player.global_position, [], 1)
+		return res.empty()
+	return false
+
+func _is_player_in_aggro_distance() -> bool:
+	if is_instance_valid(player):
+		return global_position.distance_to(player.global_position) < player_aggro_distance
+	return false
+
+func _is_player_escaped() -> bool:
+	if is_instance_valid(player):
+		return global_position.distance_to(player.global_position) > player_escape_distance
+	return false
+
+func _is_player_in_attack_range() -> bool:
+	if is_instance_valid(player):
+		return global_position.distance_to(player.global_position) < attack_range
+	return false
+
+func _is_path_valid() -> bool:
+	return !(_path.size() == 0 || !(_platform in _path))
+
+func _is_path_completed() -> bool:
+	assert(_is_path_valid())
+	assert(is_instance_valid(_platform))
+	var pindex = _path.find(_platform)
+	if pindex == _path.size() - 1:
+		return true
+	return false
+
+func _clear_path():
+	_path = []
+	_cur_plat = null
+
+func _relogic_if_necessary(_delta):
+	# Higher purpose logic
+	if _higher_purpose == higher_purpose.TREASURE:
+		if _is_player_in_aggro_distance():
+			_higher_purpose = higher_purpose.KILL
+			_clear_path()
+			print("aggro attack!")
+		elif !_is_player_escaped() && _is_player_in_sight():
+			_higher_purpose = higher_purpose.KILL
+			_clear_path()
+			print("sight attack!")
+	elif _higher_purpose == higher_purpose.KILL:
+		if _is_player_escaped():
+			_higher_purpose = higher_purpose.TREASURE
+			_clear_path()
+			print("escaped hunt!")
+	if !_on_floor:
+		return
+	# Middle Management
+	if _higher_purpose == higher_purpose.TREASURE:
+		if !_is_path_valid():
+			_repath_to(get_parent().GetTreasurePlatform())
+			_final_destination = get_parent().GetTreasureLocation()
+	elif _higher_purpose == higher_purpose.KILL:
+		pass
+	
+	if _is_path_valid():
+		if _is_path_completed():
+			pass
+		else:
+			_configure_next_point()
+
 func _grapple_if_possible(_source) -> bool:
 	_grappled = true
 	fallTween.stop_all()
@@ -92,6 +170,7 @@ func _handle_movement(delta):
 	if is_instance_valid(kc):
 		if kc.normal.y < -0.5:
 			_on_floor = true
+			_platform = get_parent().GetClosestLowerPlatform(global_position)
 			stop_pushback()
 
 # Handle gravity timing
@@ -147,7 +226,6 @@ func _configure_next_point():
 		var pindex = _path.find(_platform)
 		if pindex == _path.size() - 1:
 			# This point is final destination
-			# TODO: This code can't be reached
 			_cur_plat = _platform
 			_cur_point = _final_destination
 			_cur_after_point = _final_destination
@@ -166,16 +244,6 @@ func _configure_next_point():
 		_cur_plat = _platform
 		_cur_point = target_path["src"]
 		_cur_after_point = target_path["dst"]
-
-func _handle_idle(_delta):
-	if _on_floor:
-		var cn = stateMachine.get_current_node()
-		if cn == "Idle":
-			if _path.size() == 0 || !(_platform in _path):
-				# Go to treasure
-				_repath_to(get_parent().GetTreasurePlatform())
-				_final_destination = get_parent().GetTreasureLocation()
-			_configure_next_point()
 
 func _end_jump():
 	_jumping = false
@@ -264,11 +332,7 @@ func _physics_process(delta):
 		_handle_movement(delta)
 		_handle_falling(delta)
 		_relogic_if_necessary(delta)
-		_handle_idle(delta)
 		_handle_travel(delta)
-
-func _relogic_if_necessary(_delta):
-	pass
 
 func _is_jump_possible(from : Vector2, to : Vector2) -> bool:
 	var heightincrease = from.y - to.y # This is backwards because y is inverted!
@@ -311,6 +375,7 @@ func _repath_to(dest_platform):
 	if !is_instance_valid(_platform):
 		return
 	
+	print("Repathing")
 	var astar = get_parent().GetAstarForType(my_type)
 	if astar == null:
 		_create_typed_navmap()

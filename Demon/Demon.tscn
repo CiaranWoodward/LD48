@@ -770,10 +770,9 @@ max_grapplespeed = 800
 
 [node name="Demon" type="AnimatedSprite" parent="Flipper"]
 position = Vector2( 7.76523, 111.127 )
-scale = Vector2( 0.5, 0.499308 )
+scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "Attack"
-frame = 1
 offset = Vector2( -20.8795, -237.75 )
 
 [node name="Eyes" type="AnimatedSprite" parent="Flipper/Demon"]

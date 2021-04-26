@@ -61,6 +61,14 @@ func _ready():
 	assert(_platforms.size() > 0)
 	_treasure_platform = GetClosestPlatform($Shrine.global_position)
 	$MainCamera.follow_target = $Demon
+	for child in get_children():
+		if child.has_method("SetPlayerReference"):
+			child.SetPlayerReference($Demon)
+
+func add_child(node, lun=false):
+	.add_child(node, lun)
+	if node.has_method("SetPlayerReference"):
+		node.SetPlayerReference($Demon)
 
 func _physics_process(_delta):
 	if !_navmap_collided:
