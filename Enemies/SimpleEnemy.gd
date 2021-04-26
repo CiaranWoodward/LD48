@@ -214,6 +214,13 @@ func _reached_point(_delta):
 		_cur_plat = null
 		_cur_point = null
 
+func _set_visual_facing_dir(direction):
+	if direction == 0:
+		return
+	var flipper = get_node_or_null("Flipper")
+	if is_instance_valid(flipper):
+		flipper.scale.x = direction
+
 func _walk_to_point(delta, point : Vector2):
 	var vec = point - self.global_position
 	var dir = vec.normalized()
@@ -229,10 +236,11 @@ func _walk_to_point(delta, point : Vector2):
 		_reached_point(delta)
 	else:
 		_travel_animation("SlowWalking")
+	_set_visual_facing_dir(_direction)
 
 func _handle_travel(delta):
 	_direction = 0
-	if _on_floor:
+	if _on_floor && !_dead:
 		if is_instance_valid(_platform):
 			if _platform == _cur_plat:
 				_walk_to_point(delta, _cur_point)

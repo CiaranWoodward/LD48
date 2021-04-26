@@ -25,7 +25,7 @@ extents = Vector2( 30.2796, 50.1247 )
 length = 0.7
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/path = NodePath("Flipper/Adventurer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -37,7 +37,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/path = NodePath("Flipper/Adventurer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -49,7 +49,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/path = NodePath("Flipper/Adventurer:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -61,7 +61,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/path = NodePath("Flipper/Adventurer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -78,7 +78,7 @@ resource_name = "Die"
 length = 0.8
 step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/path = NodePath("Flipper/Adventurer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -90,7 +90,7 @@ tracks/0/keys = {
 "values": [ 5 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/path = NodePath("Flipper/Adventurer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -102,7 +102,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/path = NodePath("Flipper/Adventurer:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -114,7 +114,7 @@ tracks/2/keys = {
 "values": [ 0.0, -90.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/path = NodePath("Flipper/Adventurer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -126,7 +126,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Adventurer:position")
+tracks/4/path = NodePath("Flipper/Adventurer:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -138,7 +138,7 @@ tracks/4/keys = {
 "values": [ Vector2( 1.38571, 45.7499 ), Vector2( 1.38571, 19.29 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Adventurer:z_index")
+tracks/5/path = NodePath("Flipper/Adventurer:z_index")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -150,7 +150,7 @@ tracks/5/keys = {
 "values": [ -1 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Sword:position")
+tracks/6/path = NodePath("Flipper/Sword:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -162,7 +162,7 @@ tracks/6/keys = {
 "values": [ Vector2( 3.3781, 3.39785 ), Vector2( -20.592, -100 ), Vector2( -26.5517, 2.86812 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Sword:rotation_degrees")
+tracks/7/path = NodePath("Flipper/Sword:rotation_degrees")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -174,7 +174,7 @@ tracks/7/keys = {
 "values": [ 25.1115, -209.0 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Sword:visible")
+tracks/8/path = NodePath("Flipper/Sword:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -186,7 +186,7 @@ tracks/8/keys = {
 "values": [ true ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Sword:modulate")
+tracks/9/path = NodePath("Flipper/Sword:modulate")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -217,7 +217,7 @@ resource_name = "Hit"
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/path = NodePath("Flipper/Adventurer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -229,7 +229,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/path = NodePath("Flipper/Adventurer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -241,7 +241,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.45, 0.52 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/path = NodePath("Flipper/Adventurer:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -253,7 +253,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/path = NodePath("Flipper/Adventurer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -277,7 +277,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Sword:visible")
+tracks/5/path = NodePath("Flipper/Sword:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -308,7 +308,7 @@ length = 0.3
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/path = NodePath("Flipper/Adventurer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -320,7 +320,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/path = NodePath("Flipper/Adventurer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -332,7 +332,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.48 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/path = NodePath("Flipper/Adventurer:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -344,7 +344,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/path = NodePath("Flipper/Adventurer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -356,7 +356,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Adventurer:position")
+tracks/4/path = NodePath("Flipper/Adventurer:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -368,7 +368,7 @@ tracks/4/keys = {
 "values": [ Vector2( 1.38571, 45.7499 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Adventurer:z_index")
+tracks/5/path = NodePath("Flipper/Adventurer:z_index")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -380,7 +380,7 @@ tracks/5/keys = {
 "values": [ 0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Sword:visible")
+tracks/6/path = NodePath("Flipper/Sword:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -397,7 +397,7 @@ length = 0.3
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/path = NodePath("Flipper/Adventurer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -409,7 +409,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/path = NodePath("Flipper/Adventurer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -421,7 +421,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.48 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/path = NodePath("Flipper/Adventurer:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -433,7 +433,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/path = NodePath("Flipper/Adventurer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -450,7 +450,7 @@ length = 0.4
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/path = NodePath("Flipper/Adventurer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -462,7 +462,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/path = NodePath("Flipper/Adventurer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -474,7 +474,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.614127, 0.436286 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/path = NodePath("Flipper/Adventurer:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -486,7 +486,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/path = NodePath("Flipper/Adventurer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -502,7 +502,7 @@ tracks/3/keys = {
 length = 0.6
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/path = NodePath("Flipper/Adventurer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -514,7 +514,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/path = NodePath("Flipper/Adventurer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -526,7 +526,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.550208, 0.410219 ), Vector2( 0.435, 0.534 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/path = NodePath("Flipper/Adventurer:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -538,7 +538,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/path = NodePath("Flipper/Adventurer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -554,7 +554,7 @@ tracks/3/keys = {
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/path = NodePath("Flipper/Adventurer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -566,7 +566,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/path = NodePath("Flipper/Adventurer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -578,7 +578,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.498, 0.495 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/path = NodePath("Flipper/Adventurer:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -602,7 +602,7 @@ tracks/3/keys = {
 "values": [ 1.0, 0.0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Adventurer:modulate")
+tracks/4/path = NodePath("Flipper/Adventurer:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -619,7 +619,7 @@ length = 0.8
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/path = NodePath("Flipper/Adventurer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -631,7 +631,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/path = NodePath("Flipper/Adventurer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -643,7 +643,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.48 ), Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.48 ), Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.48 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/path = NodePath("Flipper/Adventurer:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -655,7 +655,7 @@ tracks/2/keys = {
 "values": [ 1.0, 5.0, -5.0, 1.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/path = NodePath("Flipper/Adventurer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -667,7 +667,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Adventurer:position")
+tracks/4/path = NodePath("Flipper/Adventurer:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -679,7 +679,7 @@ tracks/4/keys = {
 "values": [ Vector2( 1.38571, 45.7499 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Sword:visible")
+tracks/5/path = NodePath("Flipper/Sword:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -695,7 +695,7 @@ tracks/5/keys = {
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/path = NodePath("Flipper/Adventurer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -707,7 +707,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/path = NodePath("Flipper/Adventurer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -719,7 +719,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.498, 0.495 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/path = NodePath("Flipper/Adventurer:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -748,7 +748,7 @@ length = 0.6
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Adventurer:frame")
+tracks/0/path = NodePath("Flipper/Adventurer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -760,7 +760,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Adventurer:scale")
+tracks/1/path = NodePath("Flipper/Adventurer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -772,7 +772,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.485 ), Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.495 ), Vector2( 0.5, 0.5 ), Vector2( 0.49, 0.485 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Adventurer:rotation_degrees")
+tracks/2/path = NodePath("Flipper/Adventurer:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -784,7 +784,7 @@ tracks/2/keys = {
 "values": [ 2.0, 5.0, -5.0, 2.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Adventurer:modulate")
+tracks/3/path = NodePath("Flipper/Adventurer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -935,13 +935,22 @@ script = ExtResource( 5 )
 my_type = "adventurer"
 myheight = 45
 
-[node name="Adventurer" type="AnimatedSprite" parent="."]
-position = Vector2( 1.38571, 45.7499 )
+[node name="Flipper" type="Node2D" parent="."]
+
+[node name="Adventurer" type="AnimatedSprite" parent="Flipper"]
+position = Vector2( 1.38571, 26.094 )
+rotation = -1.16688
 scale = Vector2( 0.5, 0.5 )
 z_index = -1
 frames = SubResource( 1 )
 frame = 5
 offset = Vector2( -29.3191, -89.004 )
+
+[node name="Sword" type="Sprite" parent="Flipper"]
+position = Vector2( -21.6906, -81.0367 )
+rotation = -2.59705
+scale = Vector2( 0.503726, 0.458541 )
+texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -970,9 +979,3 @@ parameters/StateMachine/playback = SubResource( 49 )
 
 [node name="Blood" parent="." instance=ExtResource( 9 )]
 lifetime = 0.4
-
-[node name="Sword" type="Sprite" parent="."]
-position = Vector2( 3.3781, 3.39785 )
-rotation = 0.438278
-scale = Vector2( 0.503726, 0.458541 )
-texture = ExtResource( 6 )
