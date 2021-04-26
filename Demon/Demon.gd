@@ -37,6 +37,7 @@ var cur_maxspeed = max_speed
 var _state = state.IDLE
 var _grapplePoint = Vector2.INF
 var _grapplee = null
+var last_platform = null
 #attacking state
 var _attack_countdown = 0
 var _recoil_countdown = 0
@@ -212,6 +213,7 @@ func _stopmove():
 func _hitfloor():
 	# We just hit the floor
 	_on_floor = true
+	last_platform = get_parent().GetClosestLowerPlatform(global_position)
 	$GravityTween.remove_all()
 	_fallspeed = 1
 	_jumping = false

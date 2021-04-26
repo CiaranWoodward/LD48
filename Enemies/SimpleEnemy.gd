@@ -117,6 +117,11 @@ func _is_path_completed() -> bool:
 		return true
 	return false
 
+func _get_last_player_plat():
+	if is_instance_valid(player) && is_instance_valid(player.last_platform):
+		return player.last_platform
+	return null
+
 func _clear_path():
 	_path = []
 	_cur_plat = null
@@ -145,7 +150,13 @@ func _relogic_if_necessary(_delta):
 			_repath_to(get_parent().GetTreasurePlatform())
 			_final_destination = get_parent().GetTreasureLocation()
 	elif _higher_purpose == higher_purpose.KILL:
-		pass
+		var target_plat = _get_last_player_plat()
+		if is_instance_valid(target_plat):
+			if _platform == target_plat:
+				pass # Same platform!
+			elif !_is_path_valid() || _path[-1] != target_plat:
+				_repath_to(target_plat)
+				_final_destination = player.global_position
 	
 	if _is_path_valid():
 		if _is_path_completed():
