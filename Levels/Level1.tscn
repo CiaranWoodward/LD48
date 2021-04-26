@@ -179,7 +179,7 @@ position = Vector2( 777.822, 388.813 )
 width = 150.0
 
 [node name="Demon" parent="." instance=ExtResource( 2 )]
-position = Vector2( 963.864, 867.831 )
+position = Vector2( 1100.09, 893.058 )
 
 [node name="Shrine" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1091.29, 835.119 )

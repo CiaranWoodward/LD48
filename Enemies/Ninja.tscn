@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Graphics/Enemies/Ninja/Attack/Attack0002.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Enemies/Ninja/Attack/Attack0000.png" type="Texture" id=2]
@@ -14,6 +14,10 @@
 [ext_resource path="res://Graphics/Enemies/Ninja/Die0016.png" type="Texture" id=12]
 [ext_resource path="res://Graphics/Enemies/Ninja/Die0015.png" type="Texture" id=13]
 [ext_resource path="res://Enemies/Ninja.gd" type="Script" id=14]
+[ext_resource path="res://Audio/Scenes/Audio.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Audio/NAttack.wav" type="AudioStream" id=16]
+[ext_resource path="res://Audio/NHit.wav" type="AudioStream" id=17]
+[ext_resource path="res://Audio/NDie.wav" type="AudioStream" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -96,6 +100,38 @@ tracks/4/keys = {
 "args": [  ],
 "method": "_attack"
 } ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("Attack")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+}, {
+"args": [ 0.0 ],
+"method": "play"
+}, {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Flipper/Knife:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -276,6 +312,18 @@ tracks/6/keys = {
 "method": "restart"
 } ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("Flipper/Knife:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=6]
 length = 0.4
@@ -351,6 +399,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( -0.81785, 41.5591 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Flipper/Knife:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -868,15 +928,18 @@ attack_period = 2.5
 [node name="Flipper" type="Node2D" parent="."]
 
 [node name="Ninja" type="AnimatedSprite" parent="Flipper"]
+modulate = Color( 0.760784, 0, 0, 0.317647 )
 position = Vector2( -0.81785, 41.5591 )
 rotation = 0.20944
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
-frame = 1
+frame = 9
 offset = Vector2( -25.6464, -88.0545 )
 
 [node name="Knife" type="Sprite" parent="Flipper"]
 visible = false
+position = Vector2( -49.4026, -15.7668 )
+rotation = 2.82384
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 11 )
 
@@ -906,3 +969,12 @@ process_mode = 0
 parameters/StateMachine/playback = SubResource( 50 )
 
 [node name="Blood" parent="." instance=ExtResource( 10 )]
+
+[node name="Attack" parent="." instance=ExtResource( 15 )]
+stream = ExtResource( 16 )
+
+[node name="Hit" parent="." instance=ExtResource( 15 )]
+stream = ExtResource( 17 )
+
+[node name="Die" parent="." instance=ExtResource( 15 )]
+stream = ExtResource( 18 )
