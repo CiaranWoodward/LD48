@@ -24,14 +24,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "Walking",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Walking",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ), ExtResource( 13 ) ],
@@ -53,14 +53,13 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=41]
-extents = Vector2( 35.1473, 76.597 )
-
 [sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 57.2898, 98.0242 )
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10.8456, 31.6747 )
 
-[sub_resource type="Animation" id=4]
-resource_name = "Attack"
+[sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Flipper/Demon:animation")
@@ -137,8 +136,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Falling"
+[sub_resource type="Animation" id=6]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -238,97 +236,9 @@ tracks/7/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.4
 loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Flipper/Demon:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ "Grapple" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Flipper/Demon:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1.8, 1.8 ),
-"update": 0,
-"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0.495 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Flipper/Demon/Hand:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 4.49581, -248.4 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Flipper/Demon/Hand:rotation_degrees")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Flipper/Demon:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 0, 1 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Flipper/Demon/Eyes:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Flipper/Demon/Hand:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "GrappleFail"
-length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Flipper/Demon:animation")
 tracks/0/interp = 1
@@ -416,6 +326,93 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=8]
 length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flipper/Demon:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "Grapple" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flipper/Demon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1.8, 1.8 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0.495 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flipper/Demon/Hand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 4.49581, -248.4 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Flipper/Demon/Hand:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Flipper/Demon:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 1 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Flipper/Demon/Eyes:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Flipper/Demon/Hand:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.4
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Flipper/Demon:animation")
@@ -514,7 +511,7 @@ tracks/7/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Flipper/Demon:scale")
@@ -543,7 +540,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 length = 0.1
 step = 0.05
 tracks/0/type = "value"
@@ -559,7 +556,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0.45 ), Vector2( 0.5, 0.5 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -659,34 +656,32 @@ tracks/7/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=12]
-animation = "Attack"
-
 [sub_resource type="AnimationNodeAnimation" id=13]
-animation = "Falling"
+animation = "Attack"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
-animation = "Attack"
+animation = "Falling"
 
 [sub_resource type="AnimationNodeAnimation" id=15]
-animation = "Grapple"
+animation = "Attack"
 
 [sub_resource type="AnimationNodeAnimation" id=16]
-animation = "GrappleFail"
+animation = "Grapple"
 
 [sub_resource type="AnimationNodeAnimation" id=17]
-animation = "Idle"
+animation = "GrappleFail"
 
 [sub_resource type="AnimationNodeAnimation" id=18]
-animation = "JumpStart"
+animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=19]
-animation = "JumpStop"
+animation = "JumpStart"
 
 [sub_resource type="AnimationNodeAnimation" id=20]
-animation = "Walk"
+animation = "JumpStop"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "Walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 
@@ -701,64 +696,66 @@ animation = "Walk"
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
 switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=33]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
 switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=38]
-states/Attack/node = SubResource( 12 )
+[sub_resource type="AnimationNodeStateMachine" id=39]
+states/Attack/node = SubResource( 13 )
 states/Attack/position = Vector2( 767, 245 )
-states/Falling/node = SubResource( 13 )
+states/Falling/node = SubResource( 14 )
 states/Falling/position = Vector2( 407, -57.1801 )
-states/FlyingAttack/node = SubResource( 14 )
+states/FlyingAttack/node = SubResource( 15 )
 states/FlyingAttack/position = Vector2( 266, -165.916 )
-states/Grapple/node = SubResource( 15 )
+states/Grapple/node = SubResource( 16 )
 states/Grapple/position = Vector2( 549, 245 )
-states/GrappleFail/node = SubResource( 16 )
+states/GrappleFail/node = SubResource( 17 )
 states/GrappleFail/position = Vector2( 330, 245 )
-states/Idle/node = SubResource( 17 )
+states/Idle/node = SubResource( 18 )
 states/Idle/position = Vector2( 549, 126 )
-states/JumpStart/node = SubResource( 18 )
+states/JumpStart/node = SubResource( 19 )
 states/JumpStart/position = Vector2( 615, -46.5954 )
-states/JumpStop/node = SubResource( 19 )
+states/JumpStop/node = SubResource( 20 )
 states/JumpStop/position = Vector2( 330, 104.405 )
-states/Walk/node = SubResource( 20 )
+states/Walk/node = SubResource( 21 )
 states/Walk/position = Vector2( 767, 126 )
-transitions = [ "Idle", "Walk", SubResource( 21 ), "Idle", "Grapple", SubResource( 22 ), "Walk", "Idle", SubResource( 23 ), "Grapple", "Idle", SubResource( 24 ), "Grapple", "Attack", SubResource( 25 ), "Walk", "Attack", SubResource( 26 ), "Idle", "Attack", SubResource( 27 ), "Attack", "Idle", SubResource( 28 ), "JumpStop", "Idle", SubResource( 29 ), "Idle", "JumpStart", SubResource( 30 ), "Falling", "JumpStop", SubResource( 31 ), "Idle", "Falling", SubResource( 32 ), "JumpStart", "Falling", SubResource( 33 ), "FlyingAttack", "Falling", SubResource( 34 ), "Falling", "FlyingAttack", SubResource( 35 ), "Idle", "GrappleFail", SubResource( 36 ), "GrappleFail", "Idle", SubResource( 37 ) ]
+transitions = [ "Idle", "Walk", SubResource( 22 ), "Idle", "Grapple", SubResource( 23 ), "Walk", "Idle", SubResource( 24 ), "Grapple", "Idle", SubResource( 25 ), "Grapple", "Attack", SubResource( 26 ), "Walk", "Attack", SubResource( 27 ), "Idle", "Attack", SubResource( 28 ), "Attack", "Idle", SubResource( 29 ), "JumpStop", "Idle", SubResource( 30 ), "Idle", "JumpStart", SubResource( 31 ), "Falling", "JumpStop", SubResource( 32 ), "Idle", "Falling", SubResource( 33 ), "JumpStart", "Falling", SubResource( 34 ), "FlyingAttack", "Falling", SubResource( 35 ), "Falling", "FlyingAttack", SubResource( 36 ), "Idle", "GrappleFail", SubResource( 37 ), "GrappleFail", "Idle", SubResource( 38 ) ]
 graph_offset = Vector2( -75.7607, -188.105 )
 
-[sub_resource type="AnimationNodeBlendTree" id=39]
+[sub_resource type="AnimationNodeBlendTree" id=40]
 graph_offset = Vector2( 0, 149.75 )
-nodes/StateMachine/node = SubResource( 38 )
+nodes/StateMachine/node = SubResource( 39 )
 nodes/StateMachine/position = Vector2( 540, 140 )
 nodes/output/position = Vector2( 800, 120 )
 node_connections = [ "output", 0, "StateMachine" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=40]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=41]
 
 [node name="Demon" type="KinematicBody2D"]
 z_index = 1
@@ -799,31 +796,31 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="AttackShape" type="CollisionShape2D" parent="Flipper/Demon/AttackArea"]
-position = Vector2( 16.6677, -253.542 )
-shape = SubResource( 41 )
+position = Vector2( 19.3404, -245.513 )
+shape = SubResource( 3 )
 disabled = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( -0.585009, 7.52024 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
-anims/Attack = SubResource( 4 )
-anims/Falling = SubResource( 5 )
-anims/Grapple = SubResource( 6 )
-anims/GrappleFail = SubResource( 7 )
-anims/Idle = SubResource( 8 )
-anims/JumpStart = SubResource( 9 )
-anims/JumpStop = SubResource( 10 )
-anims/Walk = SubResource( 11 )
+anims/Attack = SubResource( 5 )
+anims/Falling = SubResource( 6 )
+anims/Grapple = SubResource( 7 )
+anims/GrappleFail = SubResource( 8 )
+anims/Idle = SubResource( 9 )
+anims/JumpStart = SubResource( 10 )
+anims/JumpStop = SubResource( 11 )
+anims/Walk = SubResource( 12 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 39 )
+tree_root = SubResource( 40 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 process_mode = 0
-parameters/StateMachine/playback = SubResource( 40 )
+parameters/StateMachine/playback = SubResource( 41 )
 
 [node name="SpeedTween" type="Tween" parent="."]
 playback_process_mode = 0

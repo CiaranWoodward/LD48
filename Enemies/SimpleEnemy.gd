@@ -50,10 +50,11 @@ var _slowdown_time
 var max_jump_up_time
 
 # current status
-enum state {IDLE, GOING_TO_TREASURE, FIGHTING}
+enum state {IDLE, GOING_TO_TREASURE, GOING_TO_PLAYER, FIGHTING, DEAD}
 var _on_floor = false
 var _platform = null
 var _jumping = false
+var _dead = false
 var _pushback = Vector2.ZERO
 var fall_time = 0
 
@@ -87,12 +88,12 @@ func _handle_falling(delta):
 		fallTween.remove_all()
 		fall_rate = 0
 		if stateMachine.get_current_node() == "Falling":
-			stateMachine.travel("Idle")
+			_travel_animation("Idle")
 			_platform = get_parent().GetClosestLowerPlatform(global_position)
 	elif _pushback.y != 0:
 		pass # We're beign pushed back
 	else:
-		stateMachine.travel("Falling")
+		_travel_animation("Falling")
 		if fall_rate == 0:
 			fall_rate = 0.01
 			fallTween.interpolate_property(self, "fall_rate", null, 1, gravity_time, Tween.TRANS_SINE, Tween.EASE_OUT)
@@ -118,11 +119,16 @@ func is_pushedback() -> bool:
 
 func take_damage(damage, pushback):
 	health -= damage
-	fallTween.reset_all()
-	jumpTween.reset_all()
-	stateMachine.start("Idle")# TODO: Hit
+	fallTween.remove_all()
+	jumpTween.remove_all()
+	stateMachine.start("Hit")
 	start_pushback(pushback)
-	#TODO: Die
+	if health <= 0:
+		_travel_animation("Die")
+		_dead = true
+
+func _actually_die():
+	self.queue_free()
 
 func _configure_next_point():
 	if is_instance_valid(_platform) && (_platform in _path) && (_platform != _cur_plat):
@@ -164,10 +170,14 @@ func _end_jump():
 	_on_floor = false
 	_platform = null
 	jumpTween.remove_all()
-	stateMachine.travel("Falling")
+	_travel_animation("Falling")
 
 func _mid_jump():
-	stateMachine.travel("JumpDown")
+	_travel_animation("JumpDown")
+
+func _travel_animation(dest : String):
+	if !_dead:
+		stateMachine.travel(dest)
 
 func _on_Tween_tween_completed(object, key):
 	if object != self:
@@ -199,7 +209,7 @@ func _reached_point(_delta):
 		jumpTween.interpolate_property(self, "global_position:x", global_position.x, _cur_after_point.x, jump_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		jumpTween.interpolate_property(self, "global_position:y", global_position.y, midpoint_ypos, rise_time, Tween.TRANS_CIRC, Tween.EASE_OUT)
 		jumpTween.start()
-		stateMachine.travel("JumpUp")
+		_travel_animation("JumpUp")
 		_jumping = true
 		_cur_plat = null
 		_cur_point = null
@@ -212,13 +222,13 @@ func _walk_to_point(delta, point : Vector2):
 	else:
 		_direction = -1
 	if abs(vec.x) > _slowdown_time * max_speed:
-		stateMachine.travel("Walking")
+		_travel_animation("Walking")
 	elif abs(vec.x) < stop_dist:
 		_direction = 0
-		stateMachine.travel("Idle")
+		_travel_animation("Idle")
 		_reached_point(delta)
 	else:
-		stateMachine.travel("SlowWalking")
+		_travel_animation("SlowWalking")
 
 func _handle_travel(delta):
 	_direction = 0
