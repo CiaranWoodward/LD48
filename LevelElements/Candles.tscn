@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Graphics/Scenery/Shrine/Candles0000.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/Scenery/Shrine/Flame0000.png" type="Texture" id=2]
+
+[node name="Candles" type="Sprite"]
+position = Vector2( 75.5749, 75.9136 )
+scale = Vector2( 1.37863, 1.35 )
+texture = ExtResource( 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( 9.06754, -15.2878 )
+texture = ExtResource( 2 )
+direction = Vector2( 0, -1 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 3.0
+color = Color( 1, 1, 1, 0.282353 )
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2( -3.15905, -8.76736 )
+texture = ExtResource( 2 )
+direction = Vector2( 0, -1 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 3.0
+color = Color( 1, 1, 1, 0.282353 )
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+position = Vector2( 2.5467, -1.96947 )
+texture = ExtResource( 2 )
+direction = Vector2( 0, -1 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 3.0
+color = Color( 1, 1, 1, 0.282353 )
