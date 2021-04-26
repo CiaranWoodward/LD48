@@ -432,20 +432,20 @@ max_fallheight = 600.0
 min_speed = 200.0
 min_x_jump = 40.0
 gravity_time = 0.3
+myheight = 20
 player_aggro_distance = 1e+06
 
 [node name="Flipper" type="Node2D" parent="."]
 position = Vector2( 0.0380249, 20.058 )
 
 [node name="Cat" type="Sprite" parent="Flipper"]
-rotation = 0.0174533
+rotation = -0.0349066
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 offset = Vector2( -0.0760498, -40.1159 )
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0.595276, 4.56377 )
 rotation = 1.56736
 scale = Vector2( 0.5, 0.5 )

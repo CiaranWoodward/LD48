@@ -12,17 +12,18 @@
 [ext_resource path="res://Audio/KBlock.wav" type="AudioStream" id=10]
 [ext_resource path="res://Audio/KHit.wav" type="AudioStream" id=11]
 [ext_resource path="res://Audio/KDie.wav" type="AudioStream" id=12]
+[ext_resource path="res://Enemies/Knight.gd" type="Script" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "Attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "Attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -32,15 +33,12 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 22.6781, 28.2157 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 31.0658, 17.5635 )
+extents = Vector2( 24.1712, 39.9819 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "Attack"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:animation")
+tracks/0/path = NodePath("Flipper/Knight:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -52,7 +50,7 @@ tracks/0/keys = {
 "values": [ "Attack" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Shield:visible")
+tracks/1/path = NodePath("Flipper/Shield:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -64,7 +62,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Knight:scale")
+tracks/2/path = NodePath("Flipper/Knight:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -76,7 +74,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.47, 0.47 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Knight:frame")
+tracks/3/path = NodePath("Flipper/Knight:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -88,7 +86,7 @@ tracks/3/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Shield:position")
+tracks/4/path = NodePath("Flipper/Shield:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -100,7 +98,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0.841843, -2.7156 ), Vector2( 11, -2.716 ), Vector2( 56.152, -2.716 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Shield:scale")
+tracks/5/path = NodePath("Flipper/Shield:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -112,7 +110,7 @@ tracks/5/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0.5 ), Vector2( 0.700499, 0.646375 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Shield:self_modulate")
+tracks/6/path = NodePath("Flipper/Shield:self_modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -124,7 +122,7 @@ tracks/6/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Knight:rotation_degrees")
+tracks/7/path = NodePath("Flipper/Knight:rotation_degrees")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -136,7 +134,7 @@ tracks/7/keys = {
 "values": [ 0.0 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Shield:rotation_degrees")
+tracks/8/path = NodePath("Flipper/Shield:rotation_degrees")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -161,12 +159,26 @@ tracks/9/keys = {
 "method": "play"
 } ]
 }
+tracks/10/type = "method"
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_attack"
+} ]
+}
 
-[sub_resource type="Animation" id=55]
+[sub_resource type="Animation" id=5]
 resource_name = "Block"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:animation")
+tracks/0/path = NodePath("Flipper/Knight:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -178,7 +190,7 @@ tracks/0/keys = {
 "values": [ "Defend" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Knight:frame")
+tracks/1/path = NodePath("Flipper/Knight:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -190,7 +202,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Shield:visible")
+tracks/2/path = NodePath("Flipper/Shield:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -202,7 +214,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Knight:scale")
+tracks/3/path = NodePath("Flipper/Knight:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -214,7 +226,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.46, 0.52 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Knight:rotation_degrees")
+tracks/4/path = NodePath("Flipper/Knight:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -226,7 +238,7 @@ tracks/4/keys = {
 "values": [ 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Shield:rotation_degrees")
+tracks/5/path = NodePath("Flipper/Shield:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -250,7 +262,7 @@ tracks/6/keys = {
 "values": [ 1.0 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Knight:modulate")
+tracks/7/path = NodePath("Flipper/Knight:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -276,7 +288,7 @@ tracks/8/keys = {
 } ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Spark:emitting")
+tracks/9/path = NodePath("Flipper/Spark:emitting")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -288,12 +300,11 @@ tracks/9/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Defend"
+[sub_resource type="Animation" id=6]
 length = 0.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:animation")
+tracks/0/path = NodePath("Flipper/Knight:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -305,7 +316,7 @@ tracks/0/keys = {
 "values": [ "Defend" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Shield:visible")
+tracks/1/path = NodePath("Flipper/Shield:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -317,7 +328,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Knight:scale")
+tracks/2/path = NodePath("Flipper/Knight:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -329,7 +340,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.495, 0.491 ), Vector2( 0.495, 0.491 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Knight:frame")
+tracks/3/path = NodePath("Flipper/Knight:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -341,7 +352,7 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Shield:position")
+tracks/4/path = NodePath("Flipper/Shield:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -353,7 +364,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, -3 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Shield:scale")
+tracks/5/path = NodePath("Flipper/Shield:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -365,7 +376,7 @@ tracks/5/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.541, 0.506 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Shield:rotation_degrees")
+tracks/6/path = NodePath("Flipper/Shield:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -377,7 +388,7 @@ tracks/6/keys = {
 "values": [ 0.0 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Knight:rotation_degrees")
+tracks/7/path = NodePath("Flipper/Knight:rotation_degrees")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -389,11 +400,10 @@ tracks/7/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Die"
-length = 0.8
+[sub_resource type="Animation" id=7]
+length = 0.9
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:animation")
+tracks/0/path = NodePath("Flipper/Knight:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -405,7 +415,7 @@ tracks/0/keys = {
 "values": [ "Idle" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Knight:frame")
+tracks/1/path = NodePath("Flipper/Knight:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -417,7 +427,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Shield:visible")
+tracks/2/path = NodePath("Flipper/Shield:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -429,7 +439,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Knight:scale")
+tracks/3/path = NodePath("Flipper/Knight:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -441,7 +451,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.495, 0.491 ), Vector2( 0.495, 0.491 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Knight:rotation_degrees")
+tracks/4/path = NodePath("Flipper/Knight:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -453,7 +463,7 @@ tracks/4/keys = {
 "values": [ 0.0, -90.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Shield:rotation_degrees")
+tracks/5/path = NodePath("Flipper/Shield:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -465,7 +475,7 @@ tracks/5/keys = {
 "values": [ 0.0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Knight:modulate")
+tracks/6/path = NodePath("Flipper/Knight:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -477,7 +487,7 @@ tracks/6/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Knight:position")
+tracks/7/path = NodePath("Flipper/Knight:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -502,11 +512,25 @@ tracks/8/keys = {
 "method": "play"
 } ]
 }
+tracks/9/type = "method"
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_actually_die"
+} ]
+}
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:animation")
+tracks/0/path = NodePath("Flipper/Knight:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -518,7 +542,7 @@ tracks/0/keys = {
 "values": [ "Idle" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Knight:frame")
+tracks/1/path = NodePath("Flipper/Knight:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -530,7 +554,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Shield:visible")
+tracks/2/path = NodePath("Flipper/Shield:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -542,7 +566,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Knight:scale")
+tracks/3/path = NodePath("Flipper/Knight:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -554,7 +578,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.46, 0.52 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Knight:rotation_degrees")
+tracks/4/path = NodePath("Flipper/Knight:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -566,7 +590,7 @@ tracks/4/keys = {
 "values": [ 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Shield:rotation_degrees")
+tracks/5/path = NodePath("Flipper/Shield:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -590,7 +614,7 @@ tracks/6/keys = {
 "values": [ 1.0 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Knight:modulate")
+tracks/7/path = NodePath("Flipper/Knight:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -628,11 +652,11 @@ tracks/9/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 0.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:animation")
+tracks/0/path = NodePath("Flipper/Knight:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -644,7 +668,7 @@ tracks/0/keys = {
 "values": [ "Idle" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Knight:frame")
+tracks/1/path = NodePath("Flipper/Knight:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -656,7 +680,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Shield:visible")
+tracks/2/path = NodePath("Flipper/Shield:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -668,7 +692,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Knight:scale")
+tracks/3/path = NodePath("Flipper/Knight:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -680,7 +704,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.495, 0.491 ), Vector2( 0.495, 0.491 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Knight:rotation_degrees")
+tracks/4/path = NodePath("Flipper/Knight:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -692,7 +716,7 @@ tracks/4/keys = {
 "values": [ 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Shield:rotation_degrees")
+tracks/5/path = NodePath("Flipper/Shield:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -704,7 +728,7 @@ tracks/5/keys = {
 "values": [ 0.0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Knight:position")
+tracks/6/path = NodePath("Flipper/Knight:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -716,7 +740,7 @@ tracks/6/keys = {
 "values": [ Vector2( 0.787598, 35.8914 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Knight:modulate")
+tracks/7/path = NodePath("Flipper/Knight:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -728,11 +752,11 @@ tracks/7/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 0.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:animation")
+tracks/0/path = NodePath("Flipper/Knight:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -744,7 +768,7 @@ tracks/0/keys = {
 "values": [ "Idle" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Knight:frame")
+tracks/1/path = NodePath("Flipper/Knight:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -756,7 +780,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Shield:visible")
+tracks/2/path = NodePath("Flipper/Shield:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -768,7 +792,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Knight:scale")
+tracks/3/path = NodePath("Flipper/Knight:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -780,7 +804,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.495, 0.491 ), Vector2( 0.495, 0.491 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Knight:rotation_degrees")
+tracks/4/path = NodePath("Flipper/Knight:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -792,82 +816,7 @@ tracks/4/keys = {
 "values": [ 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Shield:rotation_degrees")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
-[sub_resource type="Animation" id=10]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "Idle" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Knight:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Shield:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Knight:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5 ),
-"transitions": PoolRealArray( 1.86607, 1.86607, 1.56917 ),
-"update": 0,
-"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.565272, 0.437743 ), Vector2( 0.5, 0.5 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Knight:rotation_degrees")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Shield:rotation_degrees")
+tracks/5/path = NodePath("Flipper/Shield:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -880,9 +829,9 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=11]
-length = 0.6
+length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:animation")
+tracks/0/path = NodePath("Flipper/Knight:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -894,7 +843,7 @@ tracks/0/keys = {
 "values": [ "Idle" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Knight:frame")
+tracks/1/path = NodePath("Flipper/Knight:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -906,7 +855,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Shield:visible")
+tracks/2/path = NodePath("Flipper/Shield:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -918,19 +867,19 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Knight:scale")
+tracks/3/path = NodePath("Flipper/Knight:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2, 0.6 ),
-"transitions": PoolRealArray( 2.82843, 0.435276, 1.56917 ),
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1.86607, 1.86607, 1.56917 ),
 "update": 0,
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.565272, 0.437743 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Knight:rotation_degrees")
+tracks/4/path = NodePath("Flipper/Knight:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -942,7 +891,7 @@ tracks/4/keys = {
 "values": [ 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Shield:rotation_degrees")
+tracks/5/path = NodePath("Flipper/Shield:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -955,26 +904,9 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=12]
-length = 0.2
+length = 0.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -1.0, 1.0 ]
-}
-
-[sub_resource type="Animation" id=13]
-length = 1.2
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:animation")
+tracks/0/path = NodePath("Flipper/Knight:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -986,7 +918,7 @@ tracks/0/keys = {
 "values": [ "Idle" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Knight:frame")
+tracks/1/path = NodePath("Flipper/Knight:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -998,7 +930,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Shield:visible")
+tracks/2/path = NodePath("Flipper/Shield:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1010,7 +942,111 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Knight:scale")
+tracks/3/path = NodePath("Flipper/Knight:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6 ),
+"transitions": PoolRealArray( 2.82843, 0.435276, 1.56917 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.565272, 0.437743 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Flipper/Knight:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Flipper/Shield:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flipper/Knight:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -1.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:speed_rate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 1.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flipper/Knight:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flipper/Knight:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flipper/Shield:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Flipper/Knight:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -1022,7 +1058,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.495, 0.491 ), Vector2( 0.498, 0.491 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Knight:rotation_degrees")
+tracks/4/path = NodePath("Flipper/Knight:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -1046,10 +1082,10 @@ tracks/5/keys = {
 "values": [ 1.0 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=15]
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:rotation_degrees")
+tracks/0/path = NodePath("Flipper/Knight:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -1060,12 +1096,24 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 1.0, -1.0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:speed_rate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=16]
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Knight:animation")
+tracks/0/path = NodePath("Flipper/Knight:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -1077,7 +1125,7 @@ tracks/0/keys = {
 "values": [ "Idle" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Knight:frame")
+tracks/1/path = NodePath("Flipper/Knight:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -1089,7 +1137,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Shield:visible")
+tracks/2/path = NodePath("Flipper/Shield:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1101,7 +1149,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Knight:scale")
+tracks/3/path = NodePath("Flipper/Knight:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -1113,7 +1161,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.495, 0.491 ), Vector2( 0.498, 0.491 ), Vector2( 0.5, 0.5 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Knight:rotation_degrees")
+tracks/4/path = NodePath("Flipper/Knight:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -1137,52 +1185,52 @@ tracks/5/keys = {
 "values": [ -1.0 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "Attack"
 
-[sub_resource type="AnimationNodeAnimation" id=56]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "Block"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "Defend"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "Die"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
-animation = "Jumping"
-
-[sub_resource type="AnimationNodeAnimation" id=20]
-animation = "Hit"
-
 [sub_resource type="AnimationNodeAnimation" id=21]
-animation = "Idle"
+animation = "Jumping"
 
 [sub_resource type="AnimationNodeAnimation" id=22]
-animation = "Jumping"
+animation = "Hit"
 
 [sub_resource type="AnimationNodeAnimation" id=23]
-animation = "Jumping"
+animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=24]
-animation = "Land"
+animation = "Jumping"
 
 [sub_resource type="AnimationNodeAnimation" id=25]
-animation = "PreJump"
+animation = "Jumping"
 
 [sub_resource type="AnimationNodeAnimation" id=26]
-animation = "SlowDown"
+animation = "Land"
 
 [sub_resource type="AnimationNodeAnimation" id=27]
-animation = "SlowWalk"
+animation = "PreJump"
 
 [sub_resource type="AnimationNodeAnimation" id=28]
-animation = "SpeedUp"
+animation = "SlowDown"
 
 [sub_resource type="AnimationNodeAnimation" id=29]
+animation = "SlowWalk"
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "SpeedUp"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
 animation = "Walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=33]
 
@@ -1235,116 +1283,124 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=51]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+[sub_resource type="AnimationNodeStateMachineTransition" id=53]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=59]
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
 
-[sub_resource type="AnimationNodeStateMachine" id=52]
-states/Attack/node = SubResource( 16 )
+[sub_resource type="AnimationNodeStateMachine" id=56]
+states/Attack/node = SubResource( 17 )
 states/Attack/position = Vector2( 320, 10 )
-states/Block/node = SubResource( 56 )
+states/Block/node = SubResource( 18 )
 states/Block/position = Vector2( 320, 200.596 )
-states/Defend/node = SubResource( 17 )
+states/Defend/node = SubResource( 19 )
 states/Defend/position = Vector2( 171, 99 )
-states/Die/node = SubResource( 18 )
+states/Die/node = SubResource( 20 )
 states/Die/position = Vector2( 666, 261.596 )
-states/Falling/node = SubResource( 19 )
+states/Falling/node = SubResource( 21 )
 states/Falling/position = Vector2( 846, -146.404 )
-states/Hit/node = SubResource( 20 )
+states/Hit/node = SubResource( 22 )
 states/Hit/position = Vector2( 539, 261.596 )
-states/Idle/node = SubResource( 21 )
+states/Idle/node = SubResource( 23 )
 states/Idle/position = Vector2( 539, 99 )
-states/JumpDown/node = SubResource( 22 )
+states/JumpDown/node = SubResource( 24 )
 states/JumpDown/position = Vector2( 644, -182.945 )
-states/JumpUp/node = SubResource( 23 )
+states/JumpUp/node = SubResource( 25 )
 states/JumpUp/position = Vector2( 454, -182.945 )
-states/Land/node = SubResource( 24 )
+states/Land/node = SubResource( 26 )
 states/Land/position = Vector2( 644, -81.9451 )
-states/PreJump/node = SubResource( 25 )
+states/PreJump/node = SubResource( 27 )
 states/PreJump/position = Vector2( 454, -76.9451 )
-states/SlowDown/node = SubResource( 26 )
+states/SlowDown/node = SubResource( 28 )
 states/SlowDown/position = Vector2( 891, 184 )
-states/SlowWalking/node = SubResource( 27 )
+states/SlowWalking/node = SubResource( 29 )
 states/SlowWalking/position = Vector2( 753, 99 )
-states/SpeedUp/node = SubResource( 28 )
+states/SpeedUp/node = SubResource( 30 )
 states/SpeedUp/position = Vector2( 891, 18.631 )
-states/Walking/node = SubResource( 29 )
+states/Walking/node = SubResource( 31 )
 states/Walking/position = Vector2( 1007, 99 )
-transitions = [ "Defend", "Idle", SubResource( 30 ), "Idle", "PreJump", SubResource( 33 ), "PreJump", "JumpUp", SubResource( 34 ), "Land", "Idle", SubResource( 35 ), "Idle", "Defend", SubResource( 36 ), "SlowWalking", "SpeedUp", SubResource( 37 ), "Walking", "SlowDown", SubResource( 38 ), "SlowDown", "SlowWalking", SubResource( 39 ), "SpeedUp", "Walking", SubResource( 40 ), "Idle", "SlowWalking", SubResource( 41 ), "SlowWalking", "Idle", SubResource( 42 ), "Hit", "Die", SubResource( 43 ), "Hit", "Idle", SubResource( 44 ), "JumpUp", "JumpDown", SubResource( 45 ), "JumpDown", "Land", SubResource( 46 ), "Falling", "Land", SubResource( 47 ), "SlowWalking", "Falling", SubResource( 48 ), "SpeedUp", "Falling", SubResource( 49 ), "Walking", "Falling", SubResource( 50 ), "SlowDown", "Falling", SubResource( 51 ), "Block", "Idle", SubResource( 57 ), "Attack", "Idle", SubResource( 58 ), "Defend", "Attack", SubResource( 59 ), "Defend", "Block", SubResource( 60 ) ]
-graph_offset = Vector2( -174, -52.404 )
+transitions = [ "Defend", "Idle", SubResource( 32 ), "Idle", "PreJump", SubResource( 33 ), "PreJump", "JumpUp", SubResource( 34 ), "Land", "Idle", SubResource( 35 ), "Idle", "Defend", SubResource( 36 ), "SlowWalking", "SpeedUp", SubResource( 37 ), "Walking", "SlowDown", SubResource( 38 ), "SlowDown", "SlowWalking", SubResource( 39 ), "SpeedUp", "Walking", SubResource( 40 ), "Idle", "SlowWalking", SubResource( 41 ), "SlowWalking", "Idle", SubResource( 42 ), "Hit", "Die", SubResource( 43 ), "Hit", "Idle", SubResource( 44 ), "JumpUp", "JumpDown", SubResource( 45 ), "JumpDown", "Land", SubResource( 46 ), "Falling", "Land", SubResource( 47 ), "SlowWalking", "Falling", SubResource( 48 ), "SpeedUp", "Falling", SubResource( 49 ), "Walking", "Falling", SubResource( 50 ), "SlowDown", "Falling", SubResource( 51 ), "Block", "Idle", SubResource( 52 ), "Attack", "Idle", SubResource( 53 ), "Defend", "Attack", SubResource( 54 ), "Defend", "Block", SubResource( 55 ) ]
+graph_offset = Vector2( 1.48762, -227.639 )
 
-[sub_resource type="AnimationNodeBlendTree" id=53]
+[sub_resource type="AnimationNodeBlendTree" id=57]
 graph_offset = Vector2( 0, -36 )
-nodes/StateMachine/node = SubResource( 52 )
+nodes/StateMachine/node = SubResource( 56 )
 nodes/StateMachine/position = Vector2( 491, 110 )
 nodes/output/position = Vector2( 740, 140 )
 node_connections = [ "output", 0, "StateMachine" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=54]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=58]
 
 [node name="Knight" type="KinematicBody2D"]
+collision_layer = 4
+script = ExtResource( 13 )
+my_type = "knight"
+max_speed = 200.0
+myheight = 35
+health = 50
+attack_range = 40
+attack_period = 2.0
+pushback_amount = 200
 
-[node name="Knight" type="AnimatedSprite" parent="."]
+[node name="Flipper" type="Node2D" parent="."]
+
+[node name="Knight" type="AnimatedSprite" parent="Flipper"]
 position = Vector2( 0.787598, 35.8914 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.498354, 0.497038 )
 frames = SubResource( 1 )
 animation = "Idle"
 offset = Vector2( -28.3793, -86.9866 )
 
-[node name="Shield" type="Sprite" parent="."]
+[node name="Shield" type="Sprite" parent="Flipper"]
 visible = false
-position = Vector2( 0.841843, -2.7156 )
-scale = Vector2( 0.5, 0.5 )
+self_modulate = Color( 1, 1, 1, 0.574714 )
+position = Vector2( 26.0507, -2.716 )
+scale = Vector2( 0.537925, 0.527688 )
 texture = ExtResource( 2 )
 offset = Vector2( -27.729, -10.606 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -3.95179, -27.8597 )
-shape = SubResource( 2 )
+[node name="Spark" parent="Flipper" instance=ExtResource( 7 )]
+lifetime = 0.4
+texture = null
+initial_velocity = 180.0
+scale_amount = 5.0
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -8.13501, -70.4659 )
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -3.95179, -6.62253 )
+shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
 method_call_mode = 1
 anims/Attack = SubResource( 4 )
-anims/Block = SubResource( 55 )
-anims/Defend = SubResource( 5 )
-anims/Die = SubResource( 6 )
-anims/Hit = SubResource( 7 )
-anims/Idle = SubResource( 8 )
-anims/Jumping = SubResource( 9 )
-anims/Land = SubResource( 10 )
-anims/PreJump = SubResource( 11 )
-anims/SlowDown = SubResource( 12 )
-anims/SlowWalk = SubResource( 13 )
-anims/SpeedUp = SubResource( 14 )
-anims/Walk = SubResource( 15 )
+anims/Block = SubResource( 5 )
+anims/Defend = SubResource( 6 )
+anims/Die = SubResource( 7 )
+anims/Hit = SubResource( 8 )
+anims/Idle = SubResource( 9 )
+anims/Jumping = SubResource( 10 )
+anims/Land = SubResource( 11 )
+anims/PreJump = SubResource( 12 )
+anims/SlowDown = SubResource( 13 )
+anims/SlowWalk = SubResource( 14 )
+anims/SpeedUp = SubResource( 15 )
+anims/Walk = SubResource( 16 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 53 )
+tree_root = SubResource( 57 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/StateMachine/playback = SubResource( 54 )
+active = true
+process_mode = 0
+parameters/StateMachine/playback = SubResource( 58 )
 
 [node name="Blood" parent="." instance=ExtResource( 7 )]
-
-[node name="Spark" parent="." instance=ExtResource( 7 )]
-lifetime = 0.4
-texture = null
-initial_velocity = 180.0
-scale_amount = 5.0
 
 [node name="Attack" parent="." instance=ExtResource( 8 )]
 stream = ExtResource( 9 )

@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://Demon/Cat.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "Knight",
+"language": "GDScript",
+"path": "res://Enemies/Knight.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Ninja",
 "language": "GDScript",
 "path": "res://Enemies/Ninja.gd"
@@ -27,6 +32,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Adventurer": "",
 "Cat": "",
+"Knight": "",
 "Ninja": ""
 }
 
