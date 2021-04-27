@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Graphics/Scenery/Shrine/Light0000.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Scenery/Shrine/Back0000.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://LevelElements/Candles.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Graphics/Scenery/Shrine/Shrine.gd" type="Script" id=9]
 [ext_resource path="res://Audio/Scenes/Audio.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Audio/Yay.wav" type="AudioStream" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -70,6 +71,7 @@ tracks/2/keys = {
 extents = Vector2( 58.8661, 83.5546 )
 
 [node name="Shrine" type="Area2D"]
+monitorable = false
 collision_layer = 0
 collision_mask = 4
 script = ExtResource( 9 )
@@ -88,7 +90,7 @@ offset = Vector2( -0.286926, 35.4105 )
 [node name="Gold" type="AnimatedSprite" parent="Shrine"]
 position = Vector2( 0, 66.5498 )
 frames = SubResource( 1 )
-frame = 1
+frame = 3
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Shrine/Gold"]
 position = Vector2( -0.944946, 5.66965 )
@@ -116,5 +118,6 @@ position = Vector2( 2.66968, 8.67646 )
 shape = SubResource( 5 )
 
 [node name="Audio" parent="." instance=ExtResource( 10 )]
+stream = ExtResource( 11 )
 
 [connection signal="body_entered" from="." to="." method="_on_Shrine_body_entered"]

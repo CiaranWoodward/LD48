@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://LevelElements/Walls.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Demon/Demon.tscn" type="PackedScene" id=2]
@@ -13,10 +13,12 @@
 [ext_resource path="res://Enemies/Ninja.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Enemies/Knight.tscn" type="PackedScene" id=12]
 [ext_resource path="res://LevelElements/Spawner.tscn" type="PackedScene" id=13]
+[ext_resource path="res://SplashScreens/StoryEnd.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Demon/Cat.tscn" type="PackedScene" id=15]
 
-[node name="Level3" type="Node2D"]
+[node name="Level4" type="Node2D"]
 script = ExtResource( 7 )
-drawNavMesh = true
+nextscene = ExtResource( 14 )
 
 [node name="BackWall" type="Sprite" parent="."]
 position = Vector2( 642.968, 749.516 )
@@ -283,3 +285,6 @@ position = Vector2( 1247.8, 84.9486 )
 to_spawn = ExtResource( 12 )
 period = 30.0
 count = 1
+
+[node name="Cat" parent="." instance=ExtResource( 15 )]
+position = Vector2( 755.953, 1348.12 )

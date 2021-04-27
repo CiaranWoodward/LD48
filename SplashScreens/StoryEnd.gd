@@ -1,7 +1,5 @@
 extends TextureRect
 
-export var dest_scene : PackedScene = null
-
 var minimum_timer : Timer
 
 # Called when the node enters the scene tree for the first time.
@@ -15,5 +13,4 @@ func _input(event: InputEvent) -> void:
 	if !minimum_timer.is_stopped():
 		return
 	if event is InputEventKey || event is InputEventJoypadButton || event is InputEventMouseButton:
-		if is_instance_valid(dest_scene):
-			get_tree().change_scene_to(dest_scene)
+		$AnimationPlayer.play("GameEnd")

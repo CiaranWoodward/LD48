@@ -1,6 +1,7 @@
 extends Camera2D
 
 export var top_left = Vector2.ZERO
+export var bottom_right = Vector2(1290, 1500)
 export var speed = 5
 export var lookahead_speed = 4
 export var ahead_distance = 150
@@ -18,10 +19,16 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _bound_camera() -> void:
-	if global_position.x < top_left.x:
-		global_position.x = top_left.x
-	if global_position.y < top_left.y:
-		global_position.y = top_left.y
+	var width = get_viewport_rect().size.x / 2
+	var height = get_viewport_rect().size.y / 2
+	if global_position.x < top_left.x + width:
+		global_position.x = top_left.x + width
+	if global_position.y < top_left.y + height:
+		global_position.y = top_left.y + height
+	if global_position.x > bottom_right.x - width:
+		global_position.x = bottom_right.x - width
+	if global_position.y > bottom_right.y - height:
+		global_position.y = bottom_right.y - height
 
 func _update_lookahead(delta: float) -> Vector2:
 	if follow_target.has_method("GetXcomponent"):
@@ -57,3 +64,4 @@ func _physics_process(delta: float) -> void:
 	var dir = global_position.direction_to(target_position)
 	var dist = global_position.distance_to(target_position)
 	global_position = global_position + dir * dist * delta * speed
+	_bound_camera()

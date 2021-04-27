@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Graphics/Scenery/BackWall0000.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Other/UI/Parchment0000.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Graphics/TheTheme.tres" type="Theme" id=4]
 [ext_resource path="res://Graphics/Other/UI/Eliminated0000.png" type="Texture" id=5]
 [ext_resource path="res://Graphics/Other/UI/Thanks0000.png" type="Texture" id=6]
+[ext_resource path="res://SplashScreens/StoryEnd.gd" type="Script" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "GameEnd"
@@ -53,6 +54,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
 stretch_mode = 2
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -88,7 +90,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-self_modulate = Color( 0.364706, 0.364706, 0.364706, 1 )
+self_modulate = Color( 0.364706, 0.364706, 0.364706, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
@@ -98,7 +100,7 @@ __meta__ = {
 }
 
 [node name="Eliminated" type="TextureRect" parent="TextureRect"]
-self_modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 1, 1, 1, 0.00140434 )
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -113,6 +115,7 @@ __meta__ = {
 }
 
 [node name="Thanks" type="TextureRect" parent="TextureRect"]
+self_modulate = Color( 1, 1, 1, 0 )
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5

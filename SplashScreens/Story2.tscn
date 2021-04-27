@@ -1,17 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Graphics/Scenery/BackWall0000.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Other/UI/Parchment0000.png" type="Texture" id=2]
+[ext_resource path="res://SplashScreens/SplashScreen.gd" type="Script" id=3]
 [ext_resource path="res://Graphics/TheTheme.tres" type="Theme" id=4]
+[ext_resource path="res://Levels/Level2.tscn" type="PackedScene" id=5]
 
 [node name="Story2" type="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
 stretch_mode = 2
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+dest_scene = ExtResource( 5 )
 
 [node name="Parchment" type="NinePatchRect" parent="."]
 anchor_right = 1.0
