@@ -1,6 +1,7 @@
 extends Node2D
 
 export var drawNavMesh = false
+export var nextscene : PackedScene = null
 
 # Maximum possible distance, just to minimize size of platform map
 const MAX_JUMPDIST = 500
@@ -61,6 +62,7 @@ class LevelAStar:
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.latest_level = get_tree().current_scene.filename
 	randomize()
 	_processPlatformMap()
 	assert(_platforms.size() > 0)
@@ -185,15 +187,28 @@ func GetTreasurePlatform():
 
 func SetHealthProp(proportion : float):
 	$HUD.SetHealthProp(proportion)
+	if proportion == 0:
+		fail()
 
 func SetShrineHealthProp(proportion : float):
 	$HUD.SetShrineHealthProp(proportion)
+	if proportion == 0:
+		fail()
+
+func fail():
+	if state == State.RUNNING:
+		state = State.FAIL
+		$HUD.Fail()
+		yield(get_tree().create_timer(1.5), "timeout")
+		get_tree().change_scene("res://SplashScreens/StoryFail.tscn")
 
 func set_enemycount(newval):
 	enemy_count = newval
 	SetMortalsCount(newval)
 	if newval <= 0 && state == State.RUNNING:
 		state = State.SUCCESS
+		yield(get_tree().create_timer(1.5), "timeout")
+		get_tree().change_scene_to(nextscene)
 
 func SetMortalsCount(count : int):
 	$HUD.SetMortalsCount(count)

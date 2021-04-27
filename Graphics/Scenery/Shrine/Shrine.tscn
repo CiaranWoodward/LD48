@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Graphics/Scenery/Shrine/Light0000.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Scenery/Shrine/Back0000.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Graphics/Scenery/Shrine/Gold0000.png" type="Texture" id=6]
 [ext_resource path="res://Graphics/Scenery/Shrine/Gold0003.png" type="Texture" id=7]
 [ext_resource path="res://LevelElements/Candles.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Graphics/Scenery/Shrine/Shrine.gd" type="Script" id=9]
+[ext_resource path="res://Audio/Scenes/Audio.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -17,14 +19,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.501754, 0.968182 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0318182 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0.858779, 1 )
 colors = PoolColorArray( 1, 0.92549, 0.709804, 1, 1, 0.92549, 0.709804, 0 )
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=4]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -64,7 +66,13 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0.964706 ), Color( 1, 0, 0, 1 ) ]
 }
 
-[node name="Shrine" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 58.8661, 83.5546 )
+
+[node name="Shrine" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource( 9 )
 
 [node name="Shrine" type="Sprite" parent="."]
 
@@ -72,9 +80,8 @@ tracks/2/keys = {
 texture = ExtResource( 2 )
 
 [node name="Light" type="Sprite" parent="Shrine"]
-self_modulate = Color( 1, 0.731776, 0.731776, 0.974173 )
+self_modulate = Color( 1, 1, 1, 0.964706 )
 position = Vector2( 0.286926, -35.4105 )
-scale = Vector2( 1.00205, 1.00373 )
 texture = ExtResource( 1 )
 offset = Vector2( -0.286926, 35.4105 )
 
@@ -92,8 +99,8 @@ gravity = Vector2( 0, 0 )
 angular_velocity = 360.0
 angular_velocity_random = 1.0
 scale_amount = 3.0
-scale_amount_curve = SubResource( 3 )
-color_ramp = SubResource( 4 )
+scale_amount_curve = SubResource( 2 )
+color_ramp = SubResource( 3 )
 
 [node name="Outline" type="Sprite" parent="Shrine"]
 texture = ExtResource( 3 )
@@ -102,4 +109,12 @@ texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
-anims/Idle = SubResource( 2 )
+anims/Idle = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2.66968, 8.67646 )
+shape = SubResource( 5 )
+
+[node name="Audio" parent="." instance=ExtResource( 10 )]
+
+[connection signal="body_entered" from="." to="." method="_on_Shrine_body_entered"]

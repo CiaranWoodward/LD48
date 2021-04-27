@@ -368,6 +368,7 @@ __meta__ = {
 }
 
 [node name="ShrineBar" type="TextureProgress" parent="Control"]
+visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -353.432
@@ -407,6 +408,7 @@ __meta__ = {
 }
 
 [node name="HPBar" type="TextureProgress" parent="Control"]
+visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -353.432
@@ -528,7 +530,7 @@ z_index = 2
 
 [node name="LevelStart" type="TextureRect" parent="Control"]
 visible = false
-modulate = Color( 0.192157, 0.192157, 0.192157, 1 )
+modulate = Color( 0, 0, 0, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 8 )
