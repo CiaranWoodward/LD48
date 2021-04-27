@@ -198,7 +198,7 @@ func SetShrineHealthProp(proportion : float):
 func fail():
 	if state == State.RUNNING:
 		state = State.FAIL
-		$HUD.Fail()
+		$HUD.call_deferred("Fail")
 		yield(get_tree().create_timer(1.5), "timeout")
 		get_tree().change_scene("res://SplashScreens/StoryFail.tscn")
 
@@ -207,6 +207,7 @@ func set_enemycount(newval):
 	SetMortalsCount(newval)
 	if newval <= 0 && state == State.RUNNING:
 		state = State.SUCCESS
+		$HUD.call_deferred("ShowSuccess")
 		yield(get_tree().create_timer(1.5), "timeout")
 		get_tree().change_scene_to(nextscene)
 
