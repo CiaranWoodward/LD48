@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://LevelElements/Walls.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Demon/Demon.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Graphics/Scenery/Textured0000.png" type="Texture" id=8]
 [ext_resource path="res://Levels/HUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://LevelElements/MainCamera.tscn" type="PackedScene" id=10]
+[ext_resource path="res://LevelElements/Spawner.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Enemies/Knight.tscn" type="PackedScene" id=12]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 7 )
@@ -184,9 +186,30 @@ position = Vector2( 1100.09, 893.058 )
 [node name="Shrine" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1091.29, 835.119 )
 
-[node name="Adventurer" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1348.63, 128.267 )
-
 [node name="HUD" parent="." instance=ExtResource( 9 )]
 
 [node name="MainCamera" parent="." instance=ExtResource( 10 )]
+
+[node name="Spawner" parent="." instance=ExtResource( 11 )]
+position = Vector2( -14.7987, 80.1655 )
+to_spawn = ExtResource( 6 )
+period = 8.0
+count = 2
+
+[node name="Spawner2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1349.65, 75.5024 )
+to_spawn = ExtResource( 6 )
+period = 15.0
+count = 2
+
+[node name="Spawner3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 10.1631, 77.0008 )
+to_spawn = ExtResource( 12 )
+period = 2.0
+count = 1
+
+[node name="Spawner4" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1280.73, 85.9906 )
+to_spawn = ExtResource( 12 )
+period = 20.0
+count = 1

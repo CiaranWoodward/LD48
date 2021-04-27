@@ -192,9 +192,17 @@ position = Vector2( 1091.29, 835.119 )
 [node name="Spawner" parent="." instance=ExtResource( 11 )]
 position = Vector2( 10, 46 )
 to_spawn = ExtResource( 6 )
-period = 7.0
+period = 6.0
+count = 2
+
+[node name="Spawner3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1225.13, 53.4915 )
+to_spawn = ExtResource( 6 )
+period = 2.0
+count = 1
 
 [node name="Spawner2" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1314, 42 )
 to_spawn = ExtResource( 6 )
-period = 8.5
+period = 20.0
+count = 2
