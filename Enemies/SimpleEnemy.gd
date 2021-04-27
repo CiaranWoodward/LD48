@@ -260,6 +260,7 @@ func take_damage(damage, pushback):
 
 func _actually_die():
 	print("freeing enemy...")
+	get_parent().enemy_count -= 1
 	self.queue_free()
 
 func _configure_next_point():

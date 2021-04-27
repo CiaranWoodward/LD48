@@ -13,7 +13,10 @@ var _treasure_platform = null
 var _typed_navmap = {}
 var _typed_astar = {}
 
-var enemy_count = 0
+var enemy_count = 0 setget set_enemycount
+
+enum State {RUNNING, FAIL, SUCCESS}
+var state = State.RUNNING
 
 class LevelAStar:
 	extends AStar2D
@@ -179,3 +182,18 @@ func GetTreasureLocation():
 
 func GetTreasurePlatform():
 	return _treasure_platform
+
+func SetHealthProp(proportion : float):
+	$HUD.SetHealthProp(proportion)
+
+func SetShrineHealthProp(proportion : float):
+	$HUD.SetShrineHealthProp(proportion)
+
+func set_enemycount(newval):
+	enemy_count = newval
+	SetMortalsCount(newval)
+	if newval <= 0 && state == State.RUNNING:
+		state = State.SUCCESS
+
+func SetMortalsCount(count : int):
+	$HUD.SetMortalsCount(count)

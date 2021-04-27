@@ -8,7 +8,7 @@ var minimum_timer : Timer
 func _ready() -> void:
 	minimum_timer = Timer.new()
 	add_child(minimum_timer)
-	minimum_timer.start(2)
+	minimum_timer.start(1)
 	minimum_timer.one_shot = true
 
 func _input(event: InputEvent) -> void:

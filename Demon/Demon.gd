@@ -340,10 +340,12 @@ func take_damage(damage, pushback):
 	stateMachine.start("Hit")
 	health = health - damage
 	if health < 0:
+		health = 0
 		_travel_animation("Die")
 		_dead = true
 		_end_grapple()
 		_endjump()
+	get_parent().SetHealthProp(health/max_health)
 
 func _travel_animation(dest : String):
 	if !_dead:
