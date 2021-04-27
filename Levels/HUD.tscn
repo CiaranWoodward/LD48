@@ -9,7 +9,7 @@
 [ext_resource path="res://SplashScreens/Continue.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Graphics/Scenery/Plain0000.png" type="Texture" id=8]
 [ext_resource path="res://Graphics/Other/UI/ShrineProtected0000.png" type="Texture" id=9]
-[ext_resource path="res://LevelElements/SimplePlatform.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Graphics/Scenery/Platform0000.png" type="Texture" id=10]
 [ext_resource path="res://Graphics/Scenery/Shrine/Shrine.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Graphics/Other/UI/Counter0000.png" type="Texture" id=12]
 
@@ -64,37 +64,37 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Control/LevelEnd/SimplePlatform:modulate")
+tracks/3/path = NodePath("Control/LevelEnd/Continue:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Control/LevelEnd/Continue:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0, 1, 1.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Control/LevelEnd/Text:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 tracks/5/type = "value"
-tracks/5/path = NodePath("Control/LevelEnd/Text:modulate")
+tracks/5/path = NodePath("Control/LevelEnd/Platform:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -441,58 +441,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelEnd" type="TextureRect" parent="Control"]
-visible = false
-self_modulate = Color( 0.364706, 0.364706, 0.364706, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SimplePlatform" parent="Control/LevelEnd" instance=ExtResource( 10 )]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 608.639, 579.976 )
-z_index = 1
-width = 300.0
-
-[node name="Shrine" parent="Control/LevelEnd/SimplePlatform" instance=ExtResource( 11 )]
-position = Vector2( 0, -117.523 )
-z_index = 2
-
-[node name="Continue" parent="Control/LevelEnd" instance=ExtResource( 7 )]
-modulate = Color( 1, 1, 1, 0 )
-
-[node name="Text" type="TextureRect" parent="Control/LevelEnd"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -481.326
-margin_top = -221.605
-margin_right = 506.674
-margin_bottom = -110.605
-texture = ExtResource( 9 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LevelStart" type="TextureRect" parent="Control"]
-visible = false
-modulate = Color( 0.192157, 0.192157, 0.192157, 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 8 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Counter" type="TextureRect" parent="Control"]
 self_modulate = Color( 0.392157, 0.392157, 0.392157, 1 )
 margin_left = 49.471
@@ -501,6 +449,9 @@ margin_right = 242.471
 margin_bottom = 156.192
 texture = ExtResource( 12 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MortalsRemaining" type="Label" parent="Control/Counter"]
 anchor_left = 0.5
@@ -525,6 +476,60 @@ custom_fonts/font = SubResource( 3 )
 text = "30"
 align = 1
 valign = 1
+
+[node name="LevelEnd" type="TextureRect" parent="Control"]
+self_modulate = Color( 0.364706, 0.364706, 0.364706, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" parent="Control/LevelEnd" instance=ExtResource( 7 )]
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="Text" type="TextureRect" parent="Control/LevelEnd"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -481.326
+margin_top = -221.605
+margin_right = 506.674
+margin_bottom = -110.605
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Platform" type="Sprite" parent="Control/LevelEnd"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 608.639, 579.976 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 500, 80 )
+
+[node name="Shrine" parent="Control/LevelEnd/Platform" instance=ExtResource( 11 )]
+position = Vector2( 0.000244141, -235.046 )
+scale = Vector2( 2, 2 )
+z_index = 2
+
+[node name="LevelStart" type="TextureRect" parent="Control"]
+visible = false
+modulate = Color( 0.192157, 0.192157, 0.192157, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/LevelEnd = SubResource( 4 )
