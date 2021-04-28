@@ -276,3 +276,10 @@ count = 2
 
 [node name="Cat" parent="." instance=ExtResource( 15 )]
 position = Vector2( 844.148, 1343.08 )
+
+[node name="InvisibleWalls" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( -109.385, 103.164 )
+
+[node name="Walls2" parent="InvisibleWalls" instance=ExtResource( 1 )]
+position = Vector2( 1592.93, 10.6908 )

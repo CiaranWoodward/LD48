@@ -205,5 +205,12 @@ count = 1
 [node name="Spawner2" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1314, 42 )
 to_spawn = ExtResource( 6 )
-period = 20.0
+period = 10.0
 count = 2
+
+[node name="InvisibleWalls" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( -109.385, 103.164 )
+
+[node name="Walls2" parent="InvisibleWalls" instance=ExtResource( 1 )]
+position = Vector2( 1592.93, 10.6908 )
