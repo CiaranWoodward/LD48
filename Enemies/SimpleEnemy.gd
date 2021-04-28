@@ -329,7 +329,7 @@ func _reached_point(_delta):
 		_cur_after_point.y = _cur_after_point.y - myheight
 		var diff = _cur_after_point - global_position
 		var jump_height = -jump_y_overshoot + min(0, diff.y) # Maximum jump height relative to start position (negative is higher)
-		var fall_height = jump_height - max(0, diff.y) # Maximum fall height between peak of jump and the end position (negative is higher)
+		var fall_height = -jump_y_overshoot - max(0, diff.y) # Maximum fall height between peak of jump and the end position (negative is higher)
 		fall_time = max(0, -fall_height/max_fallspeed)
 		var rise_time = -jump_height/max_jumpspeed
 		var jump_time = max(rise_time + fall_time, diff.x/max_speed)
@@ -431,6 +431,7 @@ func _repath_to(dest_platform):
 		return
 	
 	print("Repathing")
+	_clear_path()
 	var astar = get_parent().GetAstarForType(my_type)
 	if astar == null:
 		_create_typed_navmap()
