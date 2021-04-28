@@ -922,8 +922,10 @@ jump_y_overshoot = 60.0
 gravity_time = 0.3
 myheight = 40
 health = 30
+damage = 5
 attack_range = 600
 attack_period = 2.5
+pushback_amount = 70
 
 [node name="Flipper" type="Node2D" parent="."]
 

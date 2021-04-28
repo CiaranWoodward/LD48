@@ -21,6 +21,13 @@ func _ready() -> void:
 func _bound_camera() -> void:
 	var width = get_viewport_rect().size.x / 2
 	var height = get_viewport_rect().size.y / 2
+	var req_width = (bottom_right.x - top_left.x)/2
+	var zoom_amount = 1
+	if req_width < width:
+		zoom_amount = req_width/width
+	self.zoom = Vector2(zoom_amount, zoom_amount)
+	width = width * zoom_amount
+	height = height * zoom_amount
 	if global_position.x < top_left.x + width:
 		global_position.x = top_left.x + width
 	if global_position.y < top_left.y + height:
